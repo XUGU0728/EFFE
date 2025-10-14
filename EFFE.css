@@ -65,7 +65,7 @@ html{font-size: 10px;}
 body{width: 100dvw; height: auto; background-color: #F7F7F7; overflow-x: hidden;}
 section{margin: 0 auto; position: relative;}
 
-/* 네비게이션 navigation */
+/* 네비게이션 navigation 헤더 header*/
 nav{width: 100%; height: 80px; font-size: 2rem; display: flex; justify-content: center; align-items: center; gap: 100px; background-color: transparent;}
 nav.onNav{background-color: #F7F7F7;}
 .effeLogo{height: 60px;}
@@ -83,6 +83,20 @@ header{position: relative;}
 .subTitle{font-size: 1.8rem;}
 .subText{font-size: 1.4rem; color: #A6B1A9;}
 .subText:hover{color: #222; transition: all 0.2s linear;}
+
+/* 푸터 footer */
+footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
+.footBox01{display: flex; justify-content: center; align-items: center; gap: 10rem;} 
+.effeLogoFoot{height: 60px;}
+.effeLogoFoot>img{height: 100%; object-fit: cover;}
+.menuFoot{width: 80%; font-size: 1.6rem; display: flex; justify-content: center; align-items: flex-start; gap: 8rem; padding: 4rem 0; border-bottom: 1px solid #A6B1A9; border-top: 1px solid #A6B1A9;}
+.menuFoot>div>a{margin: 1.8rem;}
+.footTitle{color: #F7F7F7;}
+.footText{font-size: 1.4rem; color: #A6B1A9; transition: all 0.2s ease-in-out;}
+.footText:hover{color: white;}
+
+.footBox02{color: #F7F7F7; margin-top: 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+.footBox02>div{font-size: 1.2rem; color: #F7F7F7;}
 
 /* 메인페이지 main-page */
 .main01{width: 1600px; height: auto; display: flex; flex-direction: column; justify-content: center; align-items: center;}
@@ -107,11 +121,15 @@ header{position: relative;}
 .rolling img:hover {opacity: 1;}
 @keyframes rolling {100%{transform: translateX(-100%);}}
 
-.main03{width: 1500px;}
-.mainBox{width: 100%; height: 30rem; border: 1px solid #aaa; border-radius: 1rem; background-color: white; overflow: hidden; display: flex;}
+.main03{width: 100%; padding: 4rem; background: linear-gradient(to top, #F4F1EC, white); border-radius: 5rem 5rem 0 0  ; display: flex; flex-direction: column; align-items: center; gap: 2rem;}
+.mainPrev{font-size: 5rem; font-weight: 600; margin: 2rem 0;}
+.mainBox{width: 80%; height: 30rem; border: 1px solid #aaa; border-radius: 1rem; background-color: white; overflow: hidden; display: flex;}
 .mainBox>div{width: 33.3%;}
 .mainBox>div>img{width: 100%; height: 100%; object-fit: cover;}
-.mainBrandText{font-size: 4rem; display: flex; justify-content: center; align-items: center; flex-direction: column;}
+.mainBrandText{font-size: 2rem; font-weight: 500; display: flex; justify-content: center; align-items: center; flex-direction: column;}
+.mainConcept{cursor: pointer; transition: all 0.4s ease-in-out;}
+.mainConcept:hover{width: 66.6%;}
+
 
 
 
