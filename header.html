@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EFFÉ</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="EFFE.css" />
+    <link rel="stylesheet" href="reset.css" />
+</head>
+<body>
+<!-- 네비게이션 navigation -->
+    <header>
+        <nav>
+            <a href="#"><div class="effeLogo"><img src="./source/logo.png" alt="logo"></div></a>
+            <div class="menuMain">
+                <a href="#"><div>EFFÉ</div></a>
+                <a href="#"><div>BYREDO</div></a>
+                <a href="#"><div>TOM FORD</div></a>
+                <a href="#"><div>LE LABO</div></a>
+                <a href="#"><div>BURBERRY</div></a>
+                <a href="#"><div>Maison Margiela</div></a>
+            </div>
+            <div class="timeWeather">
+                <div id="time"></div>
+                <div>
+                    <div id="place"></div>
+                    <div id="temp"></div>
+                </div>
+                <img id="weatherIcon" alt="icon" />
+            </div>
+        </nav>
+        <div class="subWrap">
+            <div class="menuSub">
+                <div>
+                    <div class="subTitle">EFFÉ</div>
+                    <a href="#"><div class="subText">About</div></a>
+                </div>
+                <div>
+                    <div class="subTitle">BYREDO</div>
+                    <a href="#"><div class="subText">Intro.</div></a>
+                    <a href="#"><div class="subText">Blanche</div></a>
+                    <a href="#"><div class="subText">Mojave Ghost</div></a>
+                    <a href="#"><div class="subText">Gypsy Water</div></a>
+                </div>
+                <div>
+                    <div class="subTitle">TOM FORD</div>
+                    <a href="#"><div class="subText">Intro.</div></a>
+                    <a href="#"><div class="subText">Oud Wood</div></a>
+                    <a href="#"><div class="subText">Neroli Portofino</div></a>
+                    <a href="#"><div class="subText">Black Orchid</div></a>
+                </div>
+                <div>
+                    <div class="subTitle">LE LABO</div>
+                    <a href="#"><div class="subText">Intro.</div></a>
+                    <a href="#"><div class="subText">Another 13</div></a>
+                    <a href="#"><div class="subText">Santal 33</div></a>
+                    <a href="#"><div class="subText">Thé Noir 29</div></a>
+                </div>
+                <div>
+                    <div class="subTitle">BURBERRY</div>
+                    <a href="#"><div class="subText">Intro.</div></a>
+                    <a href="#"><div class="subText">My Burberry</div></a>
+                    <a href="#"><div class="subText">Burberry Her</div></a>
+                    <a href="#"><div class="subText">Mr. Burberry</div></a>
+                </div>
+                <div>
+                    <div class="subTitle">Maison Margiela</div>
+                    <a href="#"><div class="subText">Intro.</div></a>
+                    <a href="#"><div class="subText">Lazy Sunday Morning</div></a>
+                    <a href="#"><div class="subText">Jazz Club</div></a>
+                    <a href="#"><div class="subText">Sailing Day</div></a>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+<script>
+    // 네비게이션 navigation
+    // 시간
+        function updateTime() {
+            let time=document.getElementById('time')
+            let today = new Date();   
+            
+            let year = today.getFullYear()
+            let month = (today.getMonth() + 1)
+            let day = today.getDate()
+            let ampm = today.getHours() < 12 ? "AM" : "PM"
+            let hours = today.getHours()
+            let minutes = today.getMinutes()
+
+            month = month < 10 ? '0' + month : month
+            day = day < 10 ? '0' + day : day
+            hours = hours < 10 ? '0' + hours : hours
+            minutes = minutes < 10 ? '0' + minutes : minutes
+
+            time.innerHTML=`${year} / ${month} / ${day}<br>${ampm} ${hours}:${minutes}`
+        }
+        updateTime()
+        setInterval(updateTime, 1000)
+    // 날씨
+        let apiKey='dd2c4ba83f58a423300cb164a3d2d0e0';
+        let temp=document.getElementById('temp');
+        let place=document.getElementById('place');
+        let icon=document.getElementById('weatherIcon');
+
+        let getweather=async(lat,lon)=>{
+            let res=await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=kr`);
+            let data=await res.json();
+            temp.innerHTML = data.main.temp+ "°C";
+            place.innerHTML = data.name;
+            let iconImg=data.weather[0].icon;
+            icon.src = `https://openweathermap.org/img/wn/${iconImg}@2x.png`;
+        }
+        navigator.geolocation.getCurrentPosition((position)=>{
+            let lat=position.coords.latitude;
+            let lon=position.coords.longitude;
+            getweather(lat,lon);
+        })
+
+    //서브메뉴
+        $(document).ready(function(){
+            let menuMain=$('.menuMain')
+            let subWrap=$('.subWrap')
+
+            menuMain.on('mouseenter', function(){
+                subWrap.css({display: 'block', height: 'auto'})
+            let targetH = subWrap.find('.menuSub').outerHeight()
+                subWrap.css({height: 0})
+                subWrap.removeClass('onSub').hide()
+                subWrap.show().addClass('onSub')
+                subWrap.stop(true,true).animate({height : targetH}, 500, 'swing')
+            })
+            $('header').on('mouseleave', function(){
+                subWrap.stop(true,true).animate({height : 0}, 500, 'swing', function(){
+                    subWrap.removeClass('onSub').hide()
+                })
+            })
+        })
+</script>
+</html>

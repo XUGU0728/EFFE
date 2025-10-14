@@ -1,0 +1,117 @@
+/* 기본폰트 - 프리텐다드 */
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Thin.woff') format('woff');
+    font-weight: 100;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff') format('woff');
+    font-weight: 300;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
+    font-weight: 500;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: 700;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Black.woff') format('woff');
+    font-weight: 900;
+    font-display: swap;
+}
+/* 메인 로고 */
+@font-face {
+    font-family: "PlayfairDisplayBold";
+    src: url("./source/font/static/PlayfairDisplay-Bold.ttf") format("truetype");
+}
+
+/* 기본 셋팅 */
+*{margin: 0; padding: 0; list-style: none; text-decoration: none; user-select: none; font-family: 'Pretendard'; color: #222;}
+html{font-size: 10px;}
+body{width: 100dvw; height: auto; background-color: #F7F7F7; overflow-x: hidden;}
+section{margin: 0 auto; position: relative;}
+
+/* 네비게이션 navigation */
+nav{width: 100%; height: 80px; font-size: 2rem; display: flex; justify-content: center; align-items: center; gap: 100px; background-color: transparent;}
+nav.onNav{background-color: #F7F7F7;}
+.effeLogo{height: 60px;}
+.effeLogo>img{height: 100%; object-fit: cover;}
+.menuMain{display: flex; gap: 4rem; font-weight: 600;}
+
+.timeWeather{font-size: 1.2rem; display: flex; justify-content: center; align-items: center; gap: 20px;}
+#weatherIcon{height: 60px;}
+
+header{position: relative;}
+.subWrap{display: none; position: absolute; left: 0; right: 0; top: 100%; overflow: hidden; z-index: 10; background-color: #F7F7F7;}
+.subWrap.onSub{display: block;}
+.menuSub{font-size: 1.6rem; display: flex; justify-content: center; align-items: flex-start; gap: 8rem; padding: 4rem 0; border-bottom: 1px solid #A6B1A9; border-top: 1px solid #A6B1A9;}
+.menuSub>div>a{margin: 1.8rem;}
+.subTitle{font-size: 1.8rem;}
+.subText{font-size: 1.4rem; color: #A6B1A9;}
+.subText:hover{color: #222; transition: all 0.2s linear;}
+
+/* 메인페이지 main-page */
+.main01{width: 1600px; height: auto; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+.mainText{font-size: 8rem; position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 3rem;}
+[class*='mainText0']{color: #F7F7F7; font-weight: 600; opacity: 0; transform: translateY(-30px); transition: all 0.8s ease-in-out;}
+[class*='mainText0'].onMove{opacity: 1; transform: translateY(0);}
+.mainTextMove{background-color: #F7F7F7; width: 400px; height: 100px; font-weight: 600; display: flex; flex-direction: column; justify-content: center; align-items: center; transform: rotateX(90deg); transition: all 0.4s ease-in-out; position: relative; overflow: hidden;}
+.mainTextMove.onMove{transform: rotateX(0);}
+.mainChange{width: 100%; height: 100%; position: absolute; top: 0; left: 0; transform: translateY(100px); transition: all 0.4s ease-in-out; text-align: center;}
+.mainChange.onChange{transform: translateY(-20px)}
+.mainChange.onChange2{transform: translateY(-120px)}
+.mainEffe{font-family: "PlayfairDisplayBold"; font-size: 16rem; font-weight: 600; transform:rotateX(90deg) translateY(-100%); background-color: #F7F7F7; width: 46rem; height: 20rem; text-align: center; line-height: 20rem; transition: all 0.6s ease-in-out;}
+.mainEffe.onEffe{transform:rotateX(0deg) translateY(-200%);}
+
+.mainSenBox{width: 100%; height: 22rem; border-radius: 10px; margin-top: 4rem;}
+.mainSentence{font-family: "PlayfairDisplayBold"; color: #aaa; font-size: 4rem; font-weight: 600; margin-top: 8rem; text-align: center;}
+
+.main02{width: 100%; overflow: hidden; display: flex;}
+.rollingBox{width: max-content; height: 20rem; margin-top: 4rem; margin-left: 1rem; display: flex; align-items: center; gap: 1rem; animation: rolling 30s linear infinite;}
+.rolling{height: 16rem; width: max-content; padding: 10px 10px; border: 1px solid #aaa; border-radius: 1rem;}
+.rolling>img{height: 100%; width: 100%; object-fit: cover; opacity: 0.8;}
+.rolling img:hover {opacity: 1;}
+@keyframes rolling {100%{transform: translateX(-100%);}}
+
+.main03{width: 1500px;}
+.mainBox{width: 100%; height: 30rem; border: 1px solid #aaa; border-radius: 1rem; background-color: white; overflow: hidden; display: flex;}
+.mainBox>div{width: 33.3%;}
+.mainBox>div>img{width: 100%; height: 100%; object-fit: cover;}
+.mainBrandText{font-size: 4rem; display: flex; justify-content: center; align-items: center; flex-direction: column;}
+
+
+
