@@ -4,12 +4,14 @@ $(document).ready(function(){
     $('#footer').load('footer.html')
 })
 // 메인페이지 main-page
+function mainEffect() {
     //mainVideo
     let mainText=document.querySelectorAll("[class*='mainText0'],.mainTextMove")
     let mainChange=document.querySelectorAll('.mainChange')
     let mainEffe=document.querySelector('.mainEffe')
 
-    window.addEventListener("DOMContentLoaded", ()=>{
+    if (!mainText.length || !mainChange.length || !mainEffe) return; 
+
         setTimeout(() => {
             mainText.forEach((el, idx) => {
                 setTimeout(() => {
@@ -58,7 +60,6 @@ $(document).ready(function(){
                 mainEffe.classList.add('onEffe')
             }, 4200)
         }, {once: true})
-    })
 
     //main rolling
     let main02=document.querySelector('.main02')
@@ -66,3 +67,74 @@ $(document).ready(function(){
 
     let clone=rollingBox.cloneNode(true)
     main02.appendChild(clone)
+}
+mainEffect()
+
+// 에페소개페이지 effe-about-page
+function aboutEffect() {
+    //이미지 슬라이드
+    let aboutSlides = document.querySelector('.aboutSlides');
+    if (!aboutSlides) return;
+
+    let slides = aboutSlides.querySelectorAll('.slide');
+    let currentIndex = 1;
+    let total = slides.length - 2
+    let slideWidth = slides[0].clientWidth;
+
+    aboutSlides.style.transition = 'none';
+    aboutSlides.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+    updateProgress();
+
+        function updateProgress() {
+        let page = currentIndex
+        if (currentIndex === 0) page = total;
+        if (currentIndex === slides.length - 1) page = 1
+
+        let aboutProgress = document.querySelector('.aboutProgress');
+        let pageIndex = document.querySelector('.pageIndex');
+        let percent = (page / total) * 100;
+        aboutProgress.style.width = `${percent}%`
+        pageIndex.textContent = `0${page}`
+    }
+
+    aboutSlides.addEventListener('transitionend', () => {
+        if (currentIndex === slides.length - 1) {
+            aboutSlides.style.transition = 'none'
+            currentIndex = 1
+            aboutSlides.style.transform = `translateX(-${slideWidth * currentIndex}px)`
+        } else if (currentIndex === 0) {
+            aboutSlides.style.transition = 'none'
+            currentIndex = slides.length - 1
+            aboutSlides.style.transform = `translateX(-${slideWidth * currentIndex}px)`
+        }
+    });
+
+
+    function moveToIndex(index) {
+        currentIndex = index;
+        aboutSlides.style.transition = 'transform 0.6s ease-in-out';
+        aboutSlides.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+        updateProgress();
+    }
+
+
+
+
+    function autoSlide() {
+         moveToIndex(currentIndex + 1)
+    }
+    let timer = setInterval(autoSlide, 3000);
+
+    document.querySelector('.nextBtn').addEventListener('click', () => {
+        clearInterval(timer);
+        autoSlide();
+        timer = setInterval(autoSlide, 3000);
+    });
+
+    document.querySelector('.prevBtn').addEventListener('click', () => {
+        clearInterval(timer);
+        moveToIndex(currentIndex - 1);
+        timer = setInterval(autoSlide, 3000);
+    });
+}
+aboutEffect();
