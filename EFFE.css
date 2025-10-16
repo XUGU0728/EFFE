@@ -58,14 +58,18 @@
     font-family: "PlayfairDisplayBold";
     src: url("./source/font/static/PlayfairDisplay-Bold.ttf") format("truetype");
 }
+@font-face { /*바이레도 byredo*/
+    font-family: "FuturaCyrillicBold";
+    src: url("./source_01BYREDO/font/FuturaCyrillicDemi.woff") format("woff");
+}
 
 /* 기본 셋팅 */
 *{margin: 0; padding: 0; list-style: none; text-decoration: none; user-select: none; font-family: 'Pretendard'; color: #222;}
 html{font-size: 10px;}
 body{width: 100dvw; height: auto; background-color: #F7F7F7; overflow-x: hidden;}
 section{margin: 0 auto; position: relative;}
-.lineV{background-color: #222; height: 10rem; width: 0.2rem; margin: 4rem 0;}
-.lineH{background-color: #222; width: 10rem; height: 0.2rem; margin: 4rem 0;}
+.lineV{background-color: #222; height: 10rem; width: 0.2rem; margin: 4rem auto;}
+.lineH{background-color: #222; width: 10rem; height: 0.2rem; margin: 4rem auto;}
 
 /* 네비게이션 navigation 헤더 header*/
 nav{width: 100%; height: 80px; font-size: 2rem; display: flex; justify-content: center; align-items: center; gap: 100px; background-color: transparent;}
@@ -108,8 +112,8 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 .mainTextMove{background-color: #F7F7F7; width: 400px; height: 100px; font-weight: 600; display: flex; flex-direction: column; justify-content: center; align-items: center; transform: rotateX(90deg); transition: all 0.4s ease-in-out; position: relative; overflow: hidden;}
 .mainTextMove.onMove{transform: rotateX(0);}
 .mainChange{width: 100%; height: 100%; position: absolute; top: 50%; left: 50%; transform:translate(-50%, -50%) translateY(100%); transition: all 0.4s ease-in-out; text-align: center;}
-.mainChange.onChange{transform:translate(-50%, -50%) translateY(0)}
-.mainChange.onChange2{transform:translate(-50%, -50%) translateY(-100%)}
+.mainChange.onChange{transform:translate(-50%, -50%) translateY(-15%)}
+.mainChange.onChange2{transform:translate(-50%, -50%) translateY(-120%)}
 .mainEffe{font-family: "PlayfairDisplayBold"; font-size: 16rem; font-weight: 600; transform:rotateX(90deg) translateY(-100%); background-color: #F7F7F7; width: 46rem; height: 20rem; text-align: center; line-height: 20rem; transition: all 0.6s ease-in-out;}
 .mainEffe.onEffe{transform:rotateX(0deg) translateY(-150%);}
 .mainVideo{width: 100%; height: 100%; margin: 0 auto;}
@@ -119,13 +123,13 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 .mainSentence{font-family: "PlayfairDisplayBold"; color: #aaa; font-size: 4rem; font-weight: 600; margin-top: 8rem; text-align: center;}
 
 .main02{width: 100%; overflow: hidden; display: flex; background-color: white; border-radius: 5rem 5rem 0 0;}
-.rollingBox{width: max-content; height: 20rem; margin-top: 4rem; margin-left: 1rem; display: flex; align-items: center; gap: 1rem; animation: rolling 30s linear infinite;}
+.rollingBox{width: max-content; height: 20rem; margin-top: 4rem; margin-left: 0.7rem; display: flex; align-items: center; gap: 1rem; animation: rolling 30s linear infinite;}
 .rolling{height: 16rem; width: max-content; padding: 10px 10px; border: 1px solid #aaa; border-radius: 1.5rem; background-color: #222;}
-.rolling>img{height: 100%; width: 100%; object-fit: cover; opacity: 0.8;}
-.rolling img:hover {opacity: 1;}
+.rolling>img{height: 100%; width: 100%; object-fit: cover;}
+.rolling:hover {background-color: #F7F7F7;}
 @keyframes rolling {100%{transform: translateX(-100%);}}
 
-.main03{width: 100%; height: auto; padding: 4rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem; position: relative; overflow: hidden;}
+.main03{width: 100%; height: max-content; padding: 4rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem; position: relative; overflow: hidden;}
 .mainPrev{font-size: 5rem; font-weight: 600; margin: 2rem 0;}
 .mainBox{width: 80%; height: 30rem; border: 1px solid #aaa; border-radius: 1rem; background-color: white; overflow: hidden; display: flex;}
 .mainBox>div{width: 33.3%;}
@@ -133,9 +137,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 .mainBrandText{font-size: 2rem; font-weight: 500; display: flex; justify-content: center; align-items: center; flex-direction: column;}
 .mainConcept{cursor: pointer; transition: all 0.4s ease-in-out;}
 .mainConcept:hover{width: 66.6%;}
-.mainBg{width: 100%; height: 100%; position: absolute; left: 0; bottom: 0; z-index: 0;}
+.mainBg{width: 100%; height: 100%; position: absolute; inset: 0; z-index: 0;}
 .mainBg>img{width: 100%; height: 100%; object-fit: cover;}
-.main03 > *:not(.mainBg){position: relative; z-index: 1;}
+.main03>*:not(.mainBg){position: relative; z-index: 1;}
 
 /* 에페소개페이지 effe-about-page */
 .about01{position: relative; width: 100vw; height: 65vh; overflow-x: hidden;}
@@ -150,7 +154,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 
 .aboutIndicator{position: absolute; bottom: 0%; left: 50%; z-index: 10; transform: translateX(-50%); width: 70rem; height: 5rem;}
 .aboutProgressBox{width: 100%; height: 100%; position: relative;}
-.prevBtn,.nextBtn{cursor: pointer; border: none; color: #F7F7F7; background-color: transparent; font-size: 4rem; position: absolute; top: -50%;}
+.prevBtn,.nextBtn{cursor: pointer; border: none; color: #F7F7F7; background-color: transparent; font-size: 4rem; position: absolute; top: -60%;}
 .prevBtn{left: -5%;}
 .nextBtn{right: -5%;}
 .aboutBar{width: 70rem; height: 5px; background-color: #F7F7F7; opacity: 0.4; position: absolute; top: 0; left: 0;} 
@@ -160,8 +164,143 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 .about02{display: flex; justify-content: center; align-items: center; flex-direction: column;}
 .aboutSen{font-size: 4rem; font-weight: 600; font-family: "PlayfairDisplayBold";}
 .aboutSubSen{text-align: center; font-size: 1.4rem; padding: 4rem 0; line-height: 2rem;}
+.aboutSubSen2{text-align: center; font-size: 1.8rem; font-weight: 500; padding: 4rem 0; line-height: 4rem;}
 .aboutVideo{width: 100%; height: 100%; margin: 0 auto;}
 .aboutVideo>video{width: 100%; height: 100%; object-fit: cover;}
 
+.about03{width: 100%; height: 100vh; overflow: hidden; border-radius: 5rem 5rem 0 0; margin-top: 4rem;}
+.dragBox{width: 100%; height: 100%; position: relative;}
+.mover{opacity: 0.8; position: absolute; z-index: 10; cursor: grab; overflow: hidden; border-radius: 1rem; box-shadow: 2px 2px 5px rgba(0,0,0,0.4);}
+.mover:hover{opacity: 1;}
+.mover:active{opacity: 1; box-shadow: 1px 1px 3px rgba(0,0,0,0.2);}
+.mover>img{width: 100%; object-fit: cover;}
+.dragBox>.mover:nth-child(1){width: 30rem; height: 20rem; left: 12%; bottom: 50%;}
+.dragBox>.mover:nth-child(2){width: 20rem; height: auto; left: 28%; bottom: 50%;}
+.dragBox>.mover:nth-child(3){width: 30rem; height: 20rem; left: 40%; bottom: 50%;}
+.dragBox>.mover:nth-child(4){width: 20rem; height: auto; left: 57%; bottom: 50%;}
+.dragBox>.mover:nth-child(5){width: 20rem; height: auto; left: 70%; bottom: 50%;}
+.dragBox>.mover:nth-child(6){width: 30rem; height: auto; left: 7%; top: 45%;}
+.dragBox>.mover:nth-child(7){width: 20rem; height: auto; left: 25%; top: 45%;}
+.dragBox>.mover:nth-child(8){width: 20rem; height: auto; left: 37%; top: 45%;}
+.dragBox>.mover:nth-child(9){width: 20rem; height: auto; left: 50%; top: 45%;}
+.dragBox>.mover:nth-child(10){width: 20rem; height: auto; left: 62%; top: 45%;}
+.dragBox>.mover:nth-child(11){width: 30rem; height: 20rem; left: 75%; top: 45%;}
+
+.aboutDragTextbox{position: absolute; z-index: 0; inset: 0;}
+.aboutDragBg{width: 100%; height: 100%;}
+.aboutDragBg>img{width: 100%; height: 100%; object-fit: cover; opacity: 0.2;}
+.aboutDragText01{width: 100%; position: absolute; top: 5%; left: 50%; transform: translateX(-50%); text-align: center; font-size: 4rem; font-family: "PlayfairDisplayBold";}
+.aboutDragText02{width: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; justify-content: center; align-items: center; gap: 4rem; font-size: 6rem;}
+.aboutDragText02>div{font-family: "PlayfairDisplayBold";}
+.aboutDragText02>div>div{font-family: "PlayfairDisplayBold";}
+.dragSubText{text-align: center;}
+.dragSign{font-size: 8rem;}
+
+/* 바이레도 BYREDO */
+    /* 바이레도 인트로 byredo intro */
+    .byredoI01{width: 100%; height: 110dvh; position: relative; display: flex; justify-content: space-between; align-items: center; flex-direction: column;}
+    .byredoILogo{position: absolute; width: 20%; height: auto; right: 5%; top: 30%;}
+    .byredoILogoSen{position: absolute; right: 6%; top: 40%; font-size: 2rem; font-family: "FuturaCyrillicBold";}
+    .byredoIMain{width: 100%; height: 75dvh;}
+    .byredoIMain>img{width: 100%; height: 100%; object-fit: cover;}
+    .byredoIValue{width: 80%; height: 40dvh; border-radius: 4rem; position: absolute; top: 60%; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: white; }
+    .byredoIVText{font-size: 3rem; font-family: "FuturaCyrillicBold";}
+
+    .byredoI02{width: 100%; height: auto; overflow-x: hidden; position: relative;}
+    [class*=byredoCBox]{display: flex;}
+    [class*=byredoCBox]>div{width: 55%; height: 60rem;}
+    .byredoCImg01{border-radius: 0 15rem 15rem 0; overflow: hidden;}
+    .byredoCImg01Bg{border-radius: 0 15rem 15rem 0; background-color: #EAE7E2; position: absolute; z-index: -1;}
+    .byredoCImg02{border-radius: 15rem 0 0 15rem; overflow: hidden;}
+    .byredoCImg02Bg{border-radius: 15rem 0 0 15rem; background-color: #EAE7E2; position: absolute; right: 0; z-index: -1;}
+    [class*=byredoCImg]>img{width: 100%; height: 100%; object-fit: cover;}
+    .byredoCText{display: flex; justify-content: center; align-items: center; font-size: 3rem; font-family: "FuturaCyrillicBold";}
+
+    .byredoI03{width: 80%; height: 60dvh; perspective: 2000px; display: flex; justify-content: center; align-items: center; gap: 2rem; background-color: #F2F2F2;}
+    .flipCard{cursor: pointer; width: 30%; height: 40dvh; display: flex; justify-content: center; align-items: center; position: relative; background-color: #F2F2F2;}
+    .flipCard:hover .flipCardIn, .flipCard.touch-active .flipCardIn {transform: rotateY(180deg);}
+    .flipCardIn{position: relative; width: 100%; height: 100%; transition: all 0.8s linear; transform-style: preserve-3d;}
+    .flipFront, .flipBack {width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; align-items: center; backface-visibility: hidden; box-sizing: border-box; border-radius: 10px;}
+    .flipFront{overflow: hidden; background-color:white; display: flex; flex-direction: column; justify-content: center;}
+    .frontImg{width: 100%; height: 100%; overflow: hidden; border-radius: 10px; padding: 2rem 2rem;}
+    .frontImg>img{width: 100%; height: 100%; object-fit: cover;}
+    .flipBack{transform: rotateY(180deg); background-color: #EAE7E2; padding: 30px; flex-direction: column; gap: 3rem;}
+    .flipBack>div{font-size: 1.8rem;}
+
+    .byredoI04{width: 70%; height: auto; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+    .byredoFSen{font-size: 2.4rem; width: 100%; height: 20rem; text-align: center; line-height: 20rem; background-color: #EAE7E2; border-radius: 1rem; font-family: "FuturaCyrillicBold";}
+    .byredoFImgBox{width: 100%; display: flex; gap: 2rem; margin: 9rem 0;}
+    .byredoFImg{width: 50%; height: 62dvh; border-radius: 5rem; overflow: hidden; margin-bottom: 5rem;}
+    .byredoFImg>img{width: 100%; height: 100%; object-fit: cover;}
+
+    .byredoI05{width: 70%; height: 70dvh; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+    .byredoIMapText{font-size: 2.4rem; margin-bottom: 5rem;}
+    .byredoMap{width: 100%; height: 70%; border-radius: 1rem;}
+
+    .searchBox {margin-top: 3rem; background: rgba(255,255,255,0.9); padding: 1rem 1.5rem; border-radius: 3rem; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.15);}
+    .searchBox input {border: none; outline: none; background: transparent; font-size: 1.4rem; width: 40rem;}
+    .searchBox button { border: none; background: #222; color: #F7F7F7; border-radius: 2rem; padding: 5px 10px; cursor: pointer; transition: 0.2s;}
+    .searchBox button:hover {background: #333;}
+
+    /* 바이레도 블랑쉬 byredo Blanche */
+    .byredoP01{width: 100%;}
+    .byredoPMain{width: 100%; height: 75dvh;}
+    .byredoPMain>img{width: 100%; height: 100%; object-fit: cover;}
+    .byredoPMainText{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
+    .byredoPMainText>div{background-color: #E8E8E1; width: 70%; height: 10rem; border-radius: 5rem; text-align: center; font-size: 2rem; font-weight: 600; line-height: 10rem;}
+
+    .byredoP02{width: 60%; background-color: white; padding: 2rem;}
+    .byredoPElBox{width: 100%; height: 150dvh; display: grid; grid-template: repeat(3, 1fr) / repeat(2, 1fr);}
+    .byredoPElBox>div{width: 100%; height: 50dvh; font-size: 1.4rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem;}
+    .byredoPElBg01{background-color: #F9E7E4;}
+    .byredoPElBg02{background-color: #E8E1EB;}
+    .byredoPElBg03{background-color: #E5D9CC;}
+    [class*=byredoPElChip0]{width: 10rem; height: 10rem;}
+    .byredoPElChip01{background-color: #F3BEB6;}
+    .byredoPElChip02{background-color: #CDB8DC;}
+    .byredoPElChip03{background-color: #D5B897;}
+    .byredoPElBox>div>img{width: 100%; height: 100%; object-fit: cover;}
+
+    .byredoP03{width: 100%; height: auto;}
+    .byredoPFCon{width: 100%; height: 70dvh; position: relative;}
+    .byredoPFConSen01{position: absolute; right: 2%; top: 50%; display: flex; flex-direction: column; align-items: flex-end;}
+    .byredoPFConSen01>div:nth-child(1){font-size: 2.4rem; font-weight: 600;}
+    .byredoPFConSen01>div:nth-child(2){font-size: 1.3rem;}
+    .byredoPFCon>div:nth-child(2){width: 100%; height: 100%;}
+    .byredoPFCon>div>img{width: 100%; height: 100%; object-fit: cover;}
+    
+    .byredoP04{width: 80%; height: 100dvh;}
+    .byredoPFst{width: 100%; height: 80dvh; padding: 2rem; display: flex; justify-content: center; align-items: center; gap: 8rem;}
+    .byredoPRec{width: 20%; height: 100%; clip-path: polygon(0% 0%, 100% 20%, 100% 100%, 0% 100%);}
+    .byredoPRec>img{width: 100%; height: 100%; object-fit: cover;}
+
+    /* 바이레도 모하비고스트 byredo Mojave Ghost */
+    .byredoPElBg04{background-color: #ece4d4;}
+    .byredoPElBg05{background-color: #efe7f7;}
+    .byredoPElBg06{background-color: #FDF6F0;}
+    .byredoPElChip04{background-color: #d1c4ab;}
+    .byredoPElChip05{background-color: #c1b0d1;}
+    .byredoPElChip06{background-color: #ddccbc;}
+    .byredoPFConSen02{position: absolute; left: 2%; top: 50%; display: flex; flex-direction: column; align-items: flex-start;}
+    .byredoPFConSen02>div:nth-child(1){font-size: 2.4rem; font-weight: 600;}
+    .byredoPFConSen02>div:nth-child(2){font-size: 2.4rem;}
+    
+    /* 바이레도 집시워터 byredo Gypsy Water */
+    .byredoPElBg07{background-color: #ece4d4;}
+    .byredoPElBg08{background-color: #efe7f7;}
+    .byredoPElBg09{background-color: #FDF6F0;}
+    .byredoPElChip07{background-color: #d1c4ab;}
+    .byredoPElChip08{background-color: #c1b0d1;}
+    .byredoPElChip09{background-color: #ddccbc;}
+    .byredoPFConSen03{position: absolute; left: 2%; top: 50%; display: flex; flex-direction: column; align-items: flex-start;}
+    .byredoPFConSen03>div:nth-child(1){font-size: 2.4rem; font-weight: 600;}
+    .byredoPFConSen03>div:nth-child(2){font-size: 2.4rem;}
+    
 
 
+
+
+
+
+
+    

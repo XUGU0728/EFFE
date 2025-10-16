@@ -1,8 +1,10 @@
+//각 브랜드 카카오맵은 내부 스크립트
 // 공통 헤더 & 푸터 불러오기
 $(document).ready(function(){
     $('#header').load('header.html')
     $('#footer').load('footer.html')
 })
+
 // 메인페이지 main-page
 function mainEffect() {
     //mainVideo
@@ -61,12 +63,30 @@ function mainEffect() {
             }, 4200)
         }, {once: true})
 
-    //main rolling
+    //롤링이미지
     let main02=document.querySelector('.main02')
     let rollingBox=document.querySelector('.rollingBox')
 
     let clone=rollingBox.cloneNode(true)
     main02.appendChild(clone)
+
+    document.querySelectorAll('.rolling').forEach(el => {
+    let imgEl = el.querySelector('img')
+    let originalImg = imgEl.getAttribute('src');
+    let hoverImg = originalImg.replace('_white', '');
+
+    el.addEventListener('mouseenter', () => {
+        imgEl.src = hoverImg;
+        rollingBox.style.animationPlayState = 'paused';
+        clone.style.animationPlayState = 'paused'; 
+    });
+
+    el.addEventListener('mouseleave', () => {
+        imgEl.src = originalImg;
+        rollingBox.style.animationPlayState = 'running';
+        clone.style.animationPlayState = 'running';
+    });
+});
 }
 mainEffect()
 
@@ -109,7 +129,6 @@ function aboutEffect() {
         }
     });
 
-
     function moveToIndex(index) {
         currentIndex = index;
         aboutSlides.style.transition = 'transform 0.6s ease-in-out';
@@ -117,11 +136,8 @@ function aboutEffect() {
         updateProgress();
     }
 
-
-
-
     function autoSlide() {
-         moveToIndex(currentIndex + 1)
+        moveToIndex(currentIndex + 1)
     }
     let timer = setInterval(autoSlide, 3000);
 
@@ -136,5 +152,65 @@ function aboutEffect() {
         moveToIndex(currentIndex - 1);
         timer = setInterval(autoSlide, 3000);
     });
+
+    //드래그
+    function dragAble(el){
+        let down = false
+        let px = 0, py = 0 //이전 좌표
+        let tx = 0, ty = 0 //누적 이동값
+
+        // 드래그 시작 (마우스 + 터치)
+        function start(e){
+            down = true
+            if(e.type === "mousedown"){
+                px = e.clientX
+                py = e.clientY
+            } else if(e.type === "touchstart"){
+                px = e.touches[0].clientX //touches자체가 여러손가락을 염두에 둔 배열객체임.
+                py = e.touches[0].clientY
+            }
+        }
+
+        // 드래그 중 (마우스 + 터치)
+        function move(e){
+            if(!down) return
+            let clientX, clientY
+            if(e.type === "mousemove"){
+                clientX = e.clientX
+                clientY = e.clientY
+            } else if(e.type === "touchmove"){
+                clientX = e.touches[0].clientX
+                clientY = e.touches[0].clientY
+            }
+            let dx = clientX - px
+            let dy = clientY - py
+            px = clientX
+            py = clientY
+            tx += dx
+            ty += dy
+            el.style.transform = `translate(${tx}px, ${ty}px)`
+            e.preventDefault() // 터치 스크롤 방지?
+        }
+
+        // 드래그 끝 (마우스 + 터치)
+        function end(){
+            down = false
+        }
+
+        el.addEventListener("mousedown", start)
+        el.addEventListener("touchstart", start)
+
+        window.addEventListener("mousemove", move)
+        window.addEventListener("touchmove", move)
+
+        window.addEventListener("mouseup", end)
+        window.addEventListener("touchend", end)
+    }
+
+    let mover=document.querySelectorAll('.mover')
+    mover.forEach((e)=>{
+        dragAble(e)
+    })  
 }
 aboutEffect();
+
