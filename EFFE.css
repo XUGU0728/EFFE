@@ -62,6 +62,14 @@
     font-family: "FuturaCyrillicBold";
     src: url("./source_01BYREDO/font/FuturaCyrillicDemi.woff") format("woff");
 }
+@font-face { /*톰포드 tomford*/
+    font-family: "HelveticaNeueBold";
+    src: url("./source_02TOM_FORD/font/HelveticaNeueBold.otf") format("OpenType");
+}
+@font-face { /*르라보 lerabo*/
+    font-family: "OldSansBlack";
+    src: url("./source_03LE_LABO/font/OldSansBlack.ttf") format("TrueType");
+}
 
 /* 기본 셋팅 */
 *{margin: 0; padding: 0; list-style: none; text-decoration: none; user-select: none; font-family: 'Pretendard'; color: #222;}
@@ -70,6 +78,8 @@ body{width: 100dvw; height: auto; background-color: #F7F7F7; overflow-x: hidden;
 section{margin: 0 auto; position: relative;}
 .lineV{background-color: #222; height: 10rem; width: 0.2rem; margin: 4rem auto;}
 .lineH{background-color: #222; width: 10rem; height: 0.2rem; margin: 4rem auto;}
+.lineVW{background-color: white; height: 10rem; width: 0.2rem; margin: 4rem auto;}
+.lineHW{background-color: white; width: 10rem; height: 0.2rem; margin: 4rem auto;}
 
 /* 네비게이션 navigation 헤더 header*/
 nav{width: 100%; height: 80px; font-size: 2rem; display: flex; justify-content: center; align-items: center; gap: 100px; background-color: transparent;}
@@ -209,10 +219,8 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .byredoI02{width: 100%; height: auto; overflow-x: hidden; position: relative;}
     [class*=byredoCBox]{display: flex;}
     [class*=byredoCBox]>div{width: 55%; height: 60rem;}
-    .byredoCImg01{border-radius: 0 15rem 15rem 0; overflow: hidden;}
-    .byredoCImg01Bg{border-radius: 0 15rem 15rem 0; background-color: #EAE7E2; position: absolute; z-index: -1;}
-    .byredoCImg02{border-radius: 15rem 0 0 15rem; overflow: hidden;}
-    .byredoCImg02Bg{border-radius: 15rem 0 0 15rem; background-color: #EAE7E2; position: absolute; right: 0; z-index: -1;}
+    .byredoCImg01{border-radius: 0 15rem 15rem 0; overflow: hidden; box-shadow: 8rem 2rem 0 #EAE7E2;}
+    .byredoCImg02{border-radius: 15rem 0 0 15rem; overflow: hidden; box-shadow: -8rem 2rem 0 #EAE7E2;}
     [class*=byredoCImg]>img{width: 100%; height: 100%; object-fit: cover;}
     .byredoCText{display: flex; justify-content: center; align-items: center; font-size: 3rem; font-family: "FuturaCyrillicBold";}
 
@@ -286,21 +294,185 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .byredoPFConSen02>div:nth-child(2){font-size: 2.4rem;}
     
     /* 바이레도 집시워터 byredo Gypsy Water */
-    .byredoPElBg07{background-color: #ece4d4;}
-    .byredoPElBg08{background-color: #efe7f7;}
-    .byredoPElBg09{background-color: #FDF6F0;}
-    .byredoPElChip07{background-color: #d1c4ab;}
-    .byredoPElChip08{background-color: #c1b0d1;}
-    .byredoPElChip09{background-color: #ddccbc;}
-    .byredoPFConSen03{position: absolute; left: 2%; top: 50%; display: flex; flex-direction: column; align-items: flex-start;}
-    .byredoPFConSen03>div:nth-child(1){font-size: 2.4rem; font-weight: 600;}
-    .byredoPFConSen03>div:nth-child(2){font-size: 2.4rem;}
+    .byredoPElBg07{background-color: #FFF9D6;}
+    .byredoPElBg08{background-color: #F5EAE0;}
+    .byredoPElBg09{background-color: #E6D9C7;}
+    .byredoPElChip07{background-color: #eee3ac;}
+    .byredoPElChip08{background-color: #e7ceb6;}
+    .byredoPElChip09{background-color: #c7b7a2;}
+    .byredoPFConSen03{position: absolute; right: 7%; top: 70%; display: flex; flex-direction: column; align-items: flex-end;}
+    .byredoPFConSen03>div:nth-child(1){color: #F7F7F7; font-size: 2.4rem; font-weight: 600;}
+    .byredoPFConSen03>div:nth-child(2){color: #F7F7F7; font-size: 2rem;}
+    
+/* 톰포드 TOM FORD */
+    /* 톰포드 인트로 tomford intro */
+    .tomI01{width: 100%; height: 110dvh; display: flex; justify-content: space-between; align-items: center; flex-direction: column;}
+    .tomILogo{position: absolute; width: 20%; height: auto; right: 2%; top: 30%;}
+    .tomILogoSen{position: absolute; right: 6%; top: 37%; font-size: 2rem; font-family: "HelveticaNeueBold";}
+    .tomIMain{width: 100%; height: 75dvh;}
+    .tomIMain>img{width: 100%; height: 100%; object-fit: cover;}
+    .tomIValue{width: 100%; height: 40dvh; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #1C1C1C;}
+    .tomIVText{color: white; font-size: 3rem; font-family: "HelveticaNeueBold";}
+
+    .tomI02{width: 70%; height: max-content;}
+    .tomICon{width: 100%; height: 60dvh; margin: 8rem 0; display: flex; justify-content: center; align-items: center;}
+    .tomIConSen{width: 50%; height: 60dvh; font-size: 3rem; text-align: center; line-height: 60dvh; font-family: "HelveticaNeueBold";}
+    .tomIConBox{width: 50%; height: 60dvh; position: relative;}
+    .tomIConImg{width: 90%; height: 90%; box-shadow: 2rem 2rem 0 #4B2E2B;}
+    .tomIConImg>img{width: 100%; height: 100%; object-fit: cover;}
+
+    .tomI03{width: 80%; height: 60dvh; perspective: 2000px; display: flex; justify-content: center; align-items: center; gap: 2rem; background-color: #1C1C1C;}
+    .flipCardT{cursor: pointer; width: 30%; height: 40dvh; display: flex; justify-content: center; align-items: center; position: relative; background-color: #1C1C1C;}
+    .flipCardT:hover .flipCardInT, .flipCardT.touch-active .flipCardInT {transform: rotateY(180deg);}
+    .flipCardInT{position: relative; width: 100%; height: 100%; transition: all 0.8s linear; transform-style: preserve-3d;}
+    .flipFrontT, .flipBackT {width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; align-items: center; backface-visibility: hidden; border-radius: 1rem; overflow: hidden; box-sizing: border-box;}
+    .flipFrontT{overflow: hidden; background-color:white; display: flex; flex-direction: column; justify-content: center;}
+    .flipBackT{transform: rotateY(180deg); background-color: #4B2E2B; padding: 30px; flex-direction: column; gap: 3rem;}
+    .flipBackT>div{font-size: 1.8rem; color: #F7F7F7;}
+
+    .tomI04{width: 100%; height: auto; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+    .tomFSen{font-size: 2.4rem; width: 100%; height: 20rem; text-align: center; line-height: 20rem; background-color: #4B2E2B; color: #F7F7F7; font-family: "HelveticaNeueBold";}
+    .tomFImgBox{width: 70%; display: flex; gap: 2rem; margin: 9rem 0;}
+    .tomFImg{width: 50%; height: 62dvh; overflow: hidden; margin-bottom: 5rem;}
+    .tomFImg>img{width: 100%; height: 100%; object-fit: cover;}
+
+    .tomI05{width: 70%; height: 70dvh; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+    .tomIMapText{font-size: 2.4rem; margin-bottom: 5rem;}
+    .tomMap{width: 100%; height: 70%; border-radius: 1rem;}
+
+    /* 톰포드 오드우드 tomford Oud Wood */
+    .tomP01{width: 100%;}
+    .tomPMain{width: 100%; height: 75dvh;}
+    .tomPMain>img{width: 100%; height: 100%; object-fit: cover;}
+    .tomPMainText{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
+    .tomPMainText>div{background-color: #4B4038; color: #f7f7f7; width: 80%; height: 15rem; text-align: center; font-size: 2rem; font-weight: 600; line-height: 15rem;}
+
+    .tomP02{width: 80%; background-color: white; padding: 2rem;}
+    .tomPElBox{width: 100%; height: 66dvh; display: grid; grid-template: repeat(3, 1fr) / repeat(1, 1fr 7fr); gap: 2rem;}
+    .tomPElBox>div{width: 100%; height: 20dvh;}
+    [class*='tomPElBg0']{font-size: 1.4rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem;}
+    [class*='tomPElBg0']>div{text-align: center; color: #f7f7f7;}
+    .tomPElBg01{background-color: #8B5E3C;}
+    .tomPElBg02{background-color: #556B2F;}
+    .tomPElBg03{background-color: #A67B5B;}
+    .tomPElBox>div>img{width: 100%; height: 100%; object-fit: cover;}
+
+    .tomP03{width: 100%; height: auto;}
+    .tomPFCon{width: 100%; height: 70dvh; position: relative;}
+    .tomPFConSen01{position: absolute; right: 2%; top: 60%; display: flex; flex-direction: column; align-items: flex-end;}
+    .tomPFConSen01>div:nth-child(1){font-size: 2.4rem; font-weight: 600;}
+    .tomPFConSen01>div:nth-child(2){font-size: 2rem;}
+    .tomPFCon>div:nth-child(2){width: 100%; height: 100%;}
+    .tomPFCon>div>img{width: 100%; height: 100%; object-fit: cover;}
+    
+    .tomP04{width: 80%; height: 100dvh;}
+    .tomPFst{width: 100%; height: 80dvh; padding: 2rem; display: flex; justify-content: center; align-items: center; gap: 8rem;}
+    .tomPRec{width: 20%; height: 100%; clip-path: polygon(0% 0%, 20% 100%, 100% 100%, 80% 0%);}
+    .tomPRec>img{width: 100%; height: 100%; object-fit: cover;}
+
+    /* 톰포드 블랙오키드 tomford Black Orchid */
+    .tomPMainText02{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
+    .tomPMainText02>div{background-color: #3B1F2B; color: #f7f7f7; width: 80%; height: 15rem; text-align: center; font-size: 2rem; font-weight: 600; line-height: 15rem;}
+    .tomPElBg04{background-color: #beae30;}
+    .tomPElBg05{background-color: #2B1B30;}
+    .tomPElBg06{background-color: #5C4033;}
+    .tomPFConSen02{position: absolute; right: 2%; top: 50%; display: flex; flex-direction: column; align-items: flex-start;}
+    .tomPFConSen02>div:nth-child(1){font-size: 2.4rem; font-weight: 600;}
+    .tomPFConSen02>div:nth-child(2){font-size: 2.4rem;}
+    
+    /* 톰포드 네롤리포르토피노 tomford Neroli Portofino */
+    .tomPMainText03{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
+    .tomPMainText03>div{background-color: #00A8A8; width: 80%; height: 15rem; text-align: center; font-size: 2rem; font-weight: 600; line-height: 15rem;}
+    .tomPElBg07{background-color: #FF9B3D;}
+    .tomPElBg08{background-color: #e9dec8;}
+    .tomPElBg09{background-color: #c78e39;}
+    .tomPElBg07>div, .tomPElBg08>div, .tomPElBg09>div{color: #222;}
+    .tomPFConSen03{position: absolute; left: 2%; top: 40%; display: flex; flex-direction: column; align-items: flex-start;}
+    .tomPFConSen03>div:nth-child(1){font-size: 2.4rem; font-weight: 600;}
+    .tomPFConSen03>div:nth-child(2){font-size: 1.8rem;}
+    
+/* 르라보 LE LABO */
+    /* 르라보 인트로 lerabo intro */
+    .leraboI01{width: 100%; height: 110dvh; position: relative; display: flex; justify-content: space-between; align-items: center; flex-direction: column;}
+    .leraboILogo{position: absolute; width: 20%; height: auto; left: 5%; top: 15%;}
+    .leraboILogoSen{color: #f7f7f7; position: absolute; left: 5%; top: 11%; font-size: 2.4rem; font-family: "OldSansBlack";}
+    .leraboIMain{width: 100%; height: 75dvh;}
+    .leraboIMain>img{width: 100%; height: 100%; object-fit: cover;}
+    .leraboIValue{width: 80%; height: 40dvh; border-radius: 4rem; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+    .leraboIVText{font-size: 3rem; font-family: "OldSansBlack";}
+
+    .leraboI02{width: 100%; height: auto; overflow-x: hidden; position: relative;}
+    .leraboCBox{display: flex;}
+    .leraboCBox>div{width: 50%; height: 60rem;}
+    [class*=leraboCImg]>img{width: 100%; height: 100%; object-fit: cover;}
+    [class*=leraboCText]{display: flex; justify-content: center; align-items: center; font-size: 3rem; font-family: "OldSansBlack";}
+    .leraboCText01{background-color: #D9D9D6;}
+    .leraboCText02{background-color: #D8CFC5;}
+
+    .leraboI03{width: 80%; height: 60dvh; perspective: 2000px; display: flex; justify-content: center; align-items: center; gap: 2rem; background-color: #ffffff}
+    .flipCardL{cursor: pointer; width: 30%; height: 40dvh; display: flex; justify-content: center; align-items: center; position: relative; background-color: #ffffff;}
+    .flipCardL:hover .flipCardInL, .flipCardL.touch-active .flipCardInL {transform: rotateY(180deg);}
+    .flipCardInL{position: relative; width: 100%; height: 100%; transition: all 0.8s linear; transform-style: preserve-3d;}
+    .flipFrontL, .flipBackL {width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; align-items: center; backface-visibility: hidden; border-radius: 1rem; overflow: hidden; box-sizing: border-box;}
+    .flipFrontL{overflow: hidden; background-color:white; display: flex; flex-direction: column; justify-content: center;}
+    .flipBackL{transform: rotateY(180deg); background-color: #D9D9D6; padding: 30px; flex-direction: column; gap: 3rem;}
+    .flipBackL>div{font-size: 1.8rem;}
+    .frontImgL{width: 100%; height: 100%; overflow: hidden; border-radius: 10px;}
+    .frontImgL>img{width: 100%; height: 100%; object-fit: cover;}
     
 
+    .leraboI04{width: 70%; height: auto; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+    .leraboFSen{font-size: 2.4rem; width: 100%; height: 20rem; text-align: center; line-height: 20rem; border-radius: 1rem; font-family: "OldSansBlack";}
+    .leraboFImgBox{width: 100%; display: flex; gap: 2rem; margin: 9rem 0;}
+    .leraboFImg{width: 50%; height: 62dvh; border-radius: 5rem; overflow: hidden; margin-bottom: 5rem;}
+    .leraboFImg>img{width: 100%; height: 100%; object-fit: cover;}
 
+    .leraboI05{width: 70%; height: 70dvh; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+    .leraboIMapText{font-size: 2.4rem; margin-bottom: 5rem;}
+    .leraboMap{width: 100%; height: 70%; border-radius: 1rem;}
 
+    .searchBox {margin-top: 3rem; background: rgba(255,255,255,0.9); padding: 1rem 1.5rem; border-radius: 3rem; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.15);}
+    .searchBox input {border: none; outline: none; background: transparent; font-size: 1.4rem; width: 40rem;}
+    .searchBox button { border: none; background: #222; color: #F7F7F7; border-radius: 2rem; padding: 5px 10px; cursor: pointer; transition: 0.2s;}
+    .searchBox button:hover {background: #333;}
 
+    /* 르라보 상탈33 lerabo Santal 33 */
+    .leraboP01{width: 100%;}
+    .leraboPMain{width: 100%; height: 75dvh;}
+    .leraboPMain>img{width: 100%; height: 100%; object-fit: cover;}
+    .leraboPMainText{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
+    .leraboPMainText>div{background-color: #E6E0DA; width: 80%; height: 15rem; text-align: center; font-size: 2rem; font-weight: 600; line-height: 15rem;}
 
+    .leraboP02{width: 80%; background-color: #E6E0DA; padding: 2rem;}
+    .leraboPElBox{width: 100%; height: auto; display: flex; justify-content: center; align-items: center; gap: 2rem;}
+    .leraboPElBg{background-color: white; width: 32%; height: 70dvh; font-size: 1.4rem; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 1.4rem;}
+    .leraboPElBg>div{text-align: center;}
+    .leraboPElBg>div:nth-child(2){font-weight: 600; font-size: 2.4rem;}
+    .leraboPElImg{width: 80%; height: 80%; overflow: hidden;}
+    .leraboPElImg>img{width: 100%; height: 100%; object-fit: cover;}
+    [class*='leraboPElChip0']{width: 100%; height: 5rem;}
+    .leraboPElChip01{background-color: #C3A6C7;}
+    .leraboPElChip02{background-color: #9b7fd6;}
+    .leraboPElChip03{background-color: #6B4C3B;}
 
+    .leraboP03{width: 100%; height: auto;}
+    .leraboPFCon{width: 100%; height: 70dvh; position: relative;}
+    .leraboPFConSen01{position: absolute; left: 3%; top: 72%; display: flex; flex-direction: column; align-items: flex-end;}
+    .leraboPFConSen01>div:nth-child(1){font-size: 2.4rem; font-weight: 600;}
+    .leraboPFConSen01>div:nth-child(2){font-size: 2.1rem;}
+    .leraboPFCon>div:nth-child(2){width: 100%; height: 100%;}
+    .leraboPFCon>div>img{width: 100%; height: 100%; object-fit: cover;}
+    
+    .leraboP04{width: 80%; height: 100dvh;}
+    .leraboPFst{width: 100%; height: 80dvh; padding: 2rem; display: flex; justify-content: center; align-items: center; gap: 8rem;}
+    .leraboPRec{width: 20%; height: 100%; clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 20%);}
+    .leraboPRec>img{width: 100%; height: 100%; object-fit: cover;}
 
+    /* 르라보 어나더13 lerabo Another 13 */
+    .leraboPElChip04{background-color: #ddbf46;}
+    .leraboPElChip05{background-color: #F5F5F5;}
+    .leraboPElChip06{background-color: #9e806f;}
+    .leraboPFConSen03{position: absolute; right: 7%; top: 70%; display: flex; flex-direction: column; align-items: flex-end;}
+    .leraboPFConSen03>div:nth-child(1){color: #F7F7F7; font-size: 2.4rem; font-weight: 600;}
+    .leraboPFConSen03>div:nth-child(2){color: #F7F7F7; font-size: 2rem;}
     

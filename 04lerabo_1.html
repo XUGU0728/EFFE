@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EFFÉ</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="EFFE.css" />
+    <link rel="stylesheet" href="reset.css" />
+</head>
+<body>
+    <div id="header"></div>
+    <section class="leraboI01">
+        <div class="leraboILogo"><img src="./source_03LE_LABO/logo_white.png" alt="logo"></div>
+        <div class="leraboILogoSen">Crafted by Soul, Not Machine</div>
+        <div class="leraboIMain"><img src="./source_03LE_LABO/15.jpg" alt="img"></div>
+        <div class="leraboIValue">
+            <div class="lineH"></div>
+            <div class="leraboIVText">“Crafted with precision, each scent tells a story unique to its wearer.”</div>
+            <div class="lineH"></div>
+        </div>
+    </section>
+    <section class="leraboI02">
+        <div class="leraboCBox">
+            <div class="leraboCImg01"><img src="./source_03LE_LABO/09.jpg" alt="img"></div>
+            <div class="leraboCText01">Artisan Perfumery</div>
+        </div>
+        <div class="leraboCBox">
+            <div class="leraboCText02">Urban Craft</div>
+            <div class="leraboCImg02"><img src="./source_03LE_LABO/536.jpg" alt="img"></div>
+        </div>
+        <div class="lineH"></div>
+    </section>
+    <section class="leraboI03">
+        <div class="flipCardL">
+            <div class="flipCardInL">
+                <div class="flipFrontL">
+                    <div class="L"><img src="./source_03LE_LABO/Santal_33.jpg" alt="img"></div>
+                </div>
+                <div class="flipBackL">
+                    <div class="lineH"></div>
+                    <div>Another 13</div>
+                    <div>x</div>
+                    <div>clean | modern | synthetic innocence</div>
+                    <div class="lineH"></div>
+                </div>
+            </div>
+        </div>
+        <div class="flipCardL">
+            <div class="flipCardInL">
+                <div class="flipFrontL">
+                    <div class="frontImgL"><img src="./source_03LE_LABO/Another_13.jpg" alt="img"></div>
+                </div>
+                <div class="flipBackL">
+                    <div class="lineH"></div>
+                    <div>Santal 33</div>
+                    <div>x</div>
+                    <div>woody | iconic | unisex confidence</div>
+                    <div class="lineH"></div>
+                </div>
+            </div>
+        </div>
+        <div class="flipCardL">
+            <div class="flipCardInL">
+                <div class="flipFrontL">
+                    <div class="frontImgL"><img src="./source_03LE_LABO/Thé_Noir_29.jpg" alt="img"></div>
+                </div>
+                <div class="flipBackL">
+                    <div class="lineH"></div>
+                    <div>Thé Noir 29</div>
+                    <div>x</div>
+                    <div>sensual | smoky | deep allure</div>
+                    <div class="lineH"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="leraboI04">
+        <div class="lineH"></div>
+        <div class="leraboFSen">
+            raw authenticity · earthy minimalism · artisanal edge
+        </div>
+        <div class="lineH"></div>
+        <div class="leraboFImgBox">
+            <div class="leraboFImg">
+                <img src="./source_03LE_LABO/03.jpg" alt="img">
+            </div>
+            <div class="leraboFImg">
+                <img src="./source_03LE_LABO/07.jpg" alt="img">
+            </div>
+        </div>
+        <div class="lineH"></div>
+    </section>
+    <section class="leraboI05">
+        <div class="leraboIMapText">LE RABO Flagship Store</div>
+        <div class="leraboMap"></div>
+        <div class="searchBox">
+            <input type="text" id="keyword" placeholder="장소를 검색하세요">
+            <button id="searchBtn">검색</button>
+        </div>
+        <div class="lineH"></div>
+    </section>
+    <div id="footer"></div>
+
+<script type="text/javascript" src="EFFE.js"></script>
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=1ce51ad03576a5eb772af03ad556cda2&libraries=services,clusterer,drawing&autoload=false"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        kakao.maps.load(() => {
+        const mapContainer = document.querySelector('.leraboMap');
+        const mapOption = {
+            center: new kakao.maps.LatLng(37.5811464, 126.9818965),
+            level: 3
+        };
+        const map = new kakao.maps.Map(mapContainer, mapOption);
+        const ps = new kakao.maps.services.Places();
+        const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+        let markers = [];
+
+        // ✅ 매장 마커 추가
+        const leraboPosition = new kakao.maps.LatLng(37.5811464, 126.9818965);
+        const leraboMarker = new kakao.maps.Marker({
+            map: map,
+            position: leraboPosition
+        });
+        const leraboInfo = new kakao.maps.InfoWindow({
+            content: '<div style="padding:8px;font-size:13px;">LE RABO Flagship Store<br>서울특별시 종로구 북촌로5나길 5 -</div>'
+        });
+
+        // ✅ 페이지 로드시 바로 말풍선 표시
+        leraboInfo.open(map, leraboMarker);
+
+        // ✅ 검색 버튼 클릭 이벤트
+        document.getElementById('searchBtn').addEventListener('click', () => {
+            const keyword = document.getElementById('keyword').value.trim();
+            if (!keyword) {
+            alert('검색어를 입력하세요!');
+            return;
+            }
+            ps.keywordSearch(keyword, placesSearchCB);
+        });
+
+        // ✅ 장소 검색 콜백 함수
+        function placesSearchCB(data, status) {
+            if (status === kakao.maps.services.Status.OK) {
+            markers.forEach(marker => marker.setMap(null));
+            markers = [];
+
+            const bounds = new kakao.maps.LatLngBounds();
+            data.forEach(place => {
+                const marker = new kakao.maps.Marker({
+                map,
+                position: new kakao.maps.LatLng(place.y, place.x)
+                });
+                markers.push(marker);
+
+                kakao.maps.event.addListener(marker, 'click', function() {
+                infowindow.setContent(
+                    `<div style="padding:5px;font-size:13px;">${place.place_name}</div>`
+                );
+                infowindow.open(map, marker);
+                });
+
+                bounds.extend(new kakao.maps.LatLng(place.y, place.x));
+            });
+
+            map.setBounds(bounds);
+            } else {
+            alert('검색 결과가 없습니다.');
+            }
+        }
+
+        // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+        // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+        map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+        // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+        var zoomControl = new kakao.maps.ZoomControl();
+        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+        });
+    });
+</script>
+
+</body>
+</html>
