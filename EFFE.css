@@ -74,6 +74,10 @@
     font-family: "optima";
     src: url("./source_04BURBERRY/font/OPTIMA_B.woff") format("woff");
 }
+@font-face { /*마르지엘라 margiela*/
+    font-family: "goudos";
+    src: url("./source_05MAISON_MARGIELA/font/GOUDOS.woff") format("woff");
+}
 
 /* 기본 셋팅 */
 *{margin: 0; padding: 0; list-style: none; text-decoration: none; user-select: none; font-family: 'Pretendard'; color: #222;}
@@ -577,4 +581,94 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .burberryPFConSen03{position: absolute; left: 2%; top: 10%; display: flex; flex-direction: column; align-items: flex-start;}
     .burberryPFConSen03>div:nth-child(1){color: #f7f7f7; font-size: 2.4rem; font-weight: 600;}
     .burberryPFConSen03>div:nth-child(2){color: #f7f7f7; font-size: 2rem;}
+    
+/* 마르지엘라 MAISON Margiela */
+    /* 마르지엘라 인트로 margiela intro */
+    .margielaI01{width: 100%; height: 110dvh; position: relative; display: flex; justify-content: space-between; align-items: center; flex-direction: column;}
+    .margielaILogo{position: absolute; width: 20%; height: auto; left: 4%; top: 50%;}
+    .margielaILogoSen{color: #f7f7f7; position: absolute; left: 7%; top: 45%; font-size: 2.4rem; font-family: "goudos";}
+    .margielaIMain{width: 100%; height: 75dvh;}
+    .margielaIMain>img{width: 100%; height: 100%; object-fit: cover;}
+    .margielaIValue{width: 80%; height: 40dvh; border-radius: 4rem; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+    .margielaIVText{font-size: 3rem; font-family: "goudos";}
+
+    .margielaI02{width: 100%; height: auto; overflow-x: hidden;}
+    .margielaCBox{width: 100%; height: 60rem; display: flex; margin-bottom: 10rem;}
+    [class*=margielaCImg]{width: 55%;}
+    .margielaCImg01{clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%, 0 100%);}
+    .margielaCImg02{clip-path: polygon(0 0, 80% 0, 100% 100%, 100% 100%, 0 100%);}
+    [class*=margielaCImg]>img{width: 100%; height: 100%; object-fit: cover;}
+    .margielaCText{width: 45%; display: flex; justify-content: center; align-items: center; font-size: 3rem; font-family: "goudos";}
+
+    .margielaI03{width: 80%; height: 60dvh; perspective: 2000px; display: flex; justify-content: center; align-items: center; gap: 2rem; background-color: #ffffff}
+    .flipCardM{cursor: pointer; width: 30%; height: 40dvh; display: flex; justify-content: center; align-items: center; position: relative; background-color: #ffffff;}
+    .flipCardM:hover .flipCardInM, .flipCardM.touch-active .flipCardInM {transform: rotateY(180deg);}
+    .flipCardInM{position: relative; width: 100%; height: 100%; transition: all 0.8s linear; transform-style: preserve-3d;}
+    .flipFrontM, .flipBackM {width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; align-items: center; backface-visibility: hidden; border-radius: 1rem; overflow: hidden; box-sizing: border-box;}
+    .flipFrontM{overflow: hidden; background-color:white; display: flex; flex-direction: column; justify-content: center;}
+    .flipBackM{transform: rotateY(180deg); background-color: #DADCE0; padding: 2rem; flex-direction: column; gap: 2rem;}
+    .flipBackM>div{font-size: 1.8rem;}
+    .frontImgM{width: 100%; height: 100%; overflow: hidden; border-radius: 10px;}
+    .frontImgM>img{width: 100%; height: 100%; object-fit: cover;}
+
+    .margielaI04{width: 70%; height: auto; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+    .margielaFSen{font-size: 2.4rem; width: 100%; height: 20rem; text-align: center; line-height: 20rem; border-radius: 1rem; font-family: "goudos";}
+    .margielaFImgBox{width: 100%; display: flex; gap: 2rem; margin: 9rem 0;}
+    .margielaFImg{width: 50%; height: 62dvh; border-radius: 5rem; overflow: hidden; margin-bottom: 5rem;}
+    .margielaFImg>img{width: 100%; height: 100%; object-fit: cover;}
+
+    .margielaI05{width: 70%; height: 70dvh; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+    .margielaIMapText{font-size: 2.4rem; margin-bottom: 5rem;}
+    .margielaMap{width: 100%; height: 70%; border-radius: 1rem;}
+
+    .searchBox {margin-top: 3rem; background: rgba(255,255,255,0.9); padding: 1rem 1.5rem; border-radius: 3rem; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.15);}
+    .searchBox input {border: none; outline: none; background: transparent; font-size: 1.4rem; width: 40rem;}
+    .searchBox button { border: none; background: #222; color: #F7F7F7; border-radius: 2rem; padding: 5px 10px; cursor: pointer; transition: 0.2s;}
+    .searchBox button:hover {background: #333;}
+
+    /* 마르지엘라 레이지선데이모닝 margiela Lazy Sunday Morning */
+    .margielaP01{width: 100%;}
+    .margielaPMain{width: 100%; height: 75dvh;}
+    .margielaPMain>img{width: 100%; height: 100%; object-fit: cover;}
+    .margielaPMainText{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
+    .margielaPMainText>div{background-color: #DADCE0; width: 80%; height: 15rem; text-align: center; font-size: 2rem; font-weight: 600; line-height: 15rem;}
+
+    .margielaP02{width: 80%; background-color: #DADCE0; padding: 2rem 20rem;}
+    .margielaPElBox{width: 100%; height: auto; display: flex; justify-content: center; align-items: center; gap: 20rem;}
+    [class*=margielaPElBg]{padding: 1rem; width: 32%; height: 70dvh; font-size: 1.4rem; display: flex; justify-content: flex-start; align-items: center; gap: 1.6rem; flex-direction: column;}
+    [class*=margielaPElBg]>div{text-align: center;}
+    .margielaPElBg01{background-color: #F3F8EF;}
+    .margielaPElBg02{background-color: #E9E0EF;}
+    .margielaPElBg03{background-color: #D8D0C6;}
+    .margielaPElImg{width: 100%; height: 80%; overflow: hidden;}
+    .margielaPElImg>img{width: 100%; height: 100%; object-fit: cover;}
+
+    .margielaP03{width: 100%; height: auto;}
+    .margielaPFCon{width: 100%; height: 80dvh; position: relative;}
+    .margielaPFConSen01{position: absolute; left: 3%; top: 72%; display: flex; flex-direction: column; align-items: flex-start;}
+    .margielaPFConSen01>div:nth-child(1){color: #f7f7f7; font-size: 2.4rem; font-weight: 600;}
+    .margielaPFConSen01>div:nth-child(2){color: #f7f7f7; font-size: 2.1rem;}
+    .margielaPFCon>div:nth-child(2){width: 100%; height: 100%;}
+    .margielaPFCon>div>img{width: 100%; height: 100%; object-fit: cover;}
+    
+    .margielaP04{width: 80%; height: 100dvh;}
+    .margielaPFst{width: 100%; height: 80dvh; padding: 2rem; display: flex; justify-content: center; align-items: center; gap: 8rem;}
+    .margielaPRec{width: 20%; height: 100%; border-end-start-radius: 50%; border-top-right-radius: 50%; overflow: hidden;}
+    .margielaPRec>img{width: 100%; height: 100%; object-fit: cover;}
+
+    /* 마르지엘라 재즈클럽 margiela Jazz Club */
+    .margielaPElBg04{background-color: #d8cdb7;}
+    .margielaPElBg05{background-color: #A59C7B;}
+    .margielaPElBg06{background-color: #5B4A42;}
+    .margielaPFConSen02{position: absolute; left: 5%; top: 80%; display: flex; flex-direction: column; align-items: flex-start;}
+    .margielaPFConSen02>div:nth-child(1){color: #f7f7f7; font-size: 2.4rem; font-weight: 600;}
+    .margielaPFConSen02>div:nth-child(2){color: #f7f7f7; font-size: 2rem;}
+    
+    /* 마르지엘라 세일링데이 margiela Sailing Day */
+    .margielaPElBg07{background-color: #F3F8EF;}
+    .margielaPElBg08{background-color: #bfdfcc;}
+    .margielaPElBg09{background-color: #f5e9d4;}
+    .margielaPFConSen03{position: absolute; right: 2%; top: 70%; display: flex; flex-direction: column; align-items: flex-end;}
+    .margielaPFConSen03>div:nth-child(1){font-size: 3rem; font-weight: 600;}
+    .margielaPFConSen03>div:nth-child(2){font-size: 2rem;}
     
