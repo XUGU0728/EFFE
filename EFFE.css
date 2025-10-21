@@ -270,7 +270,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .byredoPFCon>div:nth-child(2){width: 100%; height: 100%;}
     .byredoPFCon>div>img{width: 100%; height: 100%; object-fit: cover;}
     
-    .byredoP04{width: 80%; height: 100dvh;}
+    .byredoP04{width: 80%; height: 145dvh;}
+    .byredoPFstTitle{font-size: 3.2rem; text-align: center; font-weight: 600;}
+    .byredoPFstSen{font-size: 1.8rem; text-align: center; margin: 6rem auto;}
     .byredoPFst{width: 100%; height: 80dvh; padding: 2rem; display: flex; justify-content: center; align-items: center; gap: 8rem;}
     .byredoPRec{width: 20%; height: 100%; border-bottom-right-radius: 50%; border-top-right-radius: 50%; overflow: hidden;}
     .byredoPRec>img{width: 100%; height: 100%; object-fit: cover;}
@@ -358,7 +360,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .tomPFCon>div:nth-child(2){width: 100%; height: 100%;}
     .tomPFCon>div>img{width: 100%; height: 100%; object-fit: cover;}
     
-    .tomP04{width: 80%; height: 100dvh;}
+    .tomP04{width: 80%; height: 145dvh;}
+    .tomPFstTitle{font-size: 3.2rem; text-align: center; font-weight: 600;}
+    .tomPFstSen{font-size: 1.8rem; text-align: center; margin: 6rem auto;}
     .tomPFst{width: 100%; height: 80dvh; padding: 2rem; display: flex; justify-content: center; align-items: center; gap: 8rem;}
     .tomPRec{width: 20%; height: 100%; clip-path: polygon(0% 0%, 20% 100%, 100% 100%, 80% 0%);}
     .tomPRec>img{width: 100%; height: 100%; object-fit: cover;}
@@ -456,7 +460,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .leraboPFCon>div:nth-child(2){width: 100%; height: 100%;}
     .leraboPFCon>div>img{width: 100%; height: 100%; object-fit: cover;}
     
-    .leraboP04{width: 80%; height: 100dvh;}
+    .leraboP04{width: 80%; height: 145dvh;}
+    .leraboPFstTitle{font-size: 3.2rem; text-align: center; font-weight: 600;}
+    .leraboPFstSen{font-size: 1.8rem; text-align: center; margin: 6rem auto;}
     .leraboPFst{width: 100%; height: 80dvh; padding: 2rem; display: flex; justify-content: center; align-items: center; gap: 8rem;}
     .leraboPRec{width: 20%; height: 100%; clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 20%);}
     .leraboPRec>img{width: 100%; height: 100%; object-fit: cover;}
@@ -546,7 +552,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .burberryPFCon>div:nth-child(2){width: 100%; height: 100%;}
     .burberryPFCon>div>img{width: 100%; height: 100%; object-fit: cover;}
     
-    .burberryP04{width: 80%; height: 100dvh;}
+    .burberryP04{width: 80%; height: 145dvh;}
+    .burberryPFstTitle{font-size: 3.2rem; text-align: center; font-weight: 600;}
+    .burberryPFstSen{font-size: 1.8rem; text-align: center; margin: 6rem auto;}
     .burberryPFst{width: 100%; height: 80dvh; padding: 2rem; display: flex; justify-content: center; align-items: center; gap: 8rem;}
     .burberryPRec{width: 20%; height: 100%; border-radius: 10rem; overflow: hidden;}
     .burberryPRec>img{width: 100%; height: 100%; object-fit: cover;}
@@ -636,7 +644,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .margielaPFCon>div:nth-child(2){width: 100%; height: 100%;}
     .margielaPFCon>div>img{width: 100%; height: 100%; object-fit: cover;}
     
-    .margielaP04{width: 80%; height: 100dvh;}
+    .margielaP04{width: 80%; height: 145dvh;}
+    .margielaPFstTitle{font-size: 3.2rem; text-align: center; font-weight: 600;}
+    .margielaPFstSen{font-size: 1.8rem; text-align: center; margin: 6rem auto;}
     .margielaPFst{width: 100%; height: 80dvh; padding: 2rem; display: flex; justify-content: center; align-items: center; gap: 8rem;}
     .margielaPRec{width: 20%; height: 100%; border-end-start-radius: 50%; border-top-right-radius: 50%; overflow: hidden;}
     .margielaPRec>img{width: 100%; height: 100%; object-fit: cover;}
