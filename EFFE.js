@@ -73,7 +73,7 @@ function mainEffect() {
     document.querySelectorAll('.rolling').forEach(el => {
     let imgEl = el.querySelector('img')
     let originalImg = imgEl.getAttribute('src');
-    let hoverImg = originalImg.replace('_white', '');
+    let hoverImg = originalImg.replace('_white.png', '.png');
 
     el.addEventListener('mouseenter', () => {
         imgEl.src = hoverImg;
@@ -87,6 +87,23 @@ function mainEffect() {
         clone.style.animationPlayState = 'running';
     });
 });
+
+    //스크롤이벤트
+    let scroll=new IntersectionObserver((item) => {
+            item.forEach((el) => {
+                if(el.isIntersecting) {
+                el.target.classList.add('onMainBox')
+                }
+            })
+        }, {
+            root : null,
+            rootMargin : '0px 0px 20% 0px',
+            threshold : 0.1
+        })
+
+        document.querySelectorAll('.mainBox').forEach((item)=>{
+            scroll.observe(item)
+        })
 }
 mainEffect()
 

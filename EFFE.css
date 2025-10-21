@@ -25,26 +25,8 @@
 }
 @font-face {
     font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
-    font-weight: 500;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Pretendard';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
     font-weight: 600;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
-    font-weight: 700;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff') format('woff');
-    font-weight: 800;
     font-display: swap;
 }
 @font-face {
@@ -125,15 +107,15 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 /* 메인페이지 main-page */
 .main01{width: 100%; height: auto; display: flex; flex-direction: column; justify-content: center; align-items: center;}
 .mainText{font-size: 8rem; position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 3rem;}
-[class*='mainText0']{color: #F7F7F7; font-weight: 600; opacity: 0; transform: translateY(-30px); transition: all 0.8s ease-in-out;}
+[class*='mainText0']{color: #F7F7F7; font-weight: 600; opacity: 0; transform: translateY(-30px); transition: all 1.2s ease-in-out;}
 [class*='mainText0'].onMove{opacity: 1; transform: translateY(0);}
-.mainTextMove{background-color: #F7F7F7; width: 400px; height: 100px; font-weight: 600; display: flex; flex-direction: column; justify-content: center; align-items: center; transform: rotateX(90deg); transition: all 0.4s ease-in-out; position: relative; overflow: hidden;}
+.mainTextMove{background-color: #F7F7F7; width: 400px; height: 100px; font-weight: 600; transform: rotateX(90deg); transition: all 0.4s ease-in-out; position: relative; overflow: hidden;}
 .mainTextMove.onMove{transform: rotateX(0);}
 .mainChange{width: 100%; height: 100%; position: absolute; top: 50%; left: 50%; transform:translate(-50%, -50%) translateY(100%); transition: all 0.4s ease-in-out; text-align: center;}
 .mainChange.onChange{transform:translate(-50%, -50%) translateY(-15%)}
 .mainChange.onChange2{transform:translate(-50%, -50%) translateY(-120%)}
-.mainEffe{font-family: "PlayfairDisplayBold"; font-size: 16rem; font-weight: 600; transform:rotateX(90deg) translateY(-100%); background-color: #F7F7F7; width: 46rem; height: 20rem; text-align: center; line-height: 20rem; transition: all 0.6s ease-in-out;}
-.mainEffe.onEffe{transform:rotateX(0deg) translateY(-150%);}
+.mainEffe{font-family: "PlayfairDisplayBold"; font-size: 16rem; font-weight: 600; opacity: 0; transform:translateY(-130%); background-color: #F7F7F7; width: 46rem; height: 20rem; text-align: center; line-height: 20rem; transition: all 0.8s ease-in-out;}
+.mainEffe.onEffe{transform:translateY(-150%); opacity: 1;}
 .mainVideo{width: 100%; height: 100%; margin: 0 auto;}
 .mainVideo>video{width: 100%; height: 100%; object-fit: cover;}
 
@@ -144,17 +126,20 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 .rollingBox{width: max-content; height: 20rem; margin-top: 4rem; margin-left: 0.7rem; display: flex; align-items: center; gap: 1rem; animation: rolling 30s linear infinite;}
 .rolling{height: 16rem; width: max-content; padding: 10px 10px; border: 1px solid #aaa; border-radius: 1.5rem; background-color: #222;}
 .rolling>img{height: 100%; width: 100%; object-fit: cover;}
-.rolling:hover {background-color: #F7F7F7;}
+.rolling:hover{background-color: #F7F7F7; cursor: pointer;}
 @keyframes rolling {100%{transform: translateX(-100%);}}
 
 .main03{width: 100%; height: max-content; padding: 4rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem; position: relative; overflow: hidden;}
 .mainPrev{font-size: 5rem; font-weight: 600; margin: 2rem 0;}
-.mainBox{width: 80%; height: 30rem; border: 1px solid #aaa; border-radius: 1rem; background-color: white; overflow: hidden; display: flex;}
+.mainBox{transform: translateX(-100%); transition: all 2s ease-in-out; width: 80%; height: 30rem; border: 1px solid #aaa; border-radius: 1rem; background-color: white; overflow: hidden; display: flex;}
 .mainBox>div{width: 33.3%;}
 .mainBox>div>img{width: 100%; height: 100%; object-fit: cover;}
-.mainBrandText{font-size: 2rem; font-weight: 500; display: flex; justify-content: center; align-items: center; flex-direction: column;}
+.onMainBox{transform: translateX(0);}
+.mainBrandText{font-size: 2rem; font-weight: 500; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+
 .mainConcept{cursor: pointer; transition: all 0.4s ease-in-out;}
-.mainConcept:hover{width: 66.6%;}
+.mainPerfume{cursor: pointer; transition: all 0.4s ease-in-out;}
+.mainConcept:hover, .mainPerfume:hover {width: 66.6%;}
 .mainBg{width: 100%; height: 100%; position: absolute; inset: 0; z-index: 0;}
 .mainBg>img{width: 100%; height: 100%; object-fit: cover;}
 .main03>*:not(.mainBg){position: relative; z-index: 1;}
@@ -225,8 +210,8 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .byredoIVText{font-size: 3rem; font-family: "FuturaCyrillicBold";}
 
     .byredoI02{width: 100%; height: auto; overflow-x: hidden; position: relative;}
-    [class*=byredoCBox]{display: flex;}
-    [class*=byredoCBox]>div{width: 55%; height: 60rem;}
+    .byredoCBox{display: flex; margin-bottom: 10rem;}
+    .byredoCBox>div{width: 55%; height: 60rem;}
     .byredoCImg01{border-radius: 0 15rem 15rem 0; overflow: hidden; box-shadow: 8rem 2rem 0 #EAE7E2;}
     .byredoCImg02{border-radius: 15rem 0 0 15rem; overflow: hidden; box-shadow: -8rem 2rem 0 #EAE7E2;}
     [class*=byredoCImg]>img{width: 100%; height: 100%; object-fit: cover;}
@@ -287,7 +272,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     
     .byredoP04{width: 80%; height: 100dvh;}
     .byredoPFst{width: 100%; height: 80dvh; padding: 2rem; display: flex; justify-content: center; align-items: center; gap: 8rem;}
-    .byredoPRec{width: 20%; height: 100%; clip-path: polygon(0% 0%, 100% 20%, 100% 100%, 0% 100%);}
+    .byredoPRec{width: 20%; height: 100%; border-bottom-right-radius: 50%; border-top-right-radius: 50%; overflow: hidden;}
     .byredoPRec>img{width: 100%; height: 100%; object-fit: cover;}
 
     /* 바이레도 모하비고스트 byredo Mojave Ghost */
@@ -563,7 +548,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     
     .burberryP04{width: 80%; height: 100dvh;}
     .burberryPFst{width: 100%; height: 80dvh; padding: 2rem; display: flex; justify-content: center; align-items: center; gap: 8rem;}
-    .burberryPRec{width: 20%; height: 100%; border-radius: 2rem; overflow: hidden;}
+    .burberryPRec{width: 20%; height: 100%; border-radius: 10rem; overflow: hidden;}
     .burberryPRec>img{width: 100%; height: 100%; object-fit: cover;}
 
     /* 버버리 버버리허 burberry Burberry Her */
