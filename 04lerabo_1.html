@@ -96,7 +96,8 @@
         <div class="mapTypeBox">
             <button onclick="setOverlayMapTypeId('traffic')">실시간 교통정보 보기</button> 
             <button onclick="setOverlayMapTypeId('bicycle')">자전거도로 보기</button>
-            <button onclick="window.open('https://map.kakao.com/link/to/LE RABO Flagship Store,37.5811464, 126.9818965')">길찾기 바로가기</button>
+            <button onclick="changeMarker('store')">주변 편의점 보기</button>
+            <button onclick="changeMarker('carpark')">주변 주차장 보기</button>
         </div> 
         <div class="leraboMap"></div>
         <div class="searchBox">
@@ -110,26 +111,55 @@
 <script type="text/javascript" src="EFFE.js"></script>
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=1ce51ad03576a5eb772af03ad556cda2&libraries=services,clusterer,drawing&autoload=false"></script>
 <script>
-    window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', () => {
     kakao.maps.load(() => {
-
-        // 지도 생성
         const mapContainer = document.querySelector('.leraboMap');
-        const mapOption = { center: new kakao.maps.LatLng(37.5811464, 126.9818965), level: 3 };
-        const map = new kakao.maps.Map(mapContainer, mapOption);
+        const map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(37.5811464, 126.9818965),
+            level: 3
+        });
 
-        // 마커 & 인포윈도우
+        // 마커
         const leraboPosition = new kakao.maps.LatLng(37.5811464, 126.9818965);
-        const leraboMarker = new kakao.maps.Marker({ map, position: leraboPosition });
+        const leraboMarker = new kakao.maps.Marker({ position: leraboPosition, map });
         const leraboInfo = new kakao.maps.InfoWindow({
-        content: '<div style="padding:8px;font-size:13px;">LE RABO Flagship Store<br>서울특별시 종로구 북촌로5나길 5 -</div>'
+            content: '<div style="padding:8px;font-size:13px;">LE RABO Flagship Store<br>서울특별시 종로구 북촌로5나길 5 -</div>'
         });
         leraboInfo.open(map, leraboMarker);
 
-        // 검색 관련 객체 선언 (누락되었던 부분)
+        // 검색 기능
         const ps = new kakao.maps.services.Places();
         const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
-        let markers = [];
+        let searchMarkers = [];
+
+        document.getElementById('searchBtn').addEventListener('click', () => {
+            const keyword = document.getElementById('keyword').value.trim();
+            if(!keyword) { alert('검색어를 입력하세요!'); return; }
+            ps.keywordSearch(keyword, placesSearchCB);
+        });
+
+        function placesSearchCB(data, status){
+            if(status === kakao.maps.services.Status.OK){
+                searchMarkers.forEach(m => m.setMap(null));
+                searchMarkers = [];
+                const bounds = new kakao.maps.LatLngBounds();
+                data.forEach(place => {
+                    const marker = new kakao.maps.Marker({
+                        position: new kakao.maps.LatLng(place.y, place.x),
+                        map: map
+                    });
+                    kakao.maps.event.addListener(marker, 'click', () => {
+                        infowindow.setContent(`<div style="padding:5px;font-size:13px;">${place.place_name}</div>`);
+                        infowindow.open(map, marker);
+                    });
+                    searchMarkers.push(marker);
+                    bounds.extend(marker.getPosition());
+                });
+                map.setBounds(bounds);
+            } else {
+                alert('검색 결과가 없습니다.');
+            }
+        }
 
         // 지도 컨트롤
         const mapTypeControl = new kakao.maps.MapTypeControl();
@@ -137,61 +167,52 @@
         const zoomControl = new kakao.maps.ZoomControl();
         map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-        // 지도타입 버튼 기능
         window.currentTypeId = null;
-        window.setOverlayMapTypeId = function(maptype) {
-        let changeMaptype;
-        if (maptype === 'traffic') changeMaptype = kakao.maps.MapTypeId.TRAFFIC;
-        else if (maptype === 'bicycle') changeMaptype = kakao.maps.MapTypeId.BICYCLE;
+        window.setOverlayMapTypeId = function(type){
+            let overlay;
+            if(type === 'traffic') overlay = kakao.maps.MapTypeId.TRAFFIC;
+            else if(type === 'bicycle') overlay = kakao.maps.MapTypeId.BICYCLE;
 
-        if (window.currentTypeId) map.removeOverlayMapTypeId(window.currentTypeId);
-        map.addOverlayMapTypeId(changeMaptype);
-        window.currentTypeId = changeMaptype;
+            if(window.currentTypeId) map.removeOverlayMapTypeId(window.currentTypeId);
+            map.addOverlayMapTypeId(overlay);
+            window.currentTypeId = overlay;
 
-        leraboInfo.open(map, leraboMarker);
-        };
-
-        // 검색 버튼 이벤트
-        document.getElementById('searchBtn').addEventListener('click', () => {
-        const keyword = document.getElementById('keyword').value.trim();
-        if (!keyword) {
-            alert('검색어를 입력하세요!');
-            return;
+            leraboInfo.open(map, leraboMarker);
         }
-        ps.keywordSearch(keyword, placesSearchCB);
-        });
 
-        // 검색 콜백
-        function placesSearchCB(data, status) {
-        if (status === kakao.maps.services.Status.OK) {
-            markers.forEach(marker => marker.setMap(null));
-            markers = [];
+        // 편의점 / 주차장 마커
+        const markerSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png';
 
-            const bounds = new kakao.maps.LatLngBounds();
-            data.forEach(place => {
-            const marker = new kakao.maps.Marker({
-                map,
-                position: new kakao.maps.LatLng(place.y, place.x)
-            });
-            markers.push(marker);
+        const storePositions = [
+            new kakao.maps.LatLng(37.5796729, 126.9821614),
+            new kakao.maps.LatLng(37.5814914, 126.9852635)
+        ];
+        const carparkPositions = [
+            new kakao.maps.LatLng(37.5808564, 126.9816974),
+            new kakao.maps.LatLng(37.5810398, 126.9829524),
+        ];
 
-            kakao.maps.event.addListener(marker, 'click', function() {
-                infowindow.setContent(
-                `<div style="padding:5px;font-size:13px;">${place.place_name}</div>`
-                );
-                infowindow.open(map, marker);
-            });
-
-            bounds.extend(new kakao.maps.LatLng(place.y, place.x));
-            });
-
-            map.setBounds(bounds);
-        } else {
-            alert('검색 결과가 없습니다.');
+        function createCategoryMarker(pos, spriteY){
+            const imageSize = new kakao.maps.Size(22,26);
+            const imageOptions = { spriteOrigin: new kakao.maps.Point(10, spriteY), spriteSize: new kakao.maps.Size(36,98) };
+            const markerImage = new kakao.maps.MarkerImage(markerSrc, imageSize, imageOptions);
+            return new kakao.maps.Marker({ position: pos, image: markerImage, map: null });
         }
+
+        const storeMarkers = storePositions.map(pos => createCategoryMarker(pos, 36));
+        const carparkMarkers = carparkPositions.map(pos => createCategoryMarker(pos, 72));
+
+        window.changeMarker = function(type){
+            if(type === 'store'){
+                storeMarkers.forEach(m => m.setMap(map));
+                carparkMarkers.forEach(m => m.setMap(null));
+            } else if(type === 'carpark'){
+                carparkMarkers.forEach(m => m.setMap(map));
+                storeMarkers.forEach(m => m.setMap(null));
+            }
         }
     });
-    });
+});
 </script>
 
 </body>
