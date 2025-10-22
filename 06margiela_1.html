@@ -93,6 +93,11 @@
     </section>
     <section class="margielaI05">
         <div class="margielaIMapText">MAISON MARGIELA Flagship Store</div>
+        <div class="mapTypeBox">
+            <button onclick="setOverlayMapTypeId('traffic')">실시간 교통정보 보기</button> 
+            <button onclick="setOverlayMapTypeId('bicycle')">자전거도로 보기</button>
+            <button onclick="window.open('https://map.kakao.com/link/to/MAISON MARGIELA Flagship Store,37.5342387, 127.0021508')">길찾기 바로가기</button>
+        </div> 
         <div class="margielaMap"></div>
         <div class="searchBox">
             <input type="text" id="keyword" placeholder="장소를 검색하세요">
@@ -106,82 +111,87 @@
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=1ce51ad03576a5eb772af03ad556cda2&libraries=services,clusterer,drawing&autoload=false"></script>
 <script>
     window.addEventListener('DOMContentLoaded', () => {
-        kakao.maps.load(() => {
+    kakao.maps.load(() => {
+
+        // 지도 생성
         const mapContainer = document.querySelector('.margielaMap');
-        const mapOption = {
-            center: new kakao.maps.LatLng(37.5342387, 127.0021508),
-            level: 3
-        };
+        const mapOption = { center: new kakao.maps.LatLng(37.5342387, 127.0021508), level: 3 };
         const map = new kakao.maps.Map(mapContainer, mapOption);
+
+        // 마커 & 인포윈도우
+        const margielaPosition = new kakao.maps.LatLng(37.5342387, 127.0021508);
+        const margielaMarker = new kakao.maps.Marker({ map, position: margielaPosition });
+        const margielaInfo = new kakao.maps.InfoWindow({
+        content: '<div style="padding:8px;font-size:13px;">MAISON MARGIELA Flagship Store<br>서울특별시 용산구 한남동 657-91 -</div>'
+        });
+        margielaInfo.open(map, margielaMarker);
+
+        // 검색 관련 객체 선언 (누락되었던 부분)
         const ps = new kakao.maps.services.Places();
         const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
         let markers = [];
 
-        // ✅ 매장 마커 추가
-        const margielaPosition = new kakao.maps.LatLng(37.5342387, 127.0021508);
-        const margielaMarker = new kakao.maps.Marker({
-            map: map,
-            position: margielaPosition
-        });
-        const margielaInfo = new kakao.maps.InfoWindow({
-            content: '<div style="padding:8px;font-size:13px;">MAISON MARGIELA Flagship Store<br>서울특별시 용산구 한남동 657-91 -</div>'
-        });
+        // 지도 컨트롤
+        const mapTypeControl = new kakao.maps.MapTypeControl();
+        map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPLEFT);
+        const zoomControl = new kakao.maps.ZoomControl();
+        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-        // ✅ 페이지 로드시 바로 말풍선 표시
+        // 지도타입 버튼 기능
+        window.currentTypeId = null;
+        window.setOverlayMapTypeId = function(maptype) {
+        let changeMaptype;
+        if (maptype === 'traffic') changeMaptype = kakao.maps.MapTypeId.TRAFFIC;
+        else if (maptype === 'bicycle') changeMaptype = kakao.maps.MapTypeId.BICYCLE;
+
+        if (window.currentTypeId) map.removeOverlayMapTypeId(window.currentTypeId);
+        map.addOverlayMapTypeId(changeMaptype);
+        window.currentTypeId = changeMaptype;
+
         margielaInfo.open(map, margielaMarker);
+        };
 
-        // ✅ 검색 버튼 클릭 이벤트
+        // 검색 버튼 이벤트
         document.getElementById('searchBtn').addEventListener('click', () => {
-            const keyword = document.getElementById('keyword').value.trim();
-            if (!keyword) {
+        const keyword = document.getElementById('keyword').value.trim();
+        if (!keyword) {
             alert('검색어를 입력하세요!');
             return;
-            }
-            ps.keywordSearch(keyword, placesSearchCB);
+        }
+        ps.keywordSearch(keyword, placesSearchCB);
         });
 
-        // ✅ 장소 검색 콜백 함수
+        // 검색 콜백
         function placesSearchCB(data, status) {
-            if (status === kakao.maps.services.Status.OK) {
+        if (status === kakao.maps.services.Status.OK) {
             markers.forEach(marker => marker.setMap(null));
             markers = [];
 
             const bounds = new kakao.maps.LatLngBounds();
             data.forEach(place => {
-                const marker = new kakao.maps.Marker({
+            const marker = new kakao.maps.Marker({
                 map,
                 position: new kakao.maps.LatLng(place.y, place.x)
-                });
-                markers.push(marker);
+            });
+            markers.push(marker);
 
-                kakao.maps.event.addListener(marker, 'click', function() {
+            kakao.maps.event.addListener(marker, 'click', function() {
                 infowindow.setContent(
-                    `<div style="padding:5px;font-size:13px;">${place.place_name}</div>`
+                `<div style="padding:5px;font-size:13px;">${place.place_name}</div>`
                 );
                 infowindow.open(map, marker);
-                });
+            });
 
-                bounds.extend(new kakao.maps.LatLng(place.y, place.x));
+            bounds.extend(new kakao.maps.LatLng(place.y, place.x));
             });
 
             map.setBounds(bounds);
-            } else {
+        } else {
             alert('검색 결과가 없습니다.');
-            }
         }
-
-        // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-        // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-        var mapTypeControl = new kakao.maps.MapTypeControl();
-        map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPLEFT);
-
-        // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-        var zoomControl = new kakao.maps.ZoomControl();
-        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
-        });
+        }
+    });
     });
 </script>
-
 </body>
 </html>

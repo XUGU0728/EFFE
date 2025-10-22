@@ -92,6 +92,11 @@
     </section>
     <section class="byredoI05">
         <div class="byredoIMapText">BYREDO Flagship Store</div>
+        <div class="mapTypeBox">
+            <button onclick="setOverlayMapTypeId('traffic')">실시간 교통정보 보기</button> 
+            <button onclick="setOverlayMapTypeId('bicycle')">자전거도로 보기</button>
+            <button onclick="window.open('https://map.kakao.com/link/to/BYREDO 가로수길점,37.5212119, 127.0220863')">길찾기 바로가기</button>
+        </div> 
         <div class="byredoMap"></div>
         <div class="searchBox">
             <input type="text" id="keyword" placeholder="장소를 검색하세요">
@@ -102,114 +107,90 @@
     <div id="footer"></div>
 
 <script type="text/javascript" src="EFFE.js"></script>
-<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY&libraries=services,clusterer,drawing&autoload=false"></script>
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=1ce51ad03576a5eb772af03ad556cda2&libraries=services,clusterer,drawing&autoload=false"></script>
 <script>
-window.addEventListener('DOMContentLoaded', () => {
-  kakao.maps.load(() => {
-    const mapContainer = document.querySelector('.byredoMap');
-    const mapOption = { center: new kakao.maps.LatLng(37.5212119, 127.0220863), level: 3 };
-    const map = new kakao.maps.Map(mapContainer, mapOption);
+    window.addEventListener('DOMContentLoaded', () => {
+    kakao.maps.load(() => {
 
-    const ps = new kakao.maps.services.Places();
-    const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
-    let markers = [];
+        // 지도 생성
+        const mapContainer = document.querySelector('.byredoMap');
+        const mapOption = { center: new kakao.maps.LatLng(37.5212119, 127.0220863), level: 3 };
+        const map = new kakao.maps.Map(mapContainer, mapOption);
 
-    const byredoPosition = new kakao.maps.LatLng(37.520708, 127.022684);
-    const byredoMarker = new kakao.maps.Marker({ map, position: byredoPosition });
-    const byredoInfo = new kakao.maps.InfoWindow({
-      content: '<div style="padding:8px;font-size:13px;">BYREDO 가로수길점<br>서울특별시 강남구 압구정로10길 21</div>'
-    });
-    byredoInfo.open(map, byredoMarker);
-
-    // 검색 기능
-    document.getElementById('searchBtn')?.addEventListener('click', () => {
-      const keyword = document.getElementById('keyword')?.value.trim();
-      if (!keyword) { alert('검색어를 입력하세요!'); return; }
-      ps.keywordSearch(keyword, placesSearchCB);
-    });
-
-    function placesSearchCB(data, status) {
-      if (status === kakao.maps.services.Status.OK) {
-        markers.forEach(marker => marker.setMap(null));
-        markers = [];
-        const bounds = new kakao.maps.LatLngBounds();
-        data.forEach(place => {
-          const marker = new kakao.maps.Marker({ map, position: new kakao.maps.LatLng(place.y, place.x) });
-          markers.push(marker);
-          kakao.maps.event.addListener(marker, 'click', () => {
-            infowindow.setContent(`<div style="padding:5px;font-size:13px;">${place.place_name}</div>`);
-            infowindow.open(map, marker);
-          });
-          bounds.extend(new kakao.maps.LatLng(place.y, place.x));
+        // 마커 & 인포윈도우
+        const byredoPosition = new kakao.maps.LatLng(37.520708, 127.022684);
+        const byredoMarker = new kakao.maps.Marker({ map, position: byredoPosition });
+        const byredoInfo = new kakao.maps.InfoWindow({
+        content: '<div style="padding:8px;font-size:13px;">BYREDO 가로수길점<br>서울특별시 강남구 압구정로10길 21</div>'
         });
-        map.setBounds(bounds);
-      } else {
-        alert('검색 결과가 없습니다.');
-      }
-    }
+        byredoInfo.open(map, byredoMarker);
 
-    // 지도 컨트롤
-    const mapTypeControl = new kakao.maps.MapTypeControl();
-    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPLEFT);
-    const zoomControl = new kakao.maps.ZoomControl();
-    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+        // 검색 관련 객체 선언 (누락되었던 부분)
+        const ps = new kakao.maps.services.Places();
+        const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+        let markers = [];
 
-    // ---------------- 길찾기 기능 ----------------
-    let polyline = null;
-    const infoDiv = document.getElementById('info');
+        // 지도 컨트롤
+        const mapTypeControl = new kakao.maps.MapTypeControl();
+        map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPLEFT);
+        const zoomControl = new kakao.maps.ZoomControl();
+        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-    document.getElementById('routeBtn').addEventListener('click', async () => {
-      let startLat, startLng;
-      const startInput = document.getElementById('start').value.trim();
-      const mode = document.getElementById('mode').value; // WALK / CAR / BICYCLE
-      if (!startInput) {
-        // 현재 위치
-        if (navigator.geolocation) {
-          await new Promise((resolve, reject) => {
-            navigator.geolocation.getCurrentPosition(pos => {
-              startLat = pos.coords.latitude;
-              startLng = pos.coords.longitude;
-              resolve();
-            }, reject);
-          });
-        } else { alert('현재 위치를 가져올 수 없습니다.'); return; }
-      } else {
-        alert('현재는 주소 입력 미지원, 빈칸 사용');
-        return;
-      }
+        // 지도타입 버튼 기능
+        window.currentTypeId = null;
+        window.setOverlayMapTypeId = function(maptype) {
+        let changeMaptype;
+        if (maptype === 'traffic') changeMaptype = kakao.maps.MapTypeId.TRAFFIC;
+        else if (maptype === 'bicycle') changeMaptype = kakao.maps.MapTypeId.BICYCLE;
 
-      const endLat = 37.520708;
-      const endLng = 127.022684;
-      const REST_API_KEY = '15b798050eded0e471e45ca9c8f69798';
-      const url = `https://apis-navi.kakaomobility.com/v1/directions?origin=${startLng},${startLat}&destination=${endLng},${endLat}&priority=${mode}`;
+        if (window.currentTypeId) map.removeOverlayMapTypeId(window.currentTypeId);
+        map.addOverlayMapTypeId(changeMaptype);
+        window.currentTypeId = changeMaptype;
 
-      try {
-        const res = await fetch(url, { headers: { Authorization: `KakaoAK ${REST_API_KEY}` } });
-        const data = await res.json();
-        if (!data.routes || data.routes.length === 0) { alert('경로를 찾을 수 없습니다.'); return; }
+        byredoInfo.open(map, byredoMarker);
+        };
 
-        if (polyline) polyline.setMap(null);
-        const path = [];
-        let totalDistance = 0;
-        let totalTime = 0;
-
-        const roads = data.routes[0].sections[0].roads;
-        roads.forEach(road => {
-          totalDistance += road.distance;
-          totalTime += road.duration;
-          road.vertexes.forEach((v,i) => { if(i%2===0) path.push(new kakao.maps.LatLng(road.vertexes[i+1], road.vertexes[i])); });
+        // 검색 버튼 이벤트
+        document.getElementById('searchBtn').addEventListener('click', () => {
+        const keyword = document.getElementById('keyword').value.trim();
+        if (!keyword) {
+            alert('검색어를 입력하세요!');
+            return;
+        }
+        ps.keywordSearch(keyword, placesSearchCB);
         });
 
-        polyline = new kakao.maps.Polyline({ map, path, strokeWeight:5, strokeColor:'#2E9AFE', strokeOpacity:0.9, strokeStyle:'solid' });
-        const bounds = new kakao.maps.LatLngBounds(); path.forEach(p=>bounds.extend(p)); map.setBounds(bounds);
+        // 검색 콜백
+        function placesSearchCB(data, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            markers.forEach(marker => marker.setMap(null));
+            markers = [];
 
-        infoDiv.innerHTML = `<strong>거리:</strong> ${(totalDistance/1000).toFixed(2)} km | <strong>예상 소요 시간:</strong> ${Math.floor(totalTime/60)}분`;
-      } catch(err) {
-        console.error(err); alert('길찾기 요청 중 오류 발생');
-      }
+            const bounds = new kakao.maps.LatLngBounds();
+            data.forEach(place => {
+            const marker = new kakao.maps.Marker({
+                map,
+                position: new kakao.maps.LatLng(place.y, place.x)
+            });
+            markers.push(marker);
+
+            kakao.maps.event.addListener(marker, 'click', function() {
+                infowindow.setContent(
+                `<div style="padding:5px;font-size:13px;">${place.place_name}</div>`
+                );
+                infowindow.open(map, marker);
+            });
+
+            bounds.extend(new kakao.maps.LatLng(place.y, place.x));
+            });
+
+            map.setBounds(bounds);
+        } else {
+            alert('검색 결과가 없습니다.');
+        }
+        }
     });
-  });
-});
+    });
 </script>
 
 

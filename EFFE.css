@@ -199,6 +199,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 .aboutDragText02>div>div{font-family: "PlayfairDisplayBold";}
 .dragSubText{text-align: center;}
 .dragSign{font-size: 8rem;}
+.resetBtn{font-size: 1.8rem; background-color: rgba(255,255,255,0.9); padding: 1rem 2rem; border-radius: 5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.15); position: absolute; top: 90%; left: 50%; transform: translateX(-50%); z-index: 100;}
 
 /* 바이레도 BYREDO */
     /* 바이레도 인트로 byredo intro */
@@ -240,6 +241,8 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .byredoIMapText{font-size: 2.4rem; margin-bottom: 5rem;}
     .byredoMap{width: 100%; height: 70%; border-radius: 1rem;}
 
+    .mapTypeBox{width: 50%; margin-bottom: 2rem; display: flex; justify-content: center; gap: 5rem;}
+    .mapTypeBox>button{background-color: rgba(255,255,255,0.9); padding: 1rem 2rem; border-radius: 0.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.15);}
     .searchBox {margin-top: 3rem; background: rgba(255,255,255,0.9); padding: 1rem 1.5rem; border-radius: 3rem; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.15);}
     .searchBox input {border: none; outline: none; background: transparent; font-size: 1.4rem; width: 40rem;}
     .searchBox button { border: none; background: #222; color: #F7F7F7; border-radius: 2rem; padding: 5px 10px; cursor: pointer; transition: 0.2s;}

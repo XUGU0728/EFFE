@@ -170,11 +170,12 @@ function aboutEffect() {
         timer = setInterval(autoSlide, 3000);
     });
 
-    //드래그
+    //드래그 이벤트
     function dragAble(el){
         let down = false
         let px = 0, py = 0 //이전 좌표
         let tx = 0, ty = 0 //누적 이동값
+        let ox = 0, oy = 0 //원래 자리 기억용
 
         // 드래그 시작 (마우스 + 터치)
         function start(e){
@@ -183,12 +184,12 @@ function aboutEffect() {
                 px = e.clientX
                 py = e.clientY
             } else if(e.type === "touchstart"){
-                px = e.touches[0].clientX //touches자체가 여러손가락을 염두에 둔 배열객체임.
+                px = e.touches[0].clientX
                 py = e.touches[0].clientY
             }
         }
 
-        // 드래그 중 (마우스 + 터치)
+        // 드래그 중
         function move(e){
             if(!down) return
             let clientX, clientY
@@ -206,13 +207,10 @@ function aboutEffect() {
             tx += dx
             ty += dy
             el.style.transform = `translate(${tx}px, ${ty}px)`
-            e.preventDefault() // 터치 스크롤 방지?
+            e.preventDefault()
         }
 
-        // 드래그 끝 (마우스 + 터치)
-        function end(){
-            down = false
-        }
+        function end(){ down = false }
 
         el.addEventListener("mousedown", start)
         el.addEventListener("touchstart", start)
@@ -222,11 +220,24 @@ function aboutEffect() {
 
         window.addEventListener("mouseup", end)
         window.addEventListener("touchend", end)
+
+        // 원래 자리로 복귀하는 메서드 추가
+        el.resetPosition = function() {
+            tx = 0
+            ty = 0
+            el.style.transition = 'transform 0.4s ease'
+            el.style.transform = 'translate(0px, 0px)'
+            setTimeout(()=>{ el.style.transition = '' }, 400)
+        }
     }
 
-    let mover=document.querySelectorAll('.mover')
-    mover.forEach((e)=>{
-        dragAble(e)
-    })  
+    // 여러 요소 적용
+    let mover = document.querySelectorAll('.mover')
+    mover.forEach(e => dragAble(e))
+
+    // “원위치” 버튼
+    document.querySelector('.resetBtn').addEventListener('click', ()=>{
+        mover.forEach(el => el.resetPosition())
+    })
 }
 aboutEffect();
