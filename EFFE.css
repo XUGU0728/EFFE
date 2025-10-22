@@ -157,12 +157,12 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 
 .aboutIndicator{position: absolute; bottom: 0%; left: 50%; z-index: 10; transform: translateX(-50%); width: 70rem; height: 5rem;}
 .aboutProgressBox{width: 100%; height: 100%; position: relative;}
-.prevBtn,.nextBtn{cursor: pointer; border: none; color: #F7F7F7; background-color: transparent; font-size: 4rem; position: absolute; top: -65%;}
-.prevBtn{left: -5%;}
-.nextBtn{right: -5%;}
+.prevBtn,.nextBtn{cursor: pointer; border: none; background-color: transparent; position: absolute; top: -17%;}
+.prevBtn{left: -3%;}
+.nextBtn{right: -3%;}
 .aboutBar{width: 70rem; height: 2px; background-color: #F7F7F7; opacity: 0.4; position: absolute; top: 0; left: 0;} 
 .aboutProgress{width: 0; height: 2px; background-color: #F7F7F7; opacity: 1; transition: all 0.3s linear; position: absolute; top: 0; left: 0;}
-.pageIndex{color: #F7F7F7; font-size: 1.4rem; font-weight: 600; position: absolute; bottom: 30%; left: 50%; transform: translateX(-50%);}
+.pageIndex{color: #F7F7F7; font-size: 1.4rem; position: absolute; bottom: 30%; left: 50%; transform: translateX(-50%);}
 
 .about02{display: flex; justify-content: center; align-items: center; flex-direction: column;}
 .aboutSen{font-size: 4rem; font-weight: 600; font-family: "PlayfairDisplayBold";}
@@ -193,7 +193,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 .aboutDragBg{width: 100%; height: 100%;}
 .aboutDragBg>img{width: 100%; height: 100%; object-fit: cover; opacity: 0.2;}
 .aboutDragText01{width: 100%; position: absolute; top: 3%; left: 50%; transform: translateX(-50%); text-align: center; font-size: 4rem; font-family: "PlayfairDisplayBold";}
-.aboutDragText012{width: 100%; position: absolute; top: 10%; left: 50%; transform: translateX(-50%); text-align: center; font-size: 1.8rem; color: #777;}
+.aboutDragText012{width: 100%; position: absolute; top: 9%; left: 50%; transform: translateX(-50%); text-align: center; font-size: 1.8rem; color: #777;}
 .aboutDragText02{width: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; justify-content: center; align-items: center; gap: 4rem; font-size: 6rem;}
 .aboutDragText02>div{font-family: "PlayfairDisplayBold";}
 .aboutDragText02>div>div{font-family: "PlayfairDisplayBold";}
