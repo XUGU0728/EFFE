@@ -72,20 +72,26 @@ section{margin: 0 auto; position: relative;}
 .lineHW{background-color: white; width: 10rem; height: 0.2rem; margin: 4rem auto;}
 
 /* 네비게이션 navigation 헤더 header*/
-nav{width: 100%; height: 80px; font-size: 2rem; display: flex; justify-content: center; align-items: center; gap: 100px; background-color: transparent;}
-nav.onNav{background-color: #F7F7F7;}
+nav{width: 100%; height: 80px; font-size: 2rem; display: flex; justify-content: center; align-items: center; gap: 100px; background-color: rgba(255,255,255,0.5); backdrop-filter: blur(2px); position: fixed; z-index: 100;}
 .effeLogo{height: 60px; width: max-content;}
 .effeLogo>img{height: 100%; width: 100%; object-fit: cover;}
 .menuMain{display: flex; gap: 4rem; font-weight: 600;}
+nav a > div, nav img{transition: all 0.4s linear;}
+nav.onWhite{background-color: rgba(255,255,255,0.1);}
+nav.onWhite .menumain, nav.onWhite .subWrap{background-color: rgba(255,255,255,0.1);}
+nav.onWhite *{color: #f7f7f7;}
+nav.onWhite img{filter: brightness(0) invert(1);}
+.firstSec{height: 8rem;}
 
 .timeWeather{font-size: 1.2rem; display: flex; justify-content: center; align-items: center; gap: 20px;}
 #weatherIcon{height: 60px;}
 
 header{position: relative;}
-.subWrap{display: none; position: absolute; left: 0; right: 0; top: 100%; overflow: hidden; z-index: 10; background-color: #F7F7F7;}
+.subWrap{display: none; position: absolute; left: 0; right: 0; top: 100%; overflow: hidden; z-index: 10; background-color: rgba(255,255,255,0.95);}
 .subWrap.onSub{display: block;}
 .menuSub{font-size: 1.6rem; display: flex; justify-content: center; align-items: flex-start; gap: 8rem; padding: 4rem 0; border-bottom: 1px solid #A6B1A9; border-top: 1px solid #A6B1A9;}
 .menuSub>div>a{margin: 1.8rem;}
+.menuMain a.onHighlight div, .menuSub a.onHighlight div{color: #222; font-weight: 600; border-bottom: 1px solid #111;}
 .subTitle{font-size: 1.8rem;}
 .subText{font-size: 1.4rem; color: #A6B1A9;}
 .subText:hover{color: #222; transition: all 0.2s linear;}
@@ -105,7 +111,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 .footBox02>div{font-size: 1.2rem; color: #F7F7F7;}
 
 /* 메인페이지 main-page */
-.main01{width: 100%; height: auto; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+.main01{position: relative; width: 100%; height: 140dvh; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden;}
 .mainText{font-size: 8rem; position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 3rem;}
 [class*='mainText0']{color: #F7F7F7; font-weight: 600; opacity: 0; transform: translateY(-30px); transition: all 1.2s ease-in-out;}
 [class*='mainText0'].onMove{opacity: 1; transform: translateY(0);}
@@ -116,10 +122,10 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 .mainChange.onChange2{transform:translate(-50%, -50%) translateY(-120%)}
 .mainEffe{font-family: "PlayfairDisplayBold"; font-size: 16rem; font-weight: 600; opacity: 0; transform:translateY(-130%); background-color: #F7F7F7; width: 46rem; height: 20rem; text-align: center; line-height: 20rem; transition: all 0.8s ease-in-out;}
 .mainEffe.onEffe{transform:translateY(-150%); opacity: 1;}
-.mainVideo{width: 100%; height: 100%; margin: 0 auto;}
+.mainVideo{position: absolute; inset: 0; z-index: -1; width: 100%; height: 80%; margin: 0 auto;}
 .mainVideo>video{width: 100%; height: 100%; object-fit: cover;}
 
-.mainSenBox{width: 100%; height: 22rem; border-radius: 10px; margin-top: 4rem;}
+.mainSenBox{position: absolute; bottom: 0; width: 100%; height: 22rem; border-radius: 10px; margin-top: 4rem;}
 .mainSentence{font-family: "PlayfairDisplayBold"; color: #aaa; font-size: 4rem; font-weight: 600; margin-top: 8rem; text-align: center;}
 
 .main02{width: 100%; overflow: hidden; display: flex; background-color: white; border-radius: 5rem 5rem 0 0;}

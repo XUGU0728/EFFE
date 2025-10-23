@@ -29,54 +29,70 @@
                 </div>
                 <img id="weatherIcon" alt="icon" />
             </div>
-        </nav>
-        <div class="subWrap">
-            <div class="menuSub">
-                <div>
-                    <div class="subTitle">EFFÉ</div>
-                    <a href="./01effeAbout.html"><div class="subText">About</div></a>
-                </div>
-                <div>
-                    <div class="subTitle">BYREDO</div>
-                    <a href="./02byredo_1.html"><div class="subText">Intro.</div></a>
-                    <a href="./02byredo_2.html"><div class="subText">Blanche</div></a>
-                    <a href="./02byredo_3.html"><div class="subText">Mojave Ghost</div></a>
-                    <a href="./02byredo_4.html"><div class="subText">Gypsy Water</div></a>
-                </div>
-                <div>
-                    <div class="subTitle">TOM FORD</div>
-                    <a href="./03tomford_1.html"><div class="subText">Intro.</div></a>
-                    <a href="./03tomford_2.html"><div class="subText">Oud Wood</div></a>
-                    <a href="./03tomford_3.html"><div class="subText">Black Orchid</div></a>
-                    <a href="./03tomford_4.html"><div class="subText">Neroli Portofino</div></a>
-                </div>
-                <div>
-                    <div class="subTitle">LE LABO</div>
-                    <a href="./04lerabo_1.html"><div class="subText">Intro.</div></a>
-                    <a href="./04lerabo_2.html"><div class="subText">Santal 33</div></a>
-                    <a href="./04lerabo_3.html"><div class="subText">Another 13</div></a>
-                    <a href="./04lerabo_4.html"><div class="subText">Thé Noir 29</div></a>
-                </div>
-                <div>
-                    <div class="subTitle">BURBERRY</div>
-                    <a href="./05burberry_1.html"><div class="subText">Intro.</div></a>
-                    <a href="./05burberry_2.html"><div class="subText">My Burberry</div></a>
-                    <a href="./05burberry_3.html"><div class="subText">Burberry Her</div></a>
-                    <a href="./05burberry_4.html"><div class="subText">Mr. Burberry</div></a>
-                </div>
-                <div>
-                    <div class="subTitle">Maison Margiela</div>
-                    <a href="./06margiela_1.html"><div class="subText">Intro.</div></a>
-                    <a href="./06margiela_2.html"><div class="subText">Lazy Sunday Morning</div></a>
-                    <a href="./06margiela_3.html"><div class="subText">Jazz Club</div></a>
-                    <a href="./06margiela_4.html"><div class="subText">Sailing Day</div></a>
+            <div class="subWrap">
+                <div class="menuSub">
+                    <div>
+                        <div class="subTitle">EFFÉ</div>
+                        <a href="./01effeAbout.html"><div class="subText">About</div></a>
+                    </div>
+                    <div>
+                        <div class="subTitle">BYREDO</div>
+                        <a href="./02byredo_1.html"><div class="subText">Intro.</div></a>
+                        <a href="./02byredo_2.html"><div class="subText">Blanche</div></a>
+                        <a href="./02byredo_3.html"><div class="subText">Mojave Ghost</div></a>
+                        <a href="./02byredo_4.html"><div class="subText">Gypsy Water</div></a>
+                    </div>
+                    <div>
+                        <div class="subTitle">TOM FORD</div>
+                        <a href="./03tomford_1.html"><div class="subText">Intro.</div></a>
+                        <a href="./03tomford_2.html"><div class="subText">Oud Wood</div></a>
+                        <a href="./03tomford_3.html"><div class="subText">Black Orchid</div></a>
+                        <a href="./03tomford_4.html"><div class="subText">Neroli Portofino</div></a>
+                    </div>
+                    <div>
+                        <div class="subTitle">LE LABO</div>
+                        <a href="./04lerabo_1.html"><div class="subText">Intro.</div></a>
+                        <a href="./04lerabo_2.html"><div class="subText">Santal 33</div></a>
+                        <a href="./04lerabo_3.html"><div class="subText">Another 13</div></a>
+                        <a href="./04lerabo_4.html"><div class="subText">Thé Noir 29</div></a>
+                    </div>
+                    <div>
+                        <div class="subTitle">BURBERRY</div>
+                        <a href="./05burberry_1.html"><div class="subText">Intro.</div></a>
+                        <a href="./05burberry_2.html"><div class="subText">My Burberry</div></a>
+                        <a href="./05burberry_3.html"><div class="subText">Burberry Her</div></a>
+                        <a href="./05burberry_4.html"><div class="subText">Mr. Burberry</div></a>
+                    </div>
+                    <div>
+                        <div class="subTitle">Maison Margiela</div>
+                        <a href="./06margiela_1.html"><div class="subText">Intro.</div></a>
+                        <a href="./06margiela_2.html"><div class="subText">Lazy Sunday Morning</div></a>
+                        <a href="./06margiela_3.html"><div class="subText">Jazz Club</div></a>
+                        <a href="./06margiela_4.html"><div class="subText">Sailing Day</div></a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </nav>
     </header>
 </body>
 <script>
-    // 네비게이션 navigation
+// 네비게이션 navigation
+    // 메인페이지 화이트 텍스트
+        let nav = document.querySelector('nav');
+
+        if (document.body.classList.contains('home')) {
+        // 초기 글씨 색상 흰색
+        nav.classList.add('onWhite');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > window.innerHeight) {
+            nav.classList.remove('onWhite'); // 100vh 아래는 검정
+            } else {
+            nav.classList.add('onWhite'); // 100vh 위는 흰색
+            }
+        });
+        }
+
     // 시간
         function updateTime() {
             let time=document.getElementById('time')
@@ -120,7 +136,7 @@
 
     //서브메뉴
         $(document).ready(function(){
-            let menuMain=$('.menuMain')
+            let menuMain=$('nav')
             let subWrap=$('.subWrap')
 
             menuMain.on('mouseenter', function(){
@@ -131,11 +147,35 @@
                 subWrap.show().addClass('onSub')
                 subWrap.stop(true,true).animate({height : targetH}, 500, 'swing')
             })
-            $('header').on('mouseleave', function(){
+            menuMain.on('mouseleave', function(){
                 subWrap.stop(true,true).animate({height : 0}, 500, 'swing', function(){
                     subWrap.removeClass('onSub').hide()
                 })
             })
         })
+
+    //현재페이지 강조
+        let currentPage = window.location.pathname.split("/").pop(); // 현재 파일 이름
+
+        // 메인 메뉴 강조
+        $('.menuMain a').each(function() {
+            let link = $(this).attr('href').split("/").pop();
+            if (currentPage === link) {
+                $(this).addClass('active');
+            }
+        });
+
+        // 서브 메뉴 강조
+        $('.menuSub a').each(function() {
+            let link = $(this).attr('href').split("/").pop();
+            if (currentPage === link) {
+                $(this).addClass('onHighlight');
+                // 상위 브랜드 메뉴도 함께 강조
+                let brand = $(this).closest('div').find('.subTitle').text().trim(); //closet ~ 위로 올라가며 조건에 맞는 가장 가까운 조상 찾기
+                $('.menuMain a').filter(function() { //여러 항목 중에서 조건에 맞는 것만 걸러내기
+                    return $(this).text().trim() === brand; //.menuMain a 중에서 글자 내용이 brand와 같은 것만 남겨라
+                }).addClass('onHighlight');
+            }
+        });
 </script>
 </html>
