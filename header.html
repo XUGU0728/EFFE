@@ -136,23 +136,29 @@
 
     //서브메뉴
         $(document).ready(function(){
-            let menuMain=$('nav')
-            let subWrap=$('.subWrap')
+            let menuMain = $('nav');
+            let subWrap = $('.subWrap');
+            let isHover = false;
 
-            menuMain.on('mouseenter', function(){
-                subWrap.css({display: 'block', height: 'auto'})
-            let targetH = subWrap.find('.menuSub').outerHeight()
-                subWrap.css({height: 0})
-                subWrap.removeClass('onSub').hide()
-                subWrap.show().addClass('onSub')
-                subWrap.stop(true,true).animate({height : targetH}, 500, 'swing')
-            })
-            menuMain.on('mouseleave', function(){
-                subWrap.stop(true,true).animate({height : 0}, 500, 'swing', function(){
-                    subWrap.removeClass('onSub').hide()
-                })
-            })
-        })
+            function showSub(){
+                if(isHover) return;
+                isHover = true;
+                subWrap.stop(true,true).css({display:'block', height:0});
+                let targetH = subWrap.find('.menuSub').outerHeight();
+                subWrap.animate({height: targetH}, 500, 'swing');
+            }
+
+            function hideSub(){
+                if(!isHover) return;
+                isHover = false;
+                subWrap.stop(true,true).animate({height:0}, 500, 'swing', function(){
+                    subWrap.css({display:'none'});
+                });
+            }
+
+            menuMain.add(subWrap).on('mouseenter', showSub);
+            menuMain.add(subWrap).on('mouseleave', hideSub);
+        });
 
     //현재페이지 강조
         let currentPage = window.location.pathname.split("/").pop(); // 현재 파일 이름
