@@ -175,8 +175,6 @@ function aboutEffect() {
         let down = false
         let px = 0, py = 0 //이전 좌표
         let tx = 0, ty = 0 //누적 이동값
-        let ox = 0, oy = 0 //원래 자리 기억용
-
         // 드래그 시작 (마우스 + 터치)
         function start(e){
             down = true
