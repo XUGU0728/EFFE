@@ -24,26 +24,6 @@ function lineScroll() {
 }
 lineScroll()
 
-//Fimg 스크롤애니메이션
-function imgScroll() {
-    let scroll=new IntersectionObserver((item) => {
-        item.forEach((el) => {
-            if(el.isIntersecting) {
-            el.target.classList.add('onF')
-            }
-        })
-    }, {
-        root : null,
-        rootMargin : '0px 0px 20% 0px',
-        threshold : 0.3
-    })
-
-    document.querySelectorAll('[class*="FImg"]').forEach((item)=>{
-        scroll.observe(item)
-    })  
-}
-imgScroll()
-
 // 메인페이지 main-page
 function mainEffect() {
     //mainVideo
@@ -109,24 +89,6 @@ function mainEffect() {
     let clone=rollingBox.cloneNode(true)
     main02.appendChild(clone)
 
-    document.querySelectorAll('.rolling').forEach(el => {
-    let imgEl = el.querySelector('img')
-    let originalImg = imgEl.getAttribute('src');
-    let hoverImg = originalImg.replace('_white.png', '.png');
-
-    el.addEventListener('mouseenter', () => {
-        imgEl.src = hoverImg;
-        rollingBox.style.animationPlayState = 'paused';
-        clone.style.animationPlayState = 'paused'; 
-    });
-
-    el.addEventListener('mouseleave', () => {
-        imgEl.src = originalImg;
-        rollingBox.style.animationPlayState = 'running';
-        clone.style.animationPlayState = 'running';
-    });
-});
-
     //스크롤이벤트
     let scroll=new IntersectionObserver((item) => {
             item.forEach((el) => {
@@ -150,8 +112,6 @@ mainEffect()
 function aboutEffect() {
     //이미지 슬라이드
     let aboutSlides = document.querySelector('.aboutSlides');
-    if (!aboutSlides) return;
-
     let slides = aboutSlides.querySelectorAll('.slide');
     let currentIndex = 1;
     let total = slides.length - 2
@@ -278,3 +238,63 @@ function aboutEffect() {
     })
 }
 aboutEffect();
+
+//Fimg 스크롤애니메이션
+function imgScroll() {
+    let scroll=new IntersectionObserver((item) => {
+        item.forEach((el) => {
+            if(el.isIntersecting) {
+            el.target.classList.add('onF')
+            }
+        })
+    }, {
+        root : null,
+        rootMargin : '0px 0px 20% 0px',
+        threshold : 0.3
+    })
+
+    document.querySelectorAll('[class*="FImg"]').forEach((item)=>{
+        scroll.observe(item)
+    })  
+}
+imgScroll()
+
+const perfumes = [
+  {
+    name: "Neroli Portofino",
+    description: "햇살이 닿을 때마다 향이 다시 살아난다.",
+    keyword: "Mediterranean / Fresh / Blue Air"
+  },
+  {
+    name: "Mojave Ghost",
+    description: "신선하면서도 부드러운 우디 향",
+    keyword: "Woody / Floral / Soft"
+  },
+  {
+    name: "Sailing Day",
+    description: "바닷바람과 함께 느껴지는 자유로운 향",
+    keyword: "Oceanic / Relax / Bright"
+  }
+];
+
+// 요소 선택
+const showBtn = document.getElementById("showPerfume");
+const modal = document.getElementById("perfumeModal");
+const closeBtn = document.getElementById("closeModal");
+const nameEl = document.getElementById("perfumeName");
+const descEl = document.getElementById("perfumeDescription");
+const keywordEl = document.getElementById("perfumeKeyword");
+
+// 버튼 클릭 → 랜덤 향수 모달 띄우기
+showBtn.addEventListener("click", () => {
+  const randomPerfume = perfumes[Math.floor(Math.random() * perfumes.length)];
+  nameEl.textContent = randomPerfume.name;
+  descEl.textContent = randomPerfume.description;
+  keywordEl.textContent = randomPerfume.keyword;
+  modal.hidden = false;
+});
+
+// 모달 닫기
+closeBtn.addEventListener("click", () => {
+  modal.hidden = true;
+});
