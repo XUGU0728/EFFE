@@ -66,11 +66,14 @@
 html{font-size: 10px;}
 body{width: 100dvw; height: auto; background-color: #F7F7F7; overflow-x: hidden;}
 section{margin: 0 auto; position: relative;}
-.lineV{background-color: #222; height: 10rem; width: 0.2rem; margin: 4rem auto;}
+.lineV{background-color: #222; height: 10rem; width: 0.2rem; margin: 4rem auto; transform: translateY(2rem); opacity: 0; transition: all 1s linear;}
 .lineH{background-color: #222; width: 10rem; height: 0.2rem; margin: 4rem auto;}
-.lineVW{background-color: white; height: 10rem; width: 0.2rem; margin: 4rem auto;}
+.lineVW{background-color: white; height: 10rem; width: 0.2rem; margin: 4rem auto; transform: translateY(2rem); opacity: 0; transition: all 1s linear;}
 .lineHW{background-color: white; width: 10rem; height: 0.2rem; margin: 4rem auto;}
+.lineV.onLineV, .lineVW.onLineV{transform: translateY(0); opacity: 1;}
 .firstSec{height: 8rem;}
+[class*=FImg]{transform: translateY(2rem); opacity: 0; transition: all 1s ease-in-out;}
+[class*=FImg].onF{transform: translateY(0); opacity: 1;}
 
 /* 네비게이션 navigation 헤더 header*/
 .topBtn{animation: float 1s ease infinite; position: fixed; right: 2rem; bottom: 2rem; width: 4rem; height: 4rem; border-radius: 50%; border: 1px solid #aaa; background: rgba(255,255,255,0.75); display: grid; place-items: center; cursor: pointer; z-index: 9999; box-shadow: 0 6px 14px rgba(0,0,0,0.25);}

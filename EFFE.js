@@ -1,9 +1,48 @@
-//각 브랜드 카카오맵은 내부 스크립트
 // 공통 헤더 & 푸터 불러오기
 $(document).ready(function(){
     $('#header').load('header.html')
     $('#footer').load('footer.html')
 })
+
+//lineV 스크롤애니메이션
+function lineScroll() {
+    let scroll=new IntersectionObserver((item) => {
+        item.forEach((el) => {
+            if(el.isIntersecting) {
+            el.target.classList.add('onLineV')
+            }
+        })
+    }, {
+        root : null,
+        rootMargin : '0px 0px 0% 0px',
+        threshold : 1
+    })
+
+    document.querySelectorAll('.lineV, .lineVW').forEach((item)=>{
+        scroll.observe(item)
+    })  
+}
+lineScroll()
+
+//Fimg 스크롤애니메이션
+function imgScroll() {
+    let scroll=new IntersectionObserver((item) => {
+        item.forEach((el) => {
+            if(el.isIntersecting) {
+            el.target.classList.add('onF')
+            }
+        })
+    }, {
+        root : null,
+        rootMargin : '0px 0px 20% 0px',
+        threshold : 0.3
+    })
+
+    document.querySelectorAll('[class*="FImg"]').forEach((item)=>{
+        scroll.observe(item)
+    })  
+}
+imgScroll()
 
 // 메인페이지 main-page
 function mainEffect() {
