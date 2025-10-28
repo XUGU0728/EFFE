@@ -1,9 +1,33 @@
-// TOP버튼
+// TOP 버튼
     let btn = document.querySelector('.topBtn');
+
     function scrollToTop() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     btn.addEventListener('click', scrollToTop);
+
+    // 버튼 아이콘 업데이트 함수
+    function updateTopBtnIcon() {
+        if (window.scrollY === 0) {
+            btn.innerHTML = `
+                <svg width="18" height="18" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#222"/>
+                </svg>
+            `;
+        } else {
+            btn.innerHTML = `
+                <svg width="18" height="18" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M903.232 768l56.768-50.432L512 256l-448 461.568 56.768 50.432L512 364.928z" fill="#222"/>
+                </svg>
+            `;
+        }
+    }
+
+// 스크롤 이벤트에 연결
+window.addEventListener('scroll', updateTopBtnIcon);
+
+// ✅ 페이지 로드 직후에도 실행
+updateTopBtnIcon();
 
 // 네비게이션 navigation
     // 메인페이지 화이트 텍스트
