@@ -272,6 +272,7 @@ function modal() {
     let descKo = document.querySelector('.modalDescKo');
     let descEn = document.querySelector('.modalDescEn');
     let styling = document.querySelector('.modalStyling');
+    let modalMark = document.querySelector('.modalMark');
 
     fetch('./perfume.json')
         .then(response => response.json())
@@ -291,12 +292,31 @@ function modal() {
                     window.location.href = randomPerfume.link;
             });
             modal.style.display = 'flex';
+            setTimeout(() => {
+            modal.classList.add('modalOn');
+            }, 5000);
+
+            setTimeout(() => {
+                modal.classList.add('modalAfter');
+            }, 10000);
+
+            modalMark.addEventListener('click', (e) => {
+                if (e.target.closest('.modalCloseBtn')) return;
+                if (modal.classList.contains('modalAfter')) {
+                    modal.classList.remove('modalAfter');
+                    modal.classList.add('modalOn');
+                }else if (modal.classList.contains('modalOn')) {
+                    modal.classList.remove('modalOn');
+                    modal.classList.add('modalAfter');
+                }
+            })
         })
         .catch(err => {
             console.error("JSON load error:", err);
         });
 
     closeBtn.addEventListener('click', (e) => {
+        clearTimeout(autoCloseTimer);
         modal.style.display = 'none';
     });
 };
