@@ -90,10 +90,8 @@ section{margin: 0 auto; position: relative;}
 [class*='modalDesc']{font-size: 1.4rem; text-align: center;}
 .modalStyling{font-size: 2rem; font-weight: 600;}
 
-
-
 /* 네비게이션 navigation 헤더 header*/
-.topBtn{animation: float 1s ease infinite; position: fixed; right: 2rem; bottom: 2rem; width: 4rem; height: 4rem; border-radius: 50%; border: 1px solid #aaa; background: rgba(255,255,255,0.75); display: grid; place-items: center; cursor: pointer; z-index: 9999; box-shadow: 0 6px 14px rgba(0,0,0,0.25);}
+.topBtn{animation: float 1s ease infinite; position: fixed; right: 4rem; bottom: 3rem; width: 4rem; height: 4rem; border-radius: 50%; border: 1px solid #aaa; background: rgba(255,255,255,0.75); display: grid; place-items: center; cursor: pointer; z-index: 9999; box-shadow: 0 6px 14px rgba(0,0,0,0.25);}
 @keyframes float{
     0%{transform: translateY(0);}
     50%{transform: translateY(-0.5rem);}
