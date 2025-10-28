@@ -80,7 +80,7 @@ section{margin: 0 auto; position: relative;}
 .modal.modalOn{transform: translateX(0);}
 .modal.modalAfter{transform: translateX(91%); transition: all 1s ease-in-out;}
 .modal>div{color: inherit;}
-.modalMark{cursor: pointer; width: 3rem; height: 9rem; font-size: 1.4rem; writing-mode: vertical-rl; text-orientation: upright; text-align: center; line-height: 3rem; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; background-color: #F7F7F7; position: absolute; left: 0; top: 5%; color: #222 !important;}
+.modalMark{cursor: pointer; width: 3rem; height: 9rem; font-size: 1.4rem; writing-mode: vertical-rl; text-orientation: upright; text-align: center; line-height: 3rem; border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; border: 1px solid #bbb; background-color: #F7F7F7; position: absolute; left: 0; top: 5%; color: #222 !important;}
 .modalCloseBtn{cursor: pointer; position: absolute; top: 2%; right: 3%; font-size: 1.6rem;}
 .modalRecommended{font-size: 2.4rem; font-weight: 600;}
 .modalImage{cursor: pointer; width: 80%; height: 50%; border-radius: 1rem; overflow: hidden; border: 1px solid #bbb;}
