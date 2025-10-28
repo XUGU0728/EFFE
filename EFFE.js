@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     imgScroll()
     modal()
     mainEffect()
-    aboutEffect()
 })
+    aboutEffect()
 
 //lineV 스크롤애니메이션
 function lineScroll() {
