@@ -6,7 +6,6 @@
     }
     btn.addEventListener('click', scrollToTop);
 
-    // 버튼 아이콘 업데이트 함수
     function updateTopBtnIcon() {
         if (window.scrollY === 0) {
             btn.innerHTML = `
@@ -22,11 +21,7 @@
             `;
         }
     }
-
-// 스크롤 이벤트에 연결
 window.addEventListener('scroll', updateTopBtnIcon);
-
-// ✅ 페이지 로드 직후에도 실행
 updateTopBtnIcon();
 
 // 네비게이션 navigation
