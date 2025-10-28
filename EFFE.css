@@ -66,9 +66,9 @@
 html{font-size: 10px;}
 body{width: 100dvw; height: auto; background-color: #F7F7F7; overflow-x: hidden;}
 section{margin: 0 auto; position: relative;}
-.lineV{background-color: #222; height: 10rem; width: 0.2rem; margin: 4rem auto; transform-origin: top center; transform:scaleY(0); transition: all 2.4s linear;}
+.lineV{background-color: #222; height: 10rem; width: 0.2rem; margin: 4rem auto; transform-origin: top center; transform:scaleY(0); transition: all 1.8s linear;}
 .lineH{background-color: #222; width: 10rem; height: 0.2rem; margin: 4rem auto;}
-.lineVW{background-color: white; height: 10rem; width: 0.2rem; margin: 4rem auto; transform-origin: top center; transform:scaleY(0); transition: all 2.4s linear;}
+.lineVW{background-color: white; height: 10rem; width: 0.2rem; margin: 4rem auto; transform-origin: top center; transform:scaleY(0); transition: all 1.8s linear;}
 .lineHW{background-color: white; width: 10rem; height: 0.2rem; margin: 4rem auto;}
 .lineV.onLineV, .lineVW.onLineV{height: 10rem; transform:scaleY(1);}
 .firstSec{height: 8rem;}

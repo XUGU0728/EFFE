@@ -315,8 +315,7 @@ function modal() {
             console.error("JSON load error:", err);
         });
 
-    closeBtn.addEventListener('click', (e) => {
-        clearTimeout(autoCloseTimer);
+    closeBtn.addEventListener('click', () => {
         modal.style.display = 'none';
     });
 };
