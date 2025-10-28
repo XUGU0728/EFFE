@@ -4,6 +4,14 @@ $(document).ready(function(){
     $('#footer').load('footer.html')
 })
 
+document.addEventListener('DOMContentLoaded', () => {
+    lineScroll()
+    imgScroll()
+    modal()
+    mainEffect()
+    aboutEffect()
+})
+
 //lineV 스크롤애니메이션
 function lineScroll() {
     let scroll=new IntersectionObserver((item) => {
@@ -22,7 +30,25 @@ function lineScroll() {
         scroll.observe(item)
     })  
 }
-lineScroll()
+
+//Fimg 스크롤애니메이션
+function imgScroll() {
+    let scroll=new IntersectionObserver((item) => {
+        item.forEach((el) => {
+            if(el.isIntersecting) {
+            el.target.classList.add('onF')
+            }
+        })
+    }, {
+        root : null,
+        rootMargin : '0px 0px 20% 0px',
+        threshold : 0.1
+    })
+
+    document.querySelectorAll('[class*="FImg"]').forEach((item)=>{
+        scroll.observe(item)
+    })  
+}
 
 // 메인페이지 main-page
 function mainEffect() {
@@ -106,7 +132,6 @@ function mainEffect() {
             scroll.observe(item)
         })
 }
-mainEffect()
 
 // 에페소개페이지 effe-about-page
 function aboutEffect() {
@@ -232,69 +257,46 @@ function aboutEffect() {
     let mover = document.querySelectorAll('.mover')
     mover.forEach(e => dragAble(e))
 
-    // “원위치” 버튼
+    // 원래 자리로 버튼
     document.querySelector('.resetBtn').addEventListener('click', ()=>{
         mover.forEach(el => el.resetPosition())
     })
 }
-aboutEffect();
 
-//Fimg 스크롤애니메이션
-function imgScroll() {
-    let scroll=new IntersectionObserver((item) => {
-        item.forEach((el) => {
-            if(el.isIntersecting) {
-            el.target.classList.add('onF')
-            }
+function modal() {
+    let modal = document.querySelector('.modal');
+    let closeBtn = document.querySelector('.modalCloseBtn');
+    let img = document.querySelector('.modalImage img');
+    let brand = document.querySelector('.modalBrand');
+    let name = document.querySelector('.modalName');
+    let descKo = document.querySelector('.modalDescKo');
+    let descEn = document.querySelector('.modalDescEn');
+    let styling = document.querySelector('.modalStyling');
+
+    fetch('./perfume.json')
+        .then(response => response.json())
+        .then(perfumes => {
+            let randomPerfume = perfumes[Math.floor(Math.random() * perfumes.length)];
+
+            modal.style.backgroundColor = randomPerfume.background_color;
+            modal.style.color = randomPerfume.text_color;
+            img.src = randomPerfume.image_url;
+            brand.textContent = randomPerfume.brand;
+            name.textContent = randomPerfume.name;
+            descKo.textContent = randomPerfume.description_ko;
+            descEn.textContent = randomPerfume.description_en;
+            styling.textContent = randomPerfume.styling_keywords.join(' | ');
+
+            img.addEventListener('click', (e) => {
+                    window.location.href = randomPerfume.link;
+            });
+            modal.style.display = 'flex';
         })
-    }, {
-        root : null,
-        rootMargin : '0px 0px 20% 0px',
-        threshold : 0.3
-    })
+        .catch(err => {
+            console.error("JSON load error:", err);
+        });
 
-    document.querySelectorAll('[class*="FImg"]').forEach((item)=>{
-        scroll.observe(item)
-    })  
-}
-imgScroll()
-
-const perfumes = [
-  {
-    name: "Neroli Portofino",
-    description: "햇살이 닿을 때마다 향이 다시 살아난다.",
-    keyword: "Mediterranean / Fresh / Blue Air"
-  },
-  {
-    name: "Mojave Ghost",
-    description: "신선하면서도 부드러운 우디 향",
-    keyword: "Woody / Floral / Soft"
-  },
-  {
-    name: "Sailing Day",
-    description: "바닷바람과 함께 느껴지는 자유로운 향",
-    keyword: "Oceanic / Relax / Bright"
-  }
-];
-
-// 요소 선택
-const showBtn = document.getElementById("showPerfume");
-const modal = document.getElementById("perfumeModal");
-const closeBtn = document.getElementById("closeModal");
-const nameEl = document.getElementById("perfumeName");
-const descEl = document.getElementById("perfumeDescription");
-const keywordEl = document.getElementById("perfumeKeyword");
-
-// 버튼 클릭 → 랜덤 향수 모달 띄우기
-showBtn.addEventListener("click", () => {
-  const randomPerfume = perfumes[Math.floor(Math.random() * perfumes.length)];
-  nameEl.textContent = randomPerfume.name;
-  descEl.textContent = randomPerfume.description;
-  keywordEl.textContent = randomPerfume.keyword;
-  modal.hidden = false;
-});
-
-// 모달 닫기
-closeBtn.addEventListener("click", () => {
-  modal.hidden = true;
-});
+    closeBtn.addEventListener('click', (e) => {
+        modal.style.display = 'none';
+    });
+};

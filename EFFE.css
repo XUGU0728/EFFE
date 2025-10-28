@@ -61,7 +61,7 @@
     src: url("./source_05MAISON_MARGIELA/font/GOUDOS.woff") format("woff");
 }
 
-/* 기본 셋팅 */
+/* 베이스 셋팅 */
 *{margin: 0; padding: 0; list-style: none; text-decoration: none; user-select: none; font-family: 'Pretendard'; color: #222;}
 html{font-size: 10px;}
 body{width: 100dvw; height: auto; background-color: #F7F7F7; overflow-x: hidden;}
@@ -72,9 +72,24 @@ section{margin: 0 auto; position: relative;}
 .lineHW{background-color: white; width: 10rem; height: 0.2rem; margin: 4rem auto;}
 .lineV.onLineV, .lineVW.onLineV{height: 10rem; transform:scaleY(1);}
 .firstSec{height: 8rem;}
-[class*=FImg]{transform: translateY(2rem); opacity: 0; transition: all 1s ease-in-out;}
-[class*=FImg].onF{transform: translateY(0); opacity: 1;}
+[class*=FImg]{transform: translateY(4rem); opacity: 0; transition: all 1s ease-in-out;}
+.onF{transform: translateY(0); opacity: 1;}
 
+/* 모달팝업창 modal */
+.modal{animation: modal-slide 1.6s ease-in-out forwards; animation-delay: 5s; width: 40rem; height: 36rem; padding: 1rem 2rem; border-radius: 1rem; border: 1px solid #aaa; box-shadow: 2px 2px 12px rgba(0,0,0,0.3); display: none; flex-direction: column; justify-content: center; align-items: center; gap: 1rem; position: fixed; z-index: 9999; bottom: 0%; right: 0rem; transform: translateX(100%);}
+.modal>div{color: inherit;}
+.modalCloseBtn{cursor: pointer; position: absolute; top: 2%; right: 3%; font-size: 1.6rem;}
+.modalRecommended{font-size: 2.4rem; font-weight: 600;}
+.modalImage{width: 80%; height: 50%; border-radius: 1rem; overflow: hidden; border: 1px solid #bbb;}
+.modalImage>img{width: 100%; height: 100%; object-fit: cover;}
+.modalBrand{font-size: 2rem; font-weight: 600;}
+.modalName{font-size: 1.4rem; font-weight: 600;}
+[class*='modalDesc']{font-size: 1.4rem; text-align: center;}
+.modalStyling{font-size: 2rem; font-weight: 600;}
+@keyframes modal-slide{
+    from{transform: translateX(100%);}
+    to{transform: translateX(0%);}
+}
 
 
 /* 네비게이션 navigation 헤더 header*/
@@ -261,7 +276,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .byredoI04{width: 70%; height: auto; display: flex; flex-direction: column; justify-content: center; align-items: center;}
     .byredoFSen{font-size: 2.4rem; width: 100%; height: 20rem; text-align: center; line-height: 20rem; background-color: #EAE7E2; border-radius: 1rem; font-family: "FuturaCyrillicBold";}
     .byredoFImgBox{width: 100%; display: flex; gap: 2rem; margin: 9rem 0;}
-    .byredoFImg{width: 50%; height: 62dvh; border-radius: 5rem; overflow: hidden; margin-bottom: 5rem;}
+    .byredoFImg{width: 50%; height: 62vh; border-radius: 5rem; overflow: hidden; margin-bottom: 5rem;}
     .byredoFImg>img{width: 100%; height: 100%; object-fit: cover;}
 
     .byredoI05{width: 70%; height: 70dvh; display: flex; flex-direction: column; justify-content: center; align-items: center;}
