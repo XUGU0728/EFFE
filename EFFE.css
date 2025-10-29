@@ -74,6 +74,8 @@ section{margin: 0 auto; position: relative;}
 .firstSec{height: 8rem;}
 [class*=FImg]{transform: translateY(4rem); opacity: 0; transition: all 1s ease-in-out;}
 .onF{transform: translateY(0); opacity: 1;}
+[class*='PMain']>img{transition: all 0.5s ease-in-out;}
+[class*='PMain']>img:hover{transform: scale(1.1);}
 
 /* 모달팝업창 modal */
 .modal{transition: all 1.6s ease-in-out; width: 40rem; height: 36rem; padding: 1rem 2rem; border-radius: 1rem; border: 1px solid #aaa; box-shadow: 2px 2px 12px rgba(0,0,0,0.3); display: none; flex-direction: column; justify-content: center; align-items: center; gap: 1rem; position: fixed; z-index: 9999; bottom: 0%; right: 0rem; transform: translateX(100%);}
@@ -291,7 +293,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 
     /* 바이레도 블랑쉬 byredo Blanche */
     .byredoP01{width: 100%;}
-    .byredoPMain{width: 100%; height: 75dvh;}
+    .byredoPMain{width: 100%; height: 75dvh; overflow: hidden;}
     .byredoPMain>img{width: 100%; height: 100%; object-fit: cover;}
     .byredoPMainText{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
     .byredoPMainText>div{background-color: #E8E8E1; width: 70%; height: 10rem; border-radius: 5rem; text-align: center; font-size: 2rem; font-weight: 600; line-height: 10rem;}
@@ -383,7 +385,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 
     /* 톰포드 오드우드 tomford Oud Wood */
     .tomP01{width: 100%;}
-    .tomPMain{width: 100%; height: 75dvh;}
+    .tomPMain{width: 100%; height: 75dvh; overflow: hidden;}
     .tomPMain>img{width: 100%; height: 100%; object-fit: cover;}
     .tomPMainText{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
     .tomPMainText>div{background-color: #4B4038; color: #f7f7f7; width: 80%; height: 15rem; text-align: center; font-size: 2rem; font-weight: 600; line-height: 15rem;}
@@ -481,7 +483,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 
     /* 르라보 상탈33 lerabo Santal 33 */
     .leraboP01{width: 100%;}
-    .leraboPMain{width: 100%; height: 75dvh;}
+    .leraboPMain{width: 100%; height: 75dvh; overflow: hidden;}
     .leraboPMain>img{width: 100%; height: 100%; object-fit: cover;}
     .leraboPMainText{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
     .leraboPMainText>div{background-color: #E6E0DA; width: 80%; height: 15rem; text-align: center; font-size: 2rem; font-weight: 600; line-height: 15rem;}
@@ -573,7 +575,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 
     /* 버버리 마이버버리 burberry My Burberry */
     .burberryP01{width: 100%;}
-    .burberryPMain{width: 100%; height: 75dvh;}
+    .burberryPMain{width: 100%; height: 75dvh; overflow: hidden;}
     .burberryPMain>img{width: 100%; height: 100%; object-fit: cover;}
     .burberryPMainText{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
     .burberryPMainText>div{background-color: #D8BFAF; width: 80%; height: 15rem; text-align: center; font-size: 2rem; font-weight: 600; line-height: 15rem;}
@@ -667,7 +669,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 
     /* 마르지엘라 레이지선데이모닝 margiela Lazy Sunday Morning */
     .margielaP01{width: 100%;}
-    .margielaPMain{width: 100%; height: 75dvh;}
+    .margielaPMain{width: 100%; height: 75dvh; overflow: hidden;}
     .margielaPMain>img{width: 100%; height: 100%; object-fit: cover;}
     .margielaPMainText{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
     .margielaPMainText>div{background-color: #DADCE0; width: 80%; height: 15rem; text-align: center; font-size: 2rem; font-weight: 600; line-height: 15rem;}
