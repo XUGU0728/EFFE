@@ -110,7 +110,7 @@ nav.onWhite *{color: #f7f7f7;}
 nav.onWhite img{filter: brightness(0) invert(1);}
 nav.onWhite .keySearch{border: 1px solid #f7f7f7;}
 nav.onWhite .subText{font-weight: 300;}
-nav.onWhite .subText:hover{color: #f7f7f7; font-weight: 600;}
+nav.onWhite .subText:hover{color: #f7f7f7;}
 
 .timeWeather{font-size: 1.2rem; display: flex; justify-content: center; align-items: center; gap: 20px;}
 #weatherIcon{height: 60px;}
