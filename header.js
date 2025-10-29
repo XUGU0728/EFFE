@@ -26,20 +26,24 @@ updateTopBtnIcon();
 
 // 네비게이션 navigation
     // 메인페이지 화이트 텍스트
-        let nav = document.querySelector('nav');
+    let nav = document.querySelector('nav');
+    let keyIconPath = document.querySelector('.keySearchIcon svg path');
 
-        if (document.body.classList.contains('home')) {
-        // 초기 글씨 색상 흰색
+    if (document.body.classList.contains('home')) {
         nav.classList.add('onWhite');
+        keyIconPath.setAttribute('stroke', '#f7f7f7');
 
         window.addEventListener('scroll', () => {
             if (window.scrollY > window.innerHeight) {
-            nav.classList.remove('onWhite');
+                nav.classList.remove('onWhite');
+                keyIconPath.setAttribute('stroke', '#222');
             } else {
-            nav.classList.add('onWhite');
+                nav.classList.add('onWhite');
+                keyIconPath.setAttribute('stroke', '#f7f7f7');
             }
         });
-        }
+    }
+
 
     // 시간
         function updateTime() {
@@ -89,6 +93,7 @@ updateTopBtnIcon();
             let isHover = false;
 
             function showSub(){
+                if (searchPanel.classList.contains('onSearch')) return
                 if(isHover) return;
                 isHover = true;
                 subWrap.stop(true,true).css({display:'block', height:0});
@@ -134,3 +139,75 @@ updateTopBtnIcon();
                 }).addClass('onHighlight');
             }
         });
+
+    //검색창
+    let searchInput = document.querySelector('.keySearchInput')
+    let searchPanel = document.querySelector('.keySearchPanel')
+    let closeBtn = document.querySelector('.keySearchCloseBtn')
+    let keywordBox = document.querySelector('.keywordBox')
+
+    searchInput.addEventListener('focus', () => {
+        searchPanel.classList.add('onSearch')
+    });
+
+    closeBtn.addEventListener('click', () => {
+        searchPanel.classList.remove('onSearch')
+    });
+
+    let perfumes = []
+
+    // JSON 데이터 불러오기
+    fetch('./perfume.json')
+    .then(res => res.json())
+    .then(data => {
+        perfumes = data
+        renderPerfumeList(perfumes)
+    })
+    .catch(err => console.error('JSON 로드 실패:', err))
+
+    // 향수 리스트 출력
+    function renderPerfumeList(perfumeList) {
+        keywordBox.innerHTML = ''
+
+        perfumeList.forEach(perfumes => {
+            let keywordPerfume = document.createElement('div')
+            keywordPerfume.classList.add('keywordPerfume')
+
+            // 향수 이름
+            let name = document.createElement('div')
+            name.classList.add('keywordName')
+            name.textContent = perfumes.name
+            name.addEventListener('click', () => {
+                window.location.href = perfumes.link
+            })
+            keywordPerfume.appendChild(name)
+
+            // 키워드
+            let keywords = document.createElement('div')
+            keywords.classList.add('keywordWord')
+            perfumes.keywords.forEach(k => {
+                let kwSpan = document.createElement('span')
+                kwSpan.textContent = `#${k}`
+                kwSpan.style.marginRight = '0.5rem'
+                keywords.appendChild(kwSpan)
+            })
+            keywordPerfume.appendChild(keywords)
+            keywordBox.appendChild(keywordPerfume)
+        })
+    }
+
+    // 검색 입력 이벤트
+    searchInput.addEventListener('input', () => {
+        let inputKeyword = searchInput.value.trim().toLowerCase();
+
+        if (inputKeyword === '') {
+            renderPerfumeList(perfumes); // 입력 없으면 전체 표시
+            return;
+        }
+
+        let inputFilter = perfumes.filter(perfume =>
+            perfume.keywords.some(k => k.toLowerCase().includes(inputKeyword))
+        );
+
+        renderPerfumeList(inputFilter);
+    });

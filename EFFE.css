@@ -97,8 +97,7 @@ section{margin: 0 auto; position: relative;}
 @keyframes float{
     0%{transform: translateY(0);}
     50%{transform: translateY(-0.5rem);}
-    100%{transform: translateY(0);}
-}
+    100%{transform: translateY(0);}}
 
 nav{width: 100%; height: 80px; font-size: 2rem; display: flex; justify-content: center; align-items: center; gap: 100px; background-color: rgba(255,255,255,0.9); backdrop-filter: blur(2px); position: fixed; z-index: 100;}
 .effeLogo{height: 60px; width: max-content;}
@@ -109,9 +108,25 @@ nav.onWhite{background-color: rgba(255,255,255,0.1);}
 nav.onWhite .menumain, nav.onWhite .subWrap{background-color: rgba(255,255,255,0.1);}
 nav.onWhite *{color: #f7f7f7;}
 nav.onWhite img{filter: brightness(0) invert(1);}
+nav.onWhite .keySearch{border: 1px solid #f7f7f7;}
+nav.onWhite .subText{font-weight: 300;}
+nav.onWhite .subText:hover{color: #f7f7f7; font-weight: 600;}
 
 .timeWeather{font-size: 1.2rem; display: flex; justify-content: center; align-items: center; gap: 20px;}
 #weatherIcon{height: 60px;}
+
+.keySearch{border: 1px solid #222; border-radius: 5rem; padding: 1rem 1rem; display: flex; justify-content: center; align-items: center; gap: 1rem;}
+.keySearchInput{border: 1px solid #aaa; padding: 0.5rem 0.5rem; border-radius: 3rem !important;}
+.keySearchPanel{color: #222 !important; background-color: #f7f7f7; opacity: 0.95; padding: 2rem; position: fixed; border: 1px solid #aaa; top: 8rem; right: -50rem; width: 50rem; height: 100dvh; transition: right 0.4s ease; z-index: 1000;}
+.keySearchPanel.onSearch{right: 0;}
+.keySearchPanel>div{color: #222 !important;}
+.keySearchCloseBtn{position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 2rem; cursor: pointer;}
+.keywordBox{margin: 1rem 0; display: flex; flex-direction: column;}
+.keywordPerfume{display: flex; align-items: center; gap: 0.5rem;}
+.keywordName{color: #666 !important; font-size: 1.4rem; width: 35%; border: 1px solid #aaa; padding: 1rem 1rem; border-radius: 2rem; margin: 0.5rem 0; transition: all 0.2s ease-in-out;}
+.keywordName:hover{color: #222 !important; cursor: pointer;}
+.keywordWord{width: 50%;}
+.keywordWord>span{color: #aaa !important; font-size: 1.4rem;}
 
 header{position: relative;}
 .subWrap{display: none; position: absolute; left: 0; right: 0; top: 100%; overflow: hidden; z-index: 10; background-color: rgba(255,255,255,0.95);}
@@ -120,8 +135,8 @@ header{position: relative;}
 .menuSub>div>a{margin: 1.8rem;}
 .menuMain a.onHighlight div, .menuSub a.onHighlight div{color: #222; font-weight: 600; border-bottom: 1px solid #111;}
 .subTitle{font-size: 1.8rem;}
-.subText{font-size: 1.4rem; color: #A6B1A9;}
-.subText:hover{color: #222; transition: all 0.2s linear;}
+.subText{font-size: 1.4rem; color: #A6B1A9; transition: all 0.2s linear;}
+.subText:hover{color: #222;}
 
 /* 푸터 footer */
 footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
