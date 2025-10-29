@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     modal()
     mainEffect()
 })
+window.addEventListener('load', () => {
     aboutEffect()
+})
 
 //lineV 스크롤애니메이션
 function lineScroll() {

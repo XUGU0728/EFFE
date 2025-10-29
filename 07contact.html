@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="favicon.ico?v=2" type="image/x-icon" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EFFÉ</title>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="EFFE.css" />
+    <link rel="stylesheet" href="reset.css" />
+</head>
+<body>
+    <div id="header"></div>
+
+    <section class="mail">
+        <div class="formTitle">CONTACT US</div>
+        <div class="formInfo">EFFÉ는 언제나 여러분들의 목소리에 귀기울입니다.<br>제휴 · 협찬 및 기타 의견 등을 아래 서식에 맞춰 보내주시면<br>최대한 빠르게 확인 후 'Reply'측으로 연락 드리겠습니다.</div>
+        <form class="form">
+            <div class="field">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title">
+            </div>
+            <div class="field">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+            </div>
+            <div class="field">
+                <label for="message">Contents</label>
+                <input type="text" name="message" id="message" class="message">
+            </div>
+            <div class="field">
+                <label for="email">Reply</label>
+                <input type="text" name="email" id="email">
+            </div>
+            <input type="submit" id="button" class="submit" value="Send">
+        </form>
+        <div class="formBg"><img src="./source/632.jpg" alt="img"></div>
+    </section>
+
+    <div id="footer"></div>
+
+<script>
+    (function() {
+        const PUBLIC_KEY = "DnSVEjZ8H5sJZSI05";
+        const SERVICE_KEY = "service_qzy6gpz";
+        const TEMPLATE_KEY = "template_l96eucg";
+
+        emailjs.init(PUBLIC_KEY);
+
+        const form = document.querySelector(".form");
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            emailjs.sendForm(SERVICE_KEY, TEMPLATE_KEY, this)
+                .then(function(response) {
+                    alert('전송에 성공했습니다.\n순차적으로 답변드리겠습니다.\n오늘도 행복한 하루되세요.');
+                    console.log('SUCCESS!', response.status, response.text);
+                }, function(error) {
+                    alert('전송에 실패했습니다.\n0728csw@gmail.com으로 문의주시면 최대한 빠르게 답변드리겠습니다.');
+                    console.error('FAILED...', error);
+                })
+                .finally(() => {
+                    form.reset(); // 성공/실패 상관없이 입력값 초기화
+                });
+        });
+    })();
+</script>
+
+    <script type="text/javascript" src="EFFE.js"></script>
+</body>
+</html>
