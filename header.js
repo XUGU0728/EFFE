@@ -139,8 +139,7 @@ updateTopBtnIcon();
                 }).addClass('onHighlight');
             }
         });
-
-    //검색창
+    // 검색창
     let searchInput = document.querySelector('.keySearchInput')
     let searchPanel = document.querySelector('.keySearchPanel')
     let closeBtn = document.querySelector('.keySearchCloseBtn')
@@ -155,14 +154,42 @@ updateTopBtnIcon();
     });
 
     let perfumes = []
+    let purfumeKeywordKo = {}
 
     // JSON 데이터 불러오기
     fetch('./perfume.json')
     .then(res => res.json())
     .then(data => {
-        perfumes = data
-        renderPerfumeList(perfumes)
+        perfumes = data;
+        return fetch('./purfumeKeywordKo.json'); // 순차적으로 다음 fetch
     })
+    .then(res => res.json())
+    .then(data => {
+        purfumeKeywordKo = data;
+        renderPerfumeList(perfumes); // 이제 두 데이터 모두 확보됨
+    })
+    .catch(err => console.error('JSON 로드 실패:', err));
+
+        // 검색 입력 이벤트 등록
+        searchInput.addEventListener('input', () => {
+            let inputKeyword = searchInput.value.trim().toLowerCase()
+
+            if (inputKeyword === '') {
+                renderPerfumeList(perfumes)
+                return
+            }
+
+            // 한글 입력이면 영어 키워드로 변환
+            if (purfumeKeywordKo[inputKeyword]) {
+                inputKeyword = purfumeKeywordKo[inputKeyword].toLowerCase()
+            }
+
+            let inputFilter = perfumes.filter(perfume =>
+                perfume.keywords.some(k => k.toLowerCase().includes(inputKeyword))
+            )
+
+            renderPerfumeList(inputFilter)
+        })
     .catch(err => console.error('JSON 로드 실패:', err))
 
     // 향수 리스트 출력
@@ -195,19 +222,3 @@ updateTopBtnIcon();
             keywordBox.appendChild(keywordPerfume)
         })
     }
-
-    // 검색 입력 이벤트
-    searchInput.addEventListener('input', () => {
-        let inputKeyword = searchInput.value.trim().toLowerCase();
-
-        if (inputKeyword === '') {
-            renderPerfumeList(perfumes); // 입력 없으면 전체 표시
-            return;
-        }
-
-        let inputFilter = perfumes.filter(perfume =>
-            perfume.keywords.some(k => k.toLowerCase().includes(inputKeyword))
-        );
-
-        renderPerfumeList(inputFilter);
-    });
