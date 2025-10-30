@@ -80,6 +80,9 @@ section{margin: 0 auto; position: relative;}
 [class*='CImg'].onC{transform: translateX(0); opacity: 1;}
 [class*='PMain']>img{transition: all 0.5s ease-in-out;}
 [class*='PMain']>img:hover{transform: scale(1.1);}
+[class*='PKeyword']{transition: all 1s ease-in-out;}
+[class*='PMain'] > img:hover + [class*='PKeyword'], [class*='PMain']:hover + [class*='PKeyword'] {opacity: 1; transform: translateY(0);}
+
 
 /* 모달팝업창 modal */
 .modal{transition: all 1.6s ease-in-out; width: 40rem; height: 36rem; padding: 1rem 2rem; border-radius: 1rem; border: 1px solid #aaa; box-shadow: 2px 2px 12px rgba(0,0,0,0.3); display: none; flex-direction: column; justify-content: center; align-items: center; gap: 1rem; position: fixed; z-index: 9999; bottom: 0%; right: 0rem; transform: translateX(100%);}
@@ -268,7 +271,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .searchBox input{border: none; outline: none; background: transparent; font-size: 1.4rem; width: 40rem;}
     .searchBox button{border: none; background: #222; color: #F7F7F7; border-radius: 2rem; padding: 5px 10px; transition: 0.2s;}
     .searchBox button:hover{background: #333;}
-    .routeInfo{background-color: #222; color: #f7f7f7; width: 32%; font-size: 2.4rem; text-align: center; padding: 1rem 1.5rem; border-radius: 3rem;}
+    .routeInfo{background-color: #222; color: #f7f7f7; width: 32%; font-size: 2.4rem; text-align: center; padding: 1rem 1.5rem; border-radius: 3rem; box-shadow: 0 2px 10px rgba(0,0,0,0.3);}
 
     .customOverlay{animation: fadePopIn 0.6s ease-in-out forwards;}
     @keyframes fadePopIn {
@@ -327,9 +330,11 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .byredoMap{width: 100%; height: 70%; border-radius: 1rem;}
 
     /* 바이레도 블랑쉬 byredo Blanche */
-    .byredoP01{width: 100%;}
+    .byredoP01{width: 100%; position: relative;}
     .byredoPMain{width: 100%; height: 75dvh; overflow: hidden;}
     .byredoPMain>img{width: 100%; height: 100%; object-fit: cover;}
+    .byredoPKeyword01{position: absolute; top: 20%; left: 5%; font-size: 2.4rem; line-height: 2; opacity: 0;}
+    .byredoPKeyword02>div{font-family: "FuturaCyrillicBold";}
     .byredoPMainText{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
     .byredoPMainText>div{background-color: #E8E8E1; width: 70%; height: 10rem; border-radius: 5rem; text-align: center; font-size: 2rem; font-weight: 600; line-height: 10rem;}
 
@@ -361,6 +366,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .byredoPRec>img{width: 100%; height: 100%; object-fit: cover;}
 
     /* 바이레도 모하비고스트 byredo Mojave Ghost */
+    .byredoPKeyword02{position: absolute; top: 20%; left: 5%; font-size: 2.4rem; line-height: 2; opacity: 0;}
+    .byredoPKeyword02>div{color: #f7f7f7; font-family: "FuturaCyrillicBold";}
+
     .byredoPElBg04{background-color: #ece4d4;}
     .byredoPElBg05{background-color: #efe7f7;}
     .byredoPElBg06{background-color: #FDF6F0;}
@@ -372,6 +380,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .byredoPFConSen02>div:nth-child(2){font-size: 2.4rem;}
     
     /* 바이레도 집시워터 byredo Gypsy Water */
+    .byredoPKeyword03{position: absolute; top: 20%; left: 5%; font-size: 2.4rem; line-height: 2; opacity: 0;}
+    .byredoPKeyword03>div{color: #f7f7f7; font-family: "FuturaCyrillicBold";}
+
     .byredoPElBg07{background-color: #FFF9D6;}
     .byredoPElBg08{background-color: #F5EAE0;}
     .byredoPElBg09{background-color: #E6D9C7;}
@@ -421,7 +432,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .tomMap{width: 100%; height: 70%; border-radius: 1rem;}
 
     /* 톰포드 오드우드 tomford Oud Wood */
-    .tomP01{width: 100%;}
+    .tomP01{width: 100%; position: relative;}
+    .tomPKeyword01{position: absolute; top: 20%; right: 10%; font-size: 2.4rem; line-height: 2; opacity: 0;}
+    .tomPKeyword01>div{color: #f7f7f7; font-family: "HelveticaNeueBold";}
     .tomPMain{width: 100%; height: 75dvh; overflow: hidden;}
     .tomPMain>img{width: 100%; height: 100%; object-fit: cover;}
     .tomPMainText{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
@@ -453,8 +466,11 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .tomPRec>img{width: 100%; height: 100%; object-fit: cover;}
 
     /* 톰포드 블랙오키드 tomford Black Orchid */
+    .tomPKeyword02{position: absolute; top: 5%; right: 20%; font-size: 2.4rem; line-height: 2; opacity: 0;}
+    .tomPKeyword02>div{font-family: "HelveticaNeueBold";}
     .tomPMainText02{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
     .tomPMainText02>div{background-color: #3B1F2B; color: #f7f7f7; width: 80%; height: 15rem; text-align: center; font-size: 2rem; font-weight: 600; line-height: 15rem;}
+
     .tomPElBg04{background-color: #beae30;}
     .tomPElBg05{background-color: #2B1B30;}
     .tomPElBg06{background-color: #5C4033;}
@@ -463,6 +479,8 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .tomPFConSen02>div:nth-child(2){font-size: 2.4rem;}
     
     /* 톰포드 네롤리포르토피노 tomford Neroli Portofino */
+    .tomPKeyword03{position: absolute; top: 5%; right: 30%; font-size: 2.4rem; line-height: 2; opacity: 0;}
+    .tomPKeyword03>div{font-family: "HelveticaNeueBold";}
     .tomPMainText03{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
     .tomPMainText03>div{background-color: #00A8A8; width: 80%; height: 15rem; text-align: center; font-size: 2rem; font-weight: 600; line-height: 15rem;}
     .tomPElBg07{background-color: #FF9B3D;}
@@ -516,7 +534,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .leraboMap{width: 100%; height: 70%; border-radius: 1rem;}
 
     /* 르라보 상탈33 lerabo Santal 33 */
-    .leraboP01{width: 100%;}
+    .leraboP01{width: 100%; position: relative;}
+    .lelaboPKeyword01{position: absolute; top: 20%; right: 20%; font-size: 2.4rem; line-height: 2; opacity: 0;}
+    .lelaboPKeyword01>div{font-family: "OldSansBlack";}
     .leraboPMain{width: 100%; height: 75dvh; overflow: hidden;}
     .leraboPMain>img{width: 100%; height: 100%; object-fit: cover;}
     .leraboPMainText{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
@@ -550,6 +570,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .leraboPRec>img{width: 100%; height: 100%; object-fit: cover;}
 
     /* 르라보 어나더13 lerabo Another 13 */
+    .lelaboPKeyword02{position: absolute; top: 20%; right: 20%; font-size: 2.4rem; line-height: 2; opacity: 0;}
+    .lelaboPKeyword02>div{font-family: "OldSansBlack";}
+
     .leraboPElChip04{background-color: #ddbf46;}
     .leraboPElChip05{background-color: #F5F5F5;}
     .leraboPElChip06{background-color: #9e806f;}
@@ -558,6 +581,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .leraboPFConSen02>div:nth-child(2){color: #F7F7F7; font-size: 2rem;}
     
     /* 르라보 떼누아29 lerabo Another 13 */
+    .lelaboPKeyword03{position: absolute; top: 5%; right: 10%; font-size: 2.4rem; line-height: 2; opacity: 0;}
+    .lelaboPKeyword03>div{color: #f7f7f7; font-family: "OldSansBlack";}
+
     .leraboPElChip07{background-color: #A37C50;}
     .leraboPElChip08{background-color: #556B2F;}
     .leraboPElChip09{background-color: #C2A661;}
@@ -605,7 +631,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .burberryMap{width: 100%; height: 70%; border-radius: 1rem;}
 
     /* 버버리 마이버버리 burberry My Burberry */
-    .burberryP01{width: 100%;}
+    .burberryP01{width: 100%; position: relative;}
+    .burberryPKeyword01{position: absolute; top: 10%; left: 10%; font-size: 2.4rem; line-height: 2; opacity: 0;}
+    .burberryPKeyword01>div{font-family: "optima";}
     .burberryPMain{width: 100%; height: 75dvh; overflow: hidden;}
     .burberryPMain>img{width: 100%; height: 100%; object-fit: cover;}
     .burberryPMainText{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
@@ -639,6 +667,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .burberryPRec>img{width: 100%; height: 100%; object-fit: cover;}
 
     /* 버버리 버버리허 burberry Burberry Her */
+    .burberryPKeyword02{position: absolute; top: 5%; right: 5%; font-size: 2.4rem; line-height: 2; opacity: 0;}
+    .burberryPKeyword02>div{font-family: "optima";}
+
     .burberryPElChip04{background-color: #F9D4DD;}
     .burberryPElChip05{background-color: #EAD6F1;}
     .burberryPElChip06{background-color: #FFE6C2;}
@@ -647,6 +678,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .burberryPFConSen02>div:nth-child(2){color: #f7f7f7; font-size: 2rem;}
     
     /* 버버리 미스터버버리 burberry Mr. Burberry */
+    .burberryPKeyword03{position: absolute; top: 5%; left: 5%; font-size: 2.4rem; line-height: 2; opacity: 0;}
+    .burberryPKeyword03>div{font-family: "optima";}
+
     .burberryPElChip07{background-color: #d3b29b;}
     .burberryPElChip08{background-color: #d2c1e2;}
     .burberryPElChip09{background-color: #abbdb5;}
@@ -694,7 +728,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .margielaMap{width: 100%; height: 70%; border-radius: 1rem;}
 
     /* 마르지엘라 레이지선데이모닝 margiela Lazy Sunday Morning */
-    .margielaP01{width: 100%;}
+    .margielaP01{width: 100%; position: relative;}
+    .margielaPKeyword01{position: absolute; top: 5%; left: 5%; font-size: 2.4rem; line-height: 2; opacity: 0;}
+    .margielaPKeyword01>div{font-family: "goudos";}
     .margielaPMain{width: 100%; height: 75dvh; overflow: hidden;}
     .margielaPMain>img{width: 100%; height: 100%; object-fit: cover;}
     .margielaPMainText{width: 100%; height: 20rem; display: flex; justify-content: center; align-items: center;}
@@ -726,6 +762,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .margielaPRec>img{width: 100%; height: 100%; object-fit: cover;}
 
     /* 마르지엘라 재즈클럽 margiela Jazz Club */
+    .margielaPKeyword02{position: absolute; top: 20%; left: 5%; font-size: 2.4rem; line-height: 2; opacity: 0;}
+    .margielaPKeyword02>div{font-family: "goudos";}
+
     .margielaPElBg04{background-color: #d8cdb7;}
     .margielaPElBg05{background-color: #A59C7B;}
     .margielaPElBg06{background-color: #5B4A42;}
@@ -734,6 +773,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .margielaPFConSen02>div:nth-child(2){color: #f7f7f7; font-size: 2rem;}
     
     /* 마르지엘라 세일링데이 margiela Sailing Day */
+    .margielaPKeyword03{position: absolute; top: 35%; left: 20%; font-size: 2.4rem; line-height: 2; opacity: 0;}
+    .margielaPKeyword03>div{font-family: "goudos";}
+
     .margielaPElBg07{background-color: #F3F8EF;}
     .margielaPElBg08{background-color: #bfdfcc;}
     .margielaPElBg09{background-color: #f5e9d4;}
