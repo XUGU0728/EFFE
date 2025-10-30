@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
         burberryPosition = new kakao.maps.LatLng(37.5244860, 127.0467938);
         infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
-        const markerImageSrc = './source/MarkerBL.png';
+        const markerImageSrc = './source/markerBL.png';
         const markerImageSize = new kakao.maps.Size(48, 48);
         const markerImageOption = { offset: new kakao.maps.Point(24, 48) };
         const markerImage = new kakao.maps.MarkerImage(markerImageSrc, markerImageSize, markerImageOption);

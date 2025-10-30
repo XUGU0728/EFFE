@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
         byredoPosition = new kakao.maps.LatLng(37.520708, 127.022684);
         infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
-        const markerImageSrc = './source/MarkerB.png';
+        const markerImageSrc = './source/markerB.png';
         const markerImageSize = new kakao.maps.Size(48, 48);
         const markerImageOption = { offset: new kakao.maps.Point(24, 48) };
         const markerImage = new kakao.maps.MarkerImage(markerImageSrc, markerImageSize, markerImageOption);

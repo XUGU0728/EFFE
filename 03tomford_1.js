@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
         tomPosition = new kakao.maps.LatLng(37.5284458, 127.0401040);
         infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
-        const markerImageSrc = './source/MarkerT.png';
+        const markerImageSrc = './source/markerT.png';
         const markerImageSize = new kakao.maps.Size(48, 48);
         const markerImageOption = { offset: new kakao.maps.Point(24, 48) };
         const markerImage = new kakao.maps.MarkerImage(markerImageSrc, markerImageSize, markerImageOption);

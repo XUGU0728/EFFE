@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
         leraboPosition = new kakao.maps.LatLng(37.5811464, 126.9818965);
         infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
-        const markerImageSrc = './source/MarkerL.png';
+        const markerImageSrc = './source/markerL.png';
         const markerImageSize = new kakao.maps.Size(48, 48);
         const markerImageOption = { offset: new kakao.maps.Point(24, 48) };
         const markerImage = new kakao.maps.MarkerImage(markerImageSrc, markerImageSize, markerImageOption);
