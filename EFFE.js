@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 document.addEventListener('DOMContentLoaded', () => {
     lineScroll()
-    imgScroll()
+    intro()
     modal()
     mainEffect()
 })
@@ -31,26 +31,7 @@ function lineScroll() {
     document.querySelectorAll('.lineV, .lineVW').forEach((item)=>{
         scroll.observe(item)
     })  
-}
-
-//Fimg 스크롤애니메이션
-function imgScroll() {
-    let scroll=new IntersectionObserver((item) => {
-        item.forEach((el) => {
-            if(el.isIntersecting) {
-            el.target.classList.add('onF')
-            }
-        })
-    }, {
-        root : null,
-        rootMargin : '0px 0px 20% 0px',
-        threshold : 0.1
-    })
-
-    document.querySelectorAll('[class*="FImg"]').forEach((item)=>{
-        scroll.observe(item)
-    })  
-}
+} //lineScroll() END ----------//
 
 // 메인페이지 main-page
 function mainEffect() {
@@ -133,7 +114,7 @@ function mainEffect() {
         document.querySelectorAll('.mainBox').forEach((item)=>{
             scroll.observe(item)
         })
-}
+} //mainEffect() END ----------//
 
 // 에페소개페이지 effe-about-page
 function aboutEffect() {
@@ -263,7 +244,9 @@ function aboutEffect() {
     document.querySelector('.resetBtn').addEventListener('click', ()=>{
         mover.forEach(el => el.resetPosition())
     })
-}
+} //aboutEffect() END ----------//
+
+
 
 function modal() {
     let modal = document.querySelector('.modal');
@@ -320,4 +303,39 @@ function modal() {
     closeBtn.addEventListener('click', () => {
         modal.style.display = 'none';
     });
-};
+} //modal() END ----------//
+
+function intro() {
+    //Cimg 스크롤애니메이션
+        let scrollC=new IntersectionObserver((item) => {
+            item.forEach((el) => {
+                if(el.isIntersecting) {
+                el.target.classList.add('onC')
+                }
+            })
+        }, {
+            root : null,
+            rootMargin : '0px 0px 20% 0px',
+            threshold : 0.1
+        })
+        document.querySelectorAll('[class*="CImg"]').forEach((item)=>{
+            scrollC.observe(item)
+        }) 
+
+    //Fimg 스크롤애니메이션
+        let scrollF=new IntersectionObserver((item) => {
+            item.forEach((el) => {
+                if(el.isIntersecting) {
+                el.target.classList.add('onF')
+                }
+            })
+        }, {
+            root : null,
+            rootMargin : '0px 0px 20% 0px',
+            threshold : 0.1
+        })
+
+        document.querySelectorAll('[class*="FImg"]').forEach((item)=>{
+            scrollF.observe(item)
+        })  
+} //intro() END ----------//

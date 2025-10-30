@@ -1,17 +1,32 @@
+let map;
+let margielaPosition;
+let searchMarkers = [];
+let routePolyline = null;
+let infowindow = null;
+const WORKER_URL = "https://small-bush-73af.0728csw.workers.dev/";
+
 window.addEventListener('DOMContentLoaded', () => {
     kakao.maps.load(() => {
         const mapContainer = document.querySelector('.margielaMap');
-        const map = new kakao.maps.Map(mapContainer, {
+        map = new kakao.maps.Map(mapContainer, {
             center: new kakao.maps.LatLng(37.5342387, 127.0021508),
             level: 3
         });
 
-        const margielaPosition = new kakao.maps.LatLng(37.5342387, 127.0021508);
+        margielaPosition = new kakao.maps.LatLng(37.5342387, 127.0021508);
+        infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
-        // 마커
-        const margielaMarker = new kakao.maps.Marker({ position: margielaPosition, map });
+        const markerImageSrc = './source/markerM.png';
+        const markerImageSize = new kakao.maps.Size(48, 48);
+        const markerImageOption = { offset: new kakao.maps.Point(24, 48) };
+        const markerImage = new kakao.maps.MarkerImage(markerImageSrc, markerImageSize, markerImageOption);
 
-        // 커스텀 오버레이
+        const margielaMarker = new kakao.maps.Marker({
+            position: margielaPosition,
+            image: markerImage,
+            map: map
+        });
+
         const overlayContent = `
             <div class="customOverlay" style="background:#393939; padding:10px; border:1px solid #aaa; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.3); position:relative; display:flex; align-items:center; gap:8px;">
                 <img src="./source_05MAISON_MARGIELA/logoS.jpg" alt="logo" style="width:50px;height:50px; border-radius:6px; flex-shrink:0;">
@@ -28,12 +43,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
         const overlay = new kakao.maps.CustomOverlay({
             content: overlayContent,
-            position: new kakao.maps.LatLng(margielaPosition.getLat() + 0.0004, margielaPosition.getLng()),
+            position: new kakao.maps.LatLng(margielaPosition.getLat() + 0.0005, margielaPosition.getLng()),
             yAnchor: 1
         });
         overlay.setMap(map);
 
-        // X 버튼 닫기
         setTimeout(() => {
             const closeBtn = document.querySelector('.margielaMap .customOverlay .close-btn');
             if (closeBtn) closeBtn.addEventListener('click', () => overlay.setMap(null));
@@ -41,13 +55,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
         kakao.maps.event.addListener(margielaMarker, 'click', () => overlay.setMap(map));
 
-        // 교통/자전거 오버레이
-        const mapTypes = {
-            traffic : kakao.maps.MapTypeId.TRAFFIC,
-            bicycle : kakao.maps.MapTypeId.BICYCLE
-        };
-        const activeOverlays = {};
+        // 지도 컨트롤
+        map.addControl(new kakao.maps.MapTypeControl(), kakao.maps.ControlPosition.TOPLEFT);
+        map.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.RIGHT);
 
+        // 교통/자전거 오버레이
+        const mapTypes = { traffic: kakao.maps.MapTypeId.TRAFFIC, bicycle: kakao.maps.MapTypeId.BICYCLE };
+        const activeOverlays = {};
         document.querySelectorAll('.mapTypeBox button[data-type]').forEach(btn => {
             btn.addEventListener('click', () => {
                 const type = btn.dataset.type;
@@ -61,43 +75,7 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // 검색 기능
-        const ps = new kakao.maps.services.Places();
-        const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
-        let searchMarkers = [];
-
-        document.getElementById('searchBtn').addEventListener('click', () => {
-            const keyword = document.getElementById('keyword').value.trim();
-            if(!keyword) { alert('검색어를 입력하세요!'); return; }
-            ps.keywordSearch(keyword, placesSearchCB);
-        });
-
-        function placesSearchCB(data, status){
-            if(status === kakao.maps.services.Status.OK){
-                searchMarkers.forEach(m => m.setMap(null));
-                searchMarkers = [];
-                const bounds = new kakao.maps.LatLngBounds();
-                data.forEach(place => {
-                    const marker = new kakao.maps.Marker({
-                        position: new kakao.maps.LatLng(place.y, place.x),
-                        map: map
-                    });
-                    kakao.maps.event.addListener(marker, 'click', () => {
-                        infowindow.setContent(`<div style="padding:5px;font-size:13px;">${place.place_name}</div>`);
-                        infowindow.open(map, marker);
-                    });
-                    searchMarkers.push(marker);
-                    bounds.extend(marker.getPosition());
-                });
-                map.setBounds(bounds);
-            } else {
-                alert('검색 결과가 없습니다.');
-            }
-        }
-
         // 편의점 / 주차장 마커
-        const markerSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png';
-
         const storePositions = [
             new kakao.maps.LatLng(37.5338530, 127.0036482),
             new kakao.maps.LatLng(37.5338039, 127.0042579),
@@ -109,28 +87,109 @@ window.addEventListener('DOMContentLoaded', () => {
             new kakao.maps.LatLng(37.5333302, 127.0038881)
         ];
 
-        function createCategoryMarker(pos, spriteY){
-            const imageSize = new kakao.maps.Size(22,26);
-            const imageOptions = { spriteOrigin: new kakao.maps.Point(10, spriteY), spriteSize: new kakao.maps.Size(36,98) };
-            const markerImage = new kakao.maps.MarkerImage(markerSrc, imageSize, imageOptions);
-            return new kakao.maps.Marker({ position: pos, image: markerImage });
+        function createAnimatedMarker(pos, imgSrc) {
+            const markerDiv = document.createElement('div');
+            markerDiv.className = 'animated-marker';
+            markerDiv.innerHTML = `<img src="${imgSrc}" alt="marker">`;
+            const overlay = new kakao.maps.CustomOverlay({ position: pos, content: markerDiv, yAnchor: 1 });
+            overlay.setMap(map);
+            return overlay;
         }
 
-        const storeMarkers = storePositions.map(pos => createCategoryMarker(pos, 36));
-        const carparkMarkers = carparkPositions.map(pos => createCategoryMarker(pos, 72));
+        const storeMarkers = storePositions.map(pos => createAnimatedMarker(pos, './source/store.png'));
+        const carparkMarkers = carparkPositions.map(pos => createAnimatedMarker(pos, './source/parking.png'));
 
-        window.changeMarker = function(type){
-            if(type === 'store'){
-                storeMarkers.forEach(m => m.setMap(map));
-                carparkMarkers.forEach(m => m.setMap(null));
-            } else if(type === 'carpark'){
-                carparkMarkers.forEach(m => m.setMap(map));
-                storeMarkers.forEach(m => m.setMap(null));
+        let storeVisible = false;
+        let carparkVisible = false;
+        window.changeMarker = function(type) {
+            if(type === 'store') {
+                storeVisible = !storeVisible;
+                storeMarkers.forEach(m => m.setMap(storeVisible ? map : null));
+            } else if(type === 'carpark') {
+                carparkVisible = !carparkVisible;
+                carparkMarkers.forEach(m => m.setMap(carparkVisible ? map : null));
             }
         };
+        storeMarkers.forEach(m => m.setMap(null));
+        carparkMarkers.forEach(m => m.setMap(null));
 
-        // 지도 컨트롤
-        map.addControl(new kakao.maps.MapTypeControl(), kakao.maps.ControlPosition.TOPLEFT);
-        map.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.RIGHT);
+        // 검색 기능
+        const ps = new kakao.maps.services.Places();
+        document.getElementById('searchBtn').addEventListener('click', () => {
+            const keyword = document.getElementById('keyword').value.trim();
+            if(!keyword) { alert('검색어를 입력하세요!'); return; }
+            ps.keywordSearch(keyword, placesSearchCB);
+        });
     });
 });
+
+// 검색 콜백 + 길찾기
+function placesSearchCB(data, status){
+    if(status !== kakao.maps.services.Status.OK){ alert('검색 결과가 없습니다.'); return; }
+
+    searchMarkers.forEach(m => m.setMap(null));
+    searchMarkers = [];
+
+    const bounds = new kakao.maps.LatLngBounds();
+    data.forEach(place => {
+        const marker = new kakao.maps.Marker({
+            position: new kakao.maps.LatLng(place.y, place.x),
+            map: map
+        });
+        kakao.maps.event.addListener(marker, 'click', () => {
+            infowindow.setContent(`<div style="padding:5px;font-size:13px;">${place.place_name}</div>`);
+            infowindow.open(map, marker);
+        });
+        searchMarkers.push(marker);
+        bounds.extend(marker.getPosition());
+    });
+    map.setBounds(bounds);
+
+    // 길찾기 호출
+    const origin = `${data[0].x},${data[0].y}`;
+    const destination = `${margielaPosition.getLng()},${margielaPosition.getLat()}`;
+
+    fetch(`${WORKER_URL}?origin=${origin}&destination=${destination}`)
+        .then(res => res.json())
+        .then(routeData => drawRouteOnMap(routeData))
+        .catch(err => console.error("길찾기 오류:", err));
+}
+
+// 경로 표시 + 총 거리/소요시간
+function drawRouteOnMap(routeData){
+    if(routePolyline) routePolyline.setMap(null);
+
+    const coords = [];
+    const roads = routeData.routes[0].sections[0].roads;
+    roads.forEach(road => {
+        const verts = road.vertexes;
+        for(let i=0; i<verts.length; i+=2){
+            coords.push(new kakao.maps.LatLng(verts[i+1], verts[i]));
+        }
+    });
+
+    routePolyline = new kakao.maps.Polyline({
+        path: coords,
+        strokeWeight: 5,
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeStyle: 'solid'
+    });
+    routePolyline.setMap(map);
+
+    const bounds = new kakao.maps.LatLngBounds();
+    coords.forEach(latlng => bounds.extend(latlng));
+    map.setBounds(bounds);
+
+    // 총 거리 및 소요 시간 표시
+    const totalDistance = routeData.routes[0].summary.distance;
+    const totalDuration = routeData.routes[0].summary.duration;
+
+    const distanceKm = (totalDistance / 1000).toFixed(1);
+    const durationMin = Math.ceil(totalDuration / 60);
+
+    const infoDiv = document.querySelector('.routeInfo');
+    if(infoDiv){
+        infoDiv.innerText = `총 거리: ${distanceKm}km · 예상 소요시간: ${durationMin}분`;
+    }
+}
