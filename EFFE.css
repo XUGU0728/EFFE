@@ -118,6 +118,7 @@ nav.onWhite img{filter: brightness(0) invert(1);}
 nav.onWhite .keySearch{border: 1px solid #f7f7f7;}
 nav.onWhite .subText{font-weight: 300;}
 nav.onWhite .subText:hover{color: #f7f7f7;}
+nav.onWhite .hamburger span{background-color: #f7f7f7;}
 
 .timeWeather{font-size: 1.2rem; display: flex; justify-content: center; align-items: center; gap: 20px;}
 #weatherIcon{height: 60px;}
@@ -144,6 +145,32 @@ header{position: relative;}
 .subTitle{font-size: 1.8rem;}
 .subText{font-size: 1.4rem; color: #A6B1A9; transition: all 0.2s linear;}
 .subText:hover{color: #222;}
+
+    /* 기본 햄버거 스타일 */
+    .hamburger {display: none; flex-direction: column; justify-content: space-around; width: 2rem; height: 2rem; cursor: pointer; z-index: 1010;}
+    .hamburger span {display: block; width: 100%; height: 0.25rem; background-color: #222; border-radius: 2px; transition: all 0.3s ease;}
+    .hamburger.open span:nth-child(1){transform: rotate(45deg) translate(5px, 5px);}
+    .hamburger.open span:nth-child(2){opacity: 0;}
+    .hamburger.open span:nth-child(3){transform: rotate(-45deg) translate(5px, -5px);}
+
+    /* 모바일 대응 */
+    @media screen and (max-width: 480px){
+        .menuMain {display: none;}
+        .timeWeather {display: none;}
+        .hamburger {display: flex;}
+        .subWrap {position: fixed; top: 0; left: -100%; width: 100%; height: 100dvh; background-color: rgba(255,255,255,0.95); transition: left 0.3s ease; flex-direction: column; padding: 4rem 2rem; overflow-y: auto; z-index: 1000;}
+        .subWrap.onSub {left: 0;}
+        .menuSub {flex-direction: column; gap: 1.5rem; border: none;}
+        .menuSub > div > a {margin: 1rem 0;}
+        .subTitle {font-size: 1.6rem;}
+        .subText {font-size: 1.2rem;}
+
+        nav.onWhite .menumain, nav.onWhite .subWrap{background-color: rgba(255,255,255,0.6);}
+        nav.onWhite *{color: #222;}
+        nav.onWhite img{filter: brightness(0) invert(1);}
+        nav.onWhite .subText{font-weight: 300;}
+        nav.onWhite .subText:hover{color: #222;}
+    }
 
 /* 푸터 footer */
 footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}

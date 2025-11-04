@@ -25,6 +25,15 @@ window.addEventListener('scroll', updateTopBtnIcon);
 updateTopBtnIcon();
 
 // 네비게이션 navigation
+// 햄버거메뉴 hamburger
+$(document).ready(function(){
+    $('.hamburger').click(function(){
+        $('.subWrap').toggleClass('onSub'); // 메뉴 열기/닫기
+        $(this).toggleClass('open');         // X 변환
+    });
+});
+
+
     // 메인페이지 화이트 텍스트
     let nav = document.querySelector('nav');
     let keyIconPath = document.querySelector('.keySearchIcon svg path');
