@@ -24,14 +24,13 @@
 window.addEventListener('scroll', updateTopBtnIcon);
 updateTopBtnIcon();
 
-// 네비게이션 navigation
 // 햄버거메뉴 hamburger
-$(document).ready(function(){
-    $('.hamburger').click(function(){
-        $('.subWrap').toggleClass('onSub'); // 메뉴 열기/닫기
-        $(this).toggleClass('open');         // X 변환
+    $(document).ready(function(){
+        $('.hamburger').click(function(){
+            $('.subWrap').toggleClass('onSub');
+            $(this).toggleClass('open');
+        });
     });
-});
 
 
     // 메인페이지 화이트 텍스트
@@ -175,7 +174,7 @@ $(document).ready(function(){
     .then(res => res.json())
     .then(data => {
         purfumeKeywordKo = data;
-        renderPerfumeList(perfumes); // 이제 두 데이터 모두 확보됨
+        renderPerfumeList(perfumes);
     })
     .catch(err => console.error('JSON 로드 실패:', err));
 

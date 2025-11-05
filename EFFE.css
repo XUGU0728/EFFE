@@ -1,3 +1,9 @@
+
+    /* 모바일 */
+    @media screen and (max-width: 480px){
+        
+    }
+
 /* 기본폰트 - 프리텐다드 */
 @font-face {
     font-family: 'Pretendard';
@@ -73,6 +79,11 @@ section{margin: 0 auto; position: relative;}
 .lineV.onLineV, .lineVW.onLineV{height: 10rem; transform:scaleY(1);}
 .firstSec{height: 8rem;}
 
+    /* 모바일 */
+    @media screen and (max-width: 480px){
+        html{font-size: 7px;}
+    }
+
 /* 공통효과 */
 [class*=FImg]{transform: translateY(4rem); opacity: 0; transition: all 1s ease-in-out;}
 [class*=FImg].onF{transform: translateY(0); opacity: 1;}
@@ -98,6 +109,11 @@ section{margin: 0 auto; position: relative;}
 .modalName{font-size: 2.4rem; font-weight: 600;}
 [class*='modalDesc']{font-size: 1.4rem; text-align: center;}
 .modalStyling{font-size: 2rem; font-weight: 600;}
+
+    /* 모바일 */
+    @media screen and (max-width: 480px){
+        
+    }
 
 /* 네비게이션 navigation 헤더 header*/
 .topBtn{animation: float 1s ease infinite; position: fixed; right: 4rem; bottom: 3rem; width: 4rem; height: 4rem; border-radius: 50%; border: 1px solid #aaa; background: rgba(255,255,255,0.75); display: grid; place-items: center; cursor: pointer; z-index: 9999; box-shadow: 0 6px 14px rgba(0,0,0,0.25);}
@@ -149,27 +165,30 @@ header{position: relative;}
     /* 기본 햄버거 스타일 */
     .hamburger {display: none; flex-direction: column; justify-content: space-around; width: 2rem; height: 2rem; cursor: pointer; z-index: 1010;}
     .hamburger span {display: block; width: 100%; height: 0.25rem; background-color: #222; border-radius: 2px; transition: all 0.3s ease;}
-    .hamburger.open span:nth-child(1){transform: rotate(45deg) translate(5px, 5px);}
+    .hamburger.open span:nth-child(1){transform: rotate(45deg) translate(3.5px, 3.5px);}
     .hamburger.open span:nth-child(2){opacity: 0;}
-    .hamburger.open span:nth-child(3){transform: rotate(-45deg) translate(5px, -5px);}
+    .hamburger.open span:nth-child(3){transform: rotate(-45deg) translate(3.5px, -3.5px);}
 
-    /* 모바일 대응 */
+    /* 모바일 */
     @media screen and (max-width: 480px){
-        .menuMain {display: none;}
-        .timeWeather {display: none;}
-        .hamburger {display: flex;}
-        .subWrap {position: fixed; top: 0; left: -100%; width: 100%; height: 100dvh; background-color: rgba(255,255,255,0.95); transition: left 0.3s ease; flex-direction: column; padding: 4rem 2rem; overflow-y: auto; z-index: 1000;}
-        .subWrap.onSub {left: 0;}
-        .menuSub {flex-direction: column; gap: 1.5rem; border: none;}
-        .menuSub > div > a {margin: 1rem 0;}
-        .subTitle {font-size: 1.6rem;}
-        .subText {font-size: 1.2rem;}
+        nav{gap: 4rem;}
 
         nav.onWhite .menumain, nav.onWhite .subWrap{background-color: rgba(255,255,255,0.6);}
         nav.onWhite *{color: #222;}
         nav.onWhite img{filter: brightness(0) invert(1);}
         nav.onWhite .subText{font-weight: 300;}
         nav.onWhite .subText:hover{color: #222;}
+
+        .menuMain {display: none;}
+        .timeWeather {display: none;}
+        .keySearchPanel{top: 12rem;}
+        .hamburger {display: flex;}
+        .subWrap {position: fixed; top: 0; left: -100%; width: 100%; height: auto; background-color: rgba(255,255,255,0.95); transition: left 0.3s ease; flex-direction: column; padding: 4rem 2rem; overflow-y: auto; z-index: 1000;}
+        .subWrap.onSub {left: 0;}
+        .menuSub {flex-direction: column; gap: 1.5rem; border: none;}
+        .menuSub > div > a {margin: 1rem 0;}
+        .subTitle {font-size: 3rem;}
+        .subText {font-size: 2rem;}
     }
 
 /* 푸터 footer */
@@ -185,6 +204,18 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 
 .footBox02{color: #F7F7F7; margin-top: 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center;}
 .footBox02>div{font-size: 1.2rem; color: #F7F7F7;}
+
+.fooBoxM{display: none;}
+
+    /* 모바일 */
+    @media screen and (max-width: 480px){
+        footer{height: 20rem;}
+        .footBox01{display: none;}
+        .footBoxM{display: flex; justify-content: center; align-items: center; gap: 2rem;}
+        .footBoxM *{font-size: 3rem;}
+        .footText{width: 10rem; height: 5rem; background-color: #444; color: #ccc; border-radius: 1rem; text-align: center; line-height: 5rem;}
+        .footTitleM{display: flex; }
+    }
 
 /* 메인페이지 main-page */
 .main01{position: relative; width: 100%; height: 140dvh; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden;}
@@ -204,6 +235,13 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 .mainSenBox{position: absolute; bottom: 0; width: 100%; height: 22rem; border-radius: 10px; margin-top: 4rem;}
 .mainSentence{font-family: "PlayfairDisplayBold"; color: #aaa; font-size: 4rem; font-weight: 600; margin-top: 8rem; text-align: center;}
 
+    /* 모바일 */
+    @media screen and (max-width: 480px){
+        .main01{height: 100dvh;}
+        .mainTextMove{width: 300px; height: 70px;}
+        .mainSentence{font-size: 4rem; padding: 1rem 1rem; margin-top: 4rem;}
+    }
+
 .main02{width: 100%; overflow: hidden; display: flex; background-color: white; border-radius: 5rem 5rem 0 0;}
 .rollingBox{width: max-content; height: 20rem; margin-top: 4rem; margin-left: 0.7rem; display: flex; align-items: center; gap: 1rem; animation: rolling 30s linear infinite;}
 .rolling{height: 16rem; width: max-content; padding: 10px 10px; border: 1px solid #aaa; border-radius: 1.5rem; background-color: #222; position: relative; overflow: hidden; flex-shrink: 0; transition: all 0.2s ease;}
@@ -219,6 +257,12 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     from {transform: translateY(-120%);}
     to {transform: translateY(0);}
 }
+
+    /* 모바일 */
+    @media screen and (max-width: 480px){
+        .rollingBox{height: 14rem;}
+        .rolling{height: 10rem;}
+    }
 
 .main03{width: 100%; height: max-content; padding: 4rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem; position: relative; overflow: hidden;}
 .mainPrev{font-size: 5rem; font-weight: 600; margin: 2rem 0;}
@@ -290,7 +334,29 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 .aboutDragText02>div>div{font-family: "PlayfairDisplayBold";}
 .dragSubText{text-align: center;}
 .dragSign{font-size: 8rem;}
-.resetBtn{font-weight: 600; padding: 1rem 1.5rem; border: 1px solid #aaa; border-radius: 5rem; box-shadow: 2px 2px 8px rgba(0,0,0,0.2); position: absolute; top: 90%; left: 50%; transform: translateX(-50%);}
+.resetBtn{font-weight: 600; padding: 1rem 1.5rem; border: 1px solid #aaa; border-radius: 5rem; box-shadow: 2px 2px 8px rgba(0,0,0,0.2); position: absolute; top: 90%; left: 50%; z-index: 9999; transform: translateX(-50%);}
+
+    /* 모바일 */
+    @media screen and (max-width: 480px){
+        .aboutIndicator{width: 50rem;}
+        .prevBtn,.nextBtn{top: -45%;}
+        .aboutBar{width: 50rem; height: 2px; background-color: #F7F7F7; opacity: 0.4; position: absolute; top: 0; left: 0;}
+    
+        .dragBox>.mover:nth-child(1){width: 20rem; height: 12rem; top: 17%; left: 10%;}
+        .dragBox>.mover:nth-child(2){width: 15rem; height: 20rem; top: 28%; left: 5%;}
+        .dragBox>.mover:nth-child(3){width: 20rem; height: 12rem; top: 50%; left: 10%;}
+        .dragBox>.mover:nth-child(4){width: 15rem; height: auto; top: 57%; left: 5%;}
+        .dragBox>.mover:nth-child(5){width: 15rem; height: auto; top: 65%; left: 10%;}
+        .dragBox>.mover:nth-child(6){width: 20rem; height: auto; top: 67%; left: 5%;}
+        .dragBox>.mover:nth-child(7){width: 15rem; height: auto; top: 22%; left: 50%;}
+        .dragBox>.mover:nth-child(8){width: 15rem; height: auto; top: 37%; left: 70%;}
+        .dragBox>.mover:nth-child(9){width: 15rem; height: auto; top: 55%; left: 45%;}
+        .dragBox>.mover:nth-child(10){width: 15rem; height: auto; top: 70%; left: 65%;}
+        .dragBox>.mover:nth-child(11){width: 20rem; height: 12rem; top: 75%; left: 30%;}
+
+        .aboutDragText02{flex-direction: column; font-size: 4rem;}
+        .dragSign{display: none;}
+    }
 
 /* 카카오맵 */
     .mapBottomBox{width: 100%; margin-top: 3rem; display: flex; justify-content: space-around; align-items: center;}
