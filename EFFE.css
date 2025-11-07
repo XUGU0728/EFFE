@@ -82,6 +82,7 @@ section{margin: 0 auto; position: relative;}
     /* 모바일 */
     @media screen and (max-width: 480px){
         html{font-size: 7px;}
+        .lineV,.lineVW{transition: all 1s linear;}
     }
 
 /* 공통효과 */
