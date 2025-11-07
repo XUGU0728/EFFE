@@ -86,43 +86,52 @@ function updateTimeM() {
 updateTimeM()
 setInterval(updateTimeM, 1000)
 
-// 날씨(PC)
-const API_KEY='dd2c4ba83f58a423300cb164a3d2d0e0';
-let temp=document.getElementById('temp');
-let place=document.getElementById('place');
-let icon=document.getElementById('weatherIcon');
+//날씨 (PC+모바일)
+    const API_KEY = 'dd2c4ba83f58a423300cb164a3d2d0e0';
 
-let getweather=async(lat,lon)=>{
-    let res=await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`);
-    let data=await res.json();
-    temp.innerHTML = data.main.temp+ "°C";
-    place.innerHTML = data.name;
-    let iconImg=data.weather[0].icon;
-    icon.src = `https://openweathermap.org/img/wn/${iconImg}@2x.png`;
-}
-navigator.geolocation.getCurrentPosition((position)=>{
-    let lat=position.coords.latitude;
-    let lon=position.coords.longitude;
-    getweather(lat,lon);
-})
-// 날씨(모바일)
-let tempM=document.getElementById('tempM');
-let placeM=document.getElementById('placeM');
-let iconM=document.getElementById('weatherIconM');
+    const temp = document.getElementById('temp');
+    const place = document.getElementById('place');
+    const icon = document.getElementById('weatherIcon');
 
-let getweatherM=async(lat,lon)=>{
-    let res=await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`);
-    let data=await res.json();
-    tempM.innerHTML = data.main.temp+ "°C";
-    placeM.innerHTML = data.name;
-    let iconImgM=data.weather[0].icon;
-    iconM.src = `https://openweathermap.org/img/wn/${iconImgM}@2x.png`;
-}
-navigator.geolocation.getCurrentPosition((position)=>{
-    let lat=position.coords.latitude;
-    let lon=position.coords.longitude;
-    getweatherM(lat,lon);
-})
+    const tempM = document.getElementById('tempM');
+    const placeM = document.getElementById('placeM');
+    const iconM = document.getElementById('weatherIconM');
+
+    const setWeather = (data, tempEl, placeEl, iconEl) => {
+    if (!data || !data.main) return; // 안전장치
+    tempEl.textContent = `${Math.round(data.main.temp)}°C`;
+    placeEl.textContent = data.name;
+    const iconImg = data.weather?.[0]?.icon;
+    if (iconImg) {
+        iconEl.src = `https://openweathermap.org/img/wn/${iconImg}@2x.png`;
+        iconEl.alt = data.weather?.[0]?.description || 'weather icon';
+    }
+    };
+
+    const getWeather = async (lat, lon) => {
+    try {
+        const res = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`
+        );
+        const data = await res.json();
+        console.log('🌤 weather data:', data); // 확인용
+        setWeather(data, temp, place, icon);   // PC용
+        setWeather(data, tempM, placeM, iconM); // 모바일용
+    } catch (err) {
+        console.error('❌ weather error:', err);
+    }
+    };
+
+    navigator.geolocation.getCurrentPosition(
+    (position) => {
+        const { latitude, longitude } = position.coords;
+        getWeather(latitude, longitude);
+    },
+    (err) => {
+        console.error('❌ 위치 접근 실패:', err);
+    }
+    );
+
 
 //서브메뉴
 $(document).ready(function(){
