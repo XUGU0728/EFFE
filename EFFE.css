@@ -193,7 +193,7 @@ header{position: relative;}
         .subTitle {font-size: 3rem;}
         .subText {font-size: 2rem;}
 
-        .timeWeatherM{width: 70%; font-size: 2rem; display: flex; justify-content: center; align-items: center; gap: 20px; border: 1px solid #aaa; border-radius: 1rem;}
+        .timeWeatherM{width: 100%; font-size: 2rem; display: flex; justify-content: center; align-items: center; gap: 3rem; border: 1px solid #aaa; border-radius: 1rem;}
         #weatherIconM{height: 60px;}
     }
 
