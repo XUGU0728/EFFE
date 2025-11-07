@@ -914,10 +914,9 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
         [class*='ILogo']:not([class='sen']){width: 40%;}
         [class*='ILogoSen']{font-size: 2.4rem;}
         .byredoILogoSen{right: 3%; top: 35%;}
-        .tomILogo{left: 2%; top: 50%;}
-        .tomILogoSen{left: 4%; top: 54%;}
-        .burberryILogo{left: 12%; top: 40%;}
-        .burberryILogoSen{left: 13%; top: 43%;}
+        .tomILogo{left: 2%; top: 58%;}
+        .tomILogoSen{left: 4%; top: 62%;}
+        .leraboILogo{top: 17%;}
         .burberryILogo{left: 12%; top: 40%;}
         .burberryILogoSen{left: 13%; top: 43%;}
         .margielaILogo{left: 5%; top: 62%;}
