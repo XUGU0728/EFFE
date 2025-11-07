@@ -176,7 +176,7 @@ header{position: relative;}
         nav{gap: 5rem;}
         .effeLogo{height: 50px;}
 
-        nav.onWhite .menumain, nav.onWhite .subWrap{background-color: rgba(255,255,255,0.6);}
+        nav.onWhite .menumain, nav.onWhite .subWrap{background-color: rgba(255,255,255,0.95);}
         nav.onWhite *{color: #222;}
         nav.onWhite img{filter: brightness(0) invert(1);}
         nav.onWhite .subText{font-weight: 300;}
@@ -186,7 +186,7 @@ header{position: relative;}
         .timeWeather {display: none;}
         .keySearchPanel{top: 12rem;}
         .hamburger {display: flex;}
-        .subWrap {position: fixed; top: 0; left: -100%; width: 100%; height: auto; background-color: rgba(255,255,255,0.95); transition: left 0.3s ease; flex-direction: column; padding: 4rem 2rem; overflow-y: auto; z-index: 1000;}
+        .subWrap {position: fixed; top: 0; left: 100%; width: 100%; height: auto !important; background-color: rgba(255,255,255,0.95); transition: left 0.3s ease; flex-direction: column; padding: 4rem 2rem; overflow-y: auto; z-index: 1000;}
         .subWrap.onSub {left: 0;}
         .menuSub {flex-direction: column; gap: 1.5rem; border: none;}
         .menuSub > div > a {margin: 1rem 0;}
@@ -941,9 +941,11 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
         [class*='ImgBox']{width: 100%; margin: 4rem 0;}
         [class*='FSen']{display: flex; justify-content: center; align-items: center; padding: 0 1rem; line-height: 1.4;}
 
-        [class*='I05']{width: 90%;}
-        .mapTypeBox{flex-direction: column; gap: 0rem;}
+        [class*='I05']{height: 120dvh; width: 90%;}
+        [class*='map']{height: 50dvh;}
+        .mapTypeBox{height: 20dvh; flex-direction: column; gap: 0rem;}
         .mapTypeBox>button{border-radius: 1rem;}
+        .mapBottomBox{height: 20dvh;}
 
             /* 아래부터 향수 파트 */
             .byredoPKeyword02{top: 5%;}

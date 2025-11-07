@@ -27,18 +27,22 @@ updateTopBtnIcon();
 // 메인페이지 화이트 텍스트
 let nav = document.querySelector('nav');
 let keyIconPath = document.querySelector('.keySearchIcon svg path');
+let ham = document.querySelectorAll('.hamburger span')
 
 if (document.body.classList.contains('home')) {
     nav.classList.add('onWhite');
     keyIconPath.setAttribute('stroke', '#f7f7f7');
+    ham.style.backgroundColor='#222'
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > window.innerHeight) {
             nav.classList.remove('onWhite');
             keyIconPath.setAttribute('stroke', '#222');
+            ham.style.backgroundColor='#222'
         } else {
             nav.classList.add('onWhite');
             keyIconPath.setAttribute('stroke', '#f7f7f7');
+            ham.style.backgroundColor='#222'
         }
     });
 }
@@ -98,15 +102,14 @@ setInterval(updateTimeM, 1000)
     const iconM = document.getElementById('weatherIconM');
 
     const setWeather = (data, tempEl, placeEl, iconEl) => {
-    if (!data || !data.main) return; // 안전장치
+    if (!data || !data.main) return;
     tempEl.textContent = `${Math.round(data.main.temp)}°C`;
     placeEl.textContent = data.name;
     const iconImg = data.weather?.[0]?.icon;
     if (iconImg) {
         iconEl.src = `https://openweathermap.org/img/wn/${iconImg}@2x.png`;
         iconEl.alt = data.weather?.[0]?.description || 'weather icon';
-    }
-    };
+    }};
 
     const getWeather = async (lat, lon) => {
     try {
@@ -114,11 +117,10 @@ setInterval(updateTimeM, 1000)
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`
         );
         const data = await res.json();
-        console.log('🌤 weather data:', data); // 확인용
-        setWeather(data, temp, place, icon);   // PC용
+        setWeather(data, temp, place, icon); // PC용
         setWeather(data, tempM, placeM, iconM); // 모바일용
     } catch (err) {
-        console.error('❌ weather error:', err);
+        console.error('weather error:', err);
     }
     };
 
@@ -128,7 +130,7 @@ setInterval(updateTimeM, 1000)
         getWeather(latitude, longitude);
     },
     (err) => {
-        console.error('❌ 위치 접근 실패:', err);
+        console.error('위치 접근 실패:', err);
     }
     );
 
@@ -147,7 +149,6 @@ $(document).ready(function(){
         let targetH = subWrap.find('.menuSub').outerHeight();
         subWrap.animate({height: targetH}, 300, 'swing');
     });
-
     menuMain.add(subWrap).on('mouseleave', function(){
         if (window.innerWidth <= 1024) return;
         if (!isHover) return;
@@ -157,10 +158,8 @@ $(document).ready(function(){
             if(!isHover) subWrap.css({height:0});
         }, 300);
         });
-    });
 
     // 햄버거메뉴 hamburger
-    $(document).ready(function(){
         $('.hamburger').click(function(){
             $('.subWrap').toggleClass('onSub');
             $(this).toggleClass('open');
