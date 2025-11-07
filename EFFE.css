@@ -281,7 +281,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
         .rollingBox{height: 14rem;}
         .rolling{height: 10rem;}
 
-        .mainBox{width: 95%;}
+        .mainBox{height: 20rem; width: 95%;}
     }
 
 /* 에페소개페이지 effe-about-page */
