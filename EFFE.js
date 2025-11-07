@@ -1,8 +1,11 @@
 // 공통 헤더 & 푸터 불러오기
 $(document).ready(function(){
-    $('#header').load('header.html')
-    $('#footer').load('footer.html')
-})
+    $('#header').load('header.html', function(){
+        $.getScript('js/header.js');
+    });
+    
+    $('#footer').load('footer.html');
+    });
 
 document.addEventListener('DOMContentLoaded', () => {
     lineScroll()

@@ -5,7 +5,7 @@ let routePolyline = null;
 let infowindow = null;
 const WORKER_URL = "https://small-bush-73af.0728csw.workers.dev/";
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
     kakao.maps.load(() => {
         const mapContainer = document.querySelector('.margielaMap');
         map = new kakao.maps.Map(mapContainer, {

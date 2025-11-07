@@ -153,7 +153,7 @@ nav.onWhite .hamburger span{background-color: #f7f7f7;}
 .keywordWord>span{color: #aaa !important; font-size: 1.4rem;}
 
 header{position: relative;}
-.subWrap{display: none; position: absolute; left: 0; right: 0; top: 100%; overflow: hidden; z-index: 10; background-color: rgba(255,255,255,0.95);}
+.subWrap{display: block; height: 0; position: absolute; left: 0; right: 0; top: 100%; overflow: hidden; z-index: 10; background-color: rgba(255,255,255,0.95); transition: all 0.3s ease;}
 .subWrap.onSub{display: block;}
 .menuSub{font-size: 1.6rem; display: flex; justify-content: center; align-items: flex-start; gap: 8rem; padding: 4rem 0; border-bottom: 1px solid #A6B1A9; border-top: 1px solid #A6B1A9;}
 .menuSub>div>a{margin: 1.8rem;}
@@ -163,15 +163,17 @@ header{position: relative;}
 .subText:hover{color: #222;}
 
     /* 기본 햄버거 스타일 */
-    .hamburger {display: none; flex-direction: column; justify-content: space-around; width: 2rem; height: 2rem; cursor: pointer; z-index: 1010;}
+    .hamburger {display: none; flex-direction: column; justify-content: space-around; width: 3rem; height: 3rem; cursor: pointer; z-index: 1010;}
     .hamburger span {display: block; width: 100%; height: 0.25rem; background-color: #222; border-radius: 2px; transition: all 0.3s ease;}
-    .hamburger.open span:nth-child(1){transform: rotate(45deg) translate(3.5px, 3.5px);}
+    .hamburger.open span:nth-child(1){transform: rotate(45deg) translate(5px, 5px);}
     .hamburger.open span:nth-child(2){opacity: 0;}
-    .hamburger.open span:nth-child(3){transform: rotate(-45deg) translate(3.5px, -3.5px);}
+    .hamburger.open span:nth-child(3){transform: rotate(-45deg) translate(5px, -5px);}
+    .timeWeatherM{display: none;}
 
     /* 모바일 */
     @media screen and (max-width: 480px){
-        nav{gap: 4rem;}
+        nav{gap: 5rem;}
+        .effeLogo{height: 50px;}
 
         nav.onWhite .menumain, nav.onWhite .subWrap{background-color: rgba(255,255,255,0.6);}
         nav.onWhite *{color: #222;}
@@ -189,6 +191,9 @@ header{position: relative;}
         .menuSub > div > a {margin: 1rem 0;}
         .subTitle {font-size: 3rem;}
         .subText {font-size: 2rem;}
+
+        .timeWeatherM{width: 70%; font-size: 2rem; display: flex; justify-content: center; align-items: center; gap: 20px; border: 1px solid #aaa; border-radius: 1rem;}
+        #weatherIconM{height: 60px;}
     }
 
 /* 푸터 footer */
@@ -211,10 +216,11 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     @media screen and (max-width: 480px){
         footer{height: 20rem;}
         .footBox01{display: none;}
+        .footBox02>div{font-size: 1.6rem;}
         .footBoxM{display: flex; justify-content: center; align-items: center; gap: 2rem;}
-        .footBoxM *{font-size: 3rem;}
-        .footText{width: 10rem; height: 5rem; background-color: #444; color: #ccc; border-radius: 1rem; text-align: center; line-height: 5rem;}
-        .footTitleM{display: flex; }
+        .footBoxM *{font-size: 2rem;}
+        .footText{width: 8rem; height: 4rem; background-color: #444; color: #ccc; border-radius: 1rem; text-align: center; line-height: 4rem;}
+        .footTitleM{display: flex;}
     }
 
 /* 메인페이지 main-page */
@@ -235,13 +241,6 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 .mainSenBox{position: absolute; bottom: 0; width: 100%; height: 22rem; border-radius: 10px; margin-top: 4rem;}
 .mainSentence{font-family: "PlayfairDisplayBold"; color: #aaa; font-size: 4rem; font-weight: 600; margin-top: 8rem; text-align: center;}
 
-    /* 모바일 */
-    @media screen and (max-width: 480px){
-        .main01{height: 100dvh;}
-        .mainTextMove{width: 300px; height: 70px;}
-        .mainSentence{font-size: 4rem; padding: 1rem 1rem; margin-top: 4rem;}
-    }
-
 .main02{width: 100%; overflow: hidden; display: flex; background-color: white; border-radius: 5rem 5rem 0 0;}
 .rollingBox{width: max-content; height: 20rem; margin-top: 4rem; margin-left: 0.7rem; display: flex; align-items: center; gap: 1rem; animation: rolling 30s linear infinite;}
 .rolling{height: 16rem; width: max-content; padding: 10px 10px; border: 1px solid #aaa; border-radius: 1.5rem; background-color: #222; position: relative; overflow: hidden; flex-shrink: 0; transition: all 0.2s ease;}
@@ -258,12 +257,6 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     to {transform: translateY(0);}
 }
 
-    /* 모바일 */
-    @media screen and (max-width: 480px){
-        .rollingBox{height: 14rem;}
-        .rolling{height: 10rem;}
-    }
-
 .main03{width: 100%; height: max-content; padding: 4rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem; position: relative; overflow: hidden;}
 .mainPrev{font-size: 5rem; font-weight: 600; margin: 2rem 0;}
 .mainBox{transform: translateX(-100%); transition: all 2s ease-in-out; width: 80%; height: 30rem; border: 1px solid #aaa; border-radius: 1rem; background-color: white; overflow: hidden; display: flex;}
@@ -278,6 +271,18 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 .mainBg{width: 100%; height: 100%; position: absolute; inset: 0; z-index: 0;}
 .mainBg>img{width: 100%; height: 100%; object-fit: cover;}
 .main03>*:not(.mainBg){position: relative; z-index: 1;}
+
+    /* 모바일 */
+    @media screen and (max-width: 480px){
+        .main01{height: 100dvh;}
+        .mainTextMove{width: 300px; height: 70px;}
+        .mainSentence{font-size: 4rem; padding: 1rem 1rem; margin-top: 4rem;}
+
+        .rollingBox{height: 14rem;}
+        .rolling{height: 10rem;}
+
+        .mainBox{width: 95%;}
+    }
 
 /* 에페소개페이지 effe-about-page */
 .about01{position: relative; width: 100vw; height: 80vh; overflow-x: hidden;}
@@ -380,15 +385,22 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
         70% {transform: scale(1.15) translateY(-4px); opacity: 1;}
         100% {transform: scale(1) translateY(0);}}
 
+    /* 모바일 */
+    @media screen and (max-width: 480px){
+        .mapBottomBox{flex-direction: column; gap: 2rem;}
+        .searchBox{border-radius: 1.4rem;}
+        .routeInfo{border-radius: 1.4rem;}
+    }
+
 /* 바이레도 BYREDO */
     /* 바이레도 인트로 byredo intro */
     .byredoI01{width: 100%; height: 120dvh; position: relative; display: flex; justify-content: space-between; align-items: center; flex-direction: column;}
     .byredoILogo{position: absolute; width: 20%; height: auto; right: 5%; top: 30%;}
     .byredoILogoSen{position: absolute; right: 6%; top: 40%; font-size: 2rem; font-family: "FuturaCyrillicBold";}
     .byredoIMain{width: 100%; height: 95dvh; overflow: hidden;}
-    .byredoIMain>img{width: 100%; height: 100%; object-fit: cover;}
+    .byredoIMain>video{width: 100%; height: 100%; object-fit: cover;}
     .byredoIValue{width: 80%; height: 30dvh; border-radius: 4rem; position: absolute; top: 70%; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: white; }
-    .byredoIVText{font-size: 3rem; font-family: "FuturaCyrillicBold";}
+    .byredoIVText{font-size: 3rem; font-family: "FuturaCyrillicBold"; text-align: center;}
 
     .byredoI02{width: 100%; height: auto; overflow-x: hidden; position: relative;}
     .byredoCBox{display: flex; margin-bottom: 10rem;}
@@ -433,7 +445,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 
     .byredoP02{width: 60%; background-color: white; padding: 2rem;}
     .byredoPElBox{width: 100%; height: 150dvh; display: grid; grid-template: repeat(3, 1fr) / repeat(2, 1fr);}
-    .byredoPElBox>div{width: 100%; height: 50dvh; font-size: 1.4rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem;}
+    .byredoPElBox>div{width: 100%; height: 100%; font-size: 1.4rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem;}
     .byredoPElBg01{background-color: #F9E7E4;}
     .byredoPElBg02{background-color: #E8E1EB;}
     .byredoPElBg03{background-color: #E5D9CC;}
@@ -492,7 +504,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .tomILogo{position: absolute; width: 20%; height: auto; right: 2%; top: 30%;}
     .tomILogoSen{position: absolute; right: 6%; top: 37%; font-size: 2rem; font-family: "HelveticaNeueBold";}
     .tomIMain{width: 100%; height: 95dvh; overflow: hidden;}
-    .tomIMain>img{width: 100%; height: 100%; object-fit: cover;}
+    .tomIMain>video{width: 100%; height: 100%; object-fit: cover;}
     .tomIValue{width: 100%; height: 40dvh; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #1C1C1C;}
     .tomIVText{color: white; font-size: 3rem; font-family: "HelveticaNeueBold";}
 
@@ -590,7 +602,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .leraboILogo{position: absolute; width: 20%; height: auto; left: 5%; top: 15%;}
     .leraboILogoSen{color: #f7f7f7; position: absolute; left: 5%; top: 11%; font-size: 2.4rem; font-family: "OldSansBlack";}
     .leraboIMain{width: 100%; height: 95dvh; overflow: hidden;}
-    .leraboIMain>img{width: 100%; height: 100%; object-fit: cover;}
+    .leraboIMain>video{width: 100%; height: 100%; object-fit: cover;}
     .leraboIValue{width: 80%; height: 40dvh; border-radius: 4rem; display: flex; flex-direction: column; justify-content: center; align-items: center;}
     .leraboIVText{font-size: 3rem; font-family: "OldSansBlack";}
 
@@ -690,7 +702,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .burberryILogo{position: absolute; width: 20%; height: auto; left: 4%; top: 10%;}
     .burberryILogoSen{position: absolute; left: 5%; top: 14%; font-size: 2.4rem; font-family: "optima";}
     .burberryIMain{width: 100%; height: 95dvh; overflow: hidden;}
-    .burberryIMain>img{width: 100%; height: 100%; object-fit: cover;}
+    .burberryIMain>video{width: 100%; height: 100%; object-fit: cover;}
     .burberryIValue{width: 80%; height: 40dvh; border-radius: 4rem; display: flex; flex-direction: column; justify-content: center; align-items: center;}
     .burberryIVText{font-size: 3rem; font-family: "optima";}
 
@@ -708,7 +720,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .flipCardInB{position: relative; width: 100%; height: 100%; transition: all 0.8s linear; transform-style: preserve-3d;}
     .flipFrontB, .flipBackB {width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; align-items: center; backface-visibility: hidden; border-radius: 1rem; overflow: hidden; box-sizing: border-box;}
     .flipFrontB{overflow: hidden; background-color:white; display: flex; flex-direction: column; justify-content: center;}
-    .flipBackB{transform: rotateY(180deg); background-color: #CBB195; padding: 2rem; flex-direction: column; gap: 2rem;}
+    .flipBackB{transform: rotateY(180deg); background-color: #CBB195; padding: 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem;}
     .flipBackB>div{font-size: 1.8rem;}
     .frontImgB{width: 100%; height: 100%; overflow: hidden; border-radius: 10px;}
     .frontImgB>img{width: 100%; height: 100%; object-fit: cover;}
@@ -787,7 +799,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .margielaILogo{position: absolute; width: 20%; height: auto; left: 4%; top: 50%;}
     .margielaILogoSen{color: #f7f7f7; position: absolute; left: 7%; top: 45%; font-size: 2.4rem; font-family: "goudos";}
     .margielaIMain{width: 100%; height: 95dvh; overflow: hidden;}
-    .margielaIMain>img{width: 100%; height: 100%; object-fit: cover;}
+    .margielaIMain>video{width: 100%; height: 100%; object-fit: cover;}
     .margielaIValue{width: 80%; height: 40dvh; border-radius: 4rem; display: flex; flex-direction: column; justify-content: center; align-items: center;}
     .margielaIVText{font-size: 3rem; font-family: "goudos";}
 
@@ -805,7 +817,7 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
     .flipCardInM{position: relative; width: 100%; height: 100%; transition: all 0.8s linear; transform-style: preserve-3d;}
     .flipFrontM, .flipBackM {width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; align-items: center; backface-visibility: hidden; border-radius: 1rem; overflow: hidden; box-sizing: border-box;}
     .flipFrontM{overflow: hidden; background-color:white; display: flex; flex-direction: column; justify-content: center;}
-    .flipBackM{transform: rotateY(180deg); background-color: #DADCE0; padding: 2rem; flex-direction: column; gap: 2rem;}
+    .flipBackM{transform: rotateY(180deg); background-color: #DADCE0; padding: 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem;}
     .flipBackM>div{font-size: 1.8rem;}
     .frontImgM{width: 100%; height: 100%; overflow: hidden; border-radius: 10px;}
     .frontImgM>img{width: 100%; height: 100%; object-fit: cover;}
@@ -889,3 +901,92 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 .submit:hover{background-color: #333 !important;}
 .formBg{position: absolute; top: 0; left: 0; z-index: -1; width: 100%; height: 100%;}
 .formBg>img{width: 100%; height: 100%; object-fit: cover; filter: opacity(0.4);}
+
+    /* 모바일 */
+    @media screen and (max-width: 480px){
+        .mail{height: 100dvh;}
+        .form{width: 85%; height: 50dvh;}
+    }
+
+/* 브랜드 공통 모바일 */
+    @media screen and (max-width: 480px){
+        [class*='I01']{height: 100dvh;}
+        [class*='ILogo']:not([class='sen']){width: 40%;}
+        [class*='ILogoSen']{font-size: 2.4rem;}
+        .byredoILogoSen{right: 3%; top: 35%;}
+        .tomILogo{left: 2%; top: 50%;}
+        .tomILogoSen{left: 4%; top: 54%;}
+        .burberryILogo{left: 12%; top: 40%;}
+        .burberryILogoSen{left: 13%; top: 43%;}
+        .burberryILogo{left: 12%; top: 40%;}
+        .burberryILogoSen{left: 13%; top: 43%;}
+        .margielaILogo{left: 5%; top: 62%;}
+        .margielaILogoSen{left: 5%; top: 67%;}
+        [class*='IVText']{font-size: 2rem; padding: 0 2rem; text-align: center;}
+        [class*='IValue']{height: 20dvh; margin-bottom: 4rem;}
+        [class*='IMain']{height: 75dvh;}
+
+        .tomI02{width: 95%;}
+        [class*='tomCon']{height: 30dvh; line-height: 30dvh;}
+        .leraboCBox>div{height: 40rem;}
+        .burberryCBox{height: 40rem;}
+        [class*='CText']{text-align:start; padding: 0 10rem; font-size: 2rem;}
+        [class*=leraboCText]{text-align: center;}
+
+        [class*='I03']{width: 95%;}
+        [class*='flipBack']>div{text-align: center;}
+        .frontImg{padding: 1rem 1rem;}
+
+        [class*='I04']{width: 90%;}
+        [class*='ImgBox']{width: 100%; margin: 4rem 0;}
+        [class*='FSen']{display: flex; justify-content: center; align-items: center; padding: 0 1rem; line-height: 1.4;}
+
+        [class*='I05']{width: 90%;}
+        .mapTypeBox{flex-direction: column; gap: 0rem;}
+        .mapTypeBox>button{border-radius: 1rem;}
+
+            /* 아래부터 향수 파트 */
+            .byredoPKeyword02{top: 5%;}
+            .byredoPKeyword03{top: 5%;}
+            .tomPKeyword01{top: 7%;}
+            .tomPKeyword02{right: 10%;}
+            .tomPKeyword03{top: 13%; right: 7%;}
+            .lelaboPKeyword01{top: 7%; right: 7%;}
+            .lelaboPKeyword02{top: 7%; right: 12%;}
+            .lelaboPKeyword03{top: 7%; left: 10%;}
+            .burberryPKeyword01{top: 5%; left: 5%;}
+            .burberryPKeyword02{top: 52%; left: 5%;}
+            .burberryPKeyword03{top: 5%; left: 65%;}
+            .margielaPKeyword01{top: 5%; left: 70%;}
+            .margielaPKeyword03{top: 5%; left: 5%;}
+            [class*='PMainText']>div{width: 95%; line-height: 1; display: flex; align-items: center; justify-content: center; text-align: center; padding: 1rem;}
+
+            [class*='P02']{width: 95%;}
+            .byredoPElBox{height: 81dvh;}
+            .byredoPElBox>div{height: 27dvh;}
+            .tomPElBox{grid-template: repeat(3, 1fr) / repeat(1, 1fr 2.4fr);}
+            [class*='tomPElBg0']{padding: 1rem;}
+            .leraboPElBg, .burberryPElBg{height: 40dvh;}
+            .margielaP02{padding: 2rem 2rem;}
+            .margielaPElBox{gap: 2rem;}
+            [class*=margielaPElBg]{height: 40dvh;}
+
+            [class*='PFConSen']>div:nth-child(1){font-size: 3.6rem;}
+            [class*='PFConSen']>div:nth-child(2){font-size: 2rem;}
+            .byredoPFConSen01{right: 5%; top: 10%;}
+            .byredoPFConSen02{left: 5%; top: 80%;}
+            .byredoPFConSen03{top: 15%;}
+            .tomPFConSen01{right: 25%; top: 85%;}
+            .tomPFConSen02{width: 40%; text-align: end; right: 5%; top: 77%;}
+            .tomPFConSen03{left: 5%; top: 10%;}
+            .leraboPFConSen01{left: 10%; top: 10%;}
+            .leraboPFConSen03{left: 9%; top: 10%;}
+            .burberryPFConSen01{left: 6%; top: 80%;}
+            .burberryPFConSen03{left: 6%; top: 40%;}
+            .margielaPFConSen01{top: 55%;}
+            .margielaPFConSen02{top: 5%;}
+            .margielaPFConSen03{top: 20%;}
+
+            [class*='P04']{width: 95%; height: 85dvh;}
+            [class*='PFst']:not([class*='Sen']):not([class*='Title']){height: 40dvh; gap: 1.4rem; padding: 0 0;}
+    }
