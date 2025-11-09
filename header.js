@@ -32,17 +32,23 @@ let ham = document.querySelectorAll('.hamburger span')
 if (document.body.classList.contains('home')) {
     nav.classList.add('onWhite');
     keyIconPath.setAttribute('stroke', '#f7f7f7');
-    ham.style.backgroundColor='#222'
+    ham.forEach(span => {
+        span.style.backgroundColor = '#f7f7f7';
+    });
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > window.innerHeight) {
             nav.classList.remove('onWhite');
             keyIconPath.setAttribute('stroke', '#222');
-            ham.style.backgroundColor='#222'
+            ham.forEach(span => {
+                span.style.backgroundColor = '#222';
+            });
         } else {
             nav.classList.add('onWhite');
             keyIconPath.setAttribute('stroke', '#f7f7f7');
-            ham.style.backgroundColor='#222'
+            ham.forEach(span => {
+                span.style.backgroundColor = '#f7f7f7';
+            });
         }
     });
 }
@@ -73,7 +79,6 @@ function updateTimeM() {
     let time=document.getElementById('timeM')
     let today = new Date();   
     
-    let year = today.getFullYear()
     let month = (today.getMonth() + 1)
     let day = today.getDate()
     let ampm = today.getHours() < 12 ? "AM" : "PM"
@@ -85,7 +90,7 @@ function updateTimeM() {
     hours = hours < 10 ? '0' + hours : hours
     minutes = minutes < 10 ? '0' + minutes : minutes
 
-    time.innerHTML=`${year} / ${month} / ${day}<br>${ampm} ${hours}:${minutes}`
+    time.innerHTML=`${month} / ${day}<br>${ampm} ${hours}:${minutes}`
 }
 updateTimeM()
 setInterval(updateTimeM, 1000)
@@ -201,6 +206,9 @@ let keywordBox = document.querySelector('.keywordBox')
 
 searchInput.addEventListener('focus', () => {
     searchPanel.classList.add('onSearch')
+});
+searchInput.addEventListener('click', () => {
+    searchPanel.classList.add('onSearch');
 });
 
 closeBtn.addEventListener('click', () => {
