@@ -389,8 +389,10 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
 
     /* 모바일 */
     @media screen and (max-width: 480px){
+
         .mapBottomBox{flex-direction: column; gap: 2rem;}
         .searchBox{border-radius: 1.4rem;}
+        .searchBox input{width: 35rem;}
         .routeInfo{border-radius: 1.4rem;}
     }
 
@@ -943,8 +945,8 @@ footer{width: 100%; height: 42rem; background-color: #222; padding: 4rem;}
         [class*='FSen']{display: flex; justify-content: center; align-items: center; padding: 0 1rem; line-height: 1.4;}
 
         [class*='I05']{height: 120dvh; width: 90%;}
-        [class*='map']{height: 50dvh;}
-        .mapTypeBox{height: 20dvh; flex-direction: column; gap: 0rem;}
+        [class*='map']{height: 40dvh;}
+        .mapTypeBox{height: 20dvh; margin-bottom: 5rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;}
         .mapTypeBox>button{border-radius: 1rem;}
         .mapBottomBox{height: 20dvh;}
 
